@@ -33,7 +33,7 @@ const AppViewer = () => {
             </Button>
           </Col>
           <Col span={24}>
-            <Card bordered={false}>
+            <Card bordered={false} style={{ boxShadow: 'none' }}>
               <Row gutter={[24, 24]}>
                 <Col xs={24} lg={12}>
                   <AppDetails appId={appId} />

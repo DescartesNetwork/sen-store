@@ -4,7 +4,7 @@ import AvatarImage from 'static/images/logo.png'
 
 const CardTwitter = () => {
   return (
-    <Card bordered={false}>
+    <Card bordered={false} style={{ boxShadow: 'none', height: '100%' }}>
       <Row gutter={[24, 24]} align="middle">
         <Col>
           <Avatar size={44} src={AvatarImage} />
@@ -16,12 +16,12 @@ const CardTwitter = () => {
           </Space>
         </Col>
         <Col span={24}>
-          <Typography.Text>
+          <Typography.Paragraph ellipsis={{ rows: 5 }}>
             @Saros is just getting started. They are the gold standard for
             Solana projects IMO. @Saros is just getting started. They are the
             gold standard for Solana projects IMO....@Saros is just ..... for
             Solana projects IMO....@Saros is just .....
-          </Typography.Text>
+          </Typography.Paragraph>
         </Col>
       </Row>
     </Card>
