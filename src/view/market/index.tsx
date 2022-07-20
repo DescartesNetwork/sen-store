@@ -10,8 +10,10 @@ import AppCategorySlice from './appCategory/slice'
 import AllApps from './allApps'
 
 import { compareAliasString } from './appCategory/hooks/custom'
+import Trending from './trending'
+import NewListedApp from './newListedApp'
 
-const CATEGORIES = ['utility', 'DAO', 'liquidity', 'sentre', 'game']
+const CATEGORIES = ['utility']
 
 const Market = () => {
   const { search } = useLocation()
@@ -46,7 +48,13 @@ const Market = () => {
             </Col>
           ))}
           <Col span={24}>
+            <Trending />
+          </Col>
+          <Col span={24}>
             <AllApps />
+          </Col>
+          <Col span={24}>
+            <NewListedApp />
           </Col>
           <Col span={24}>
             <BottomBanner />

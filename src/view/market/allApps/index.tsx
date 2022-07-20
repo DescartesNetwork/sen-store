@@ -1,43 +1,60 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useRegister } from '@sentre/senhub'
 
-import { Card, Col, Row, Typography } from 'antd'
-import AppIcon from 'components/appIcon'
+import { Col, Radio, Row, Space, Typography } from 'antd'
+import { compareAliasString } from '../appCategory/hooks/custom'
+import ListAppByCategory from './listAppByCategory'
 
-import { useGoToStoreCallback } from 'hooks/useGotoStore'
+import './index.less'
+
+const CATEGORIES = ['utility', 'DAO', 'liquidity', 'sentre', 'game']
 
 const AllApps = () => {
   const register = useRegister()
-  const appIds = useMemo(() => Object.keys(register), [register])
-  const onGoToStore = useGoToStoreCallback()
+  const [category, setCategory] = useState('all')
+
+  console.log(register, 'sadasd ')
+
+  const tags = useMemo(() => {
+    let tags: string[] = []
+    for (const appId in register) {
+      const newTags = register[appId]?.tags || []
+      // Remove duplicate elements
+      tags = Array.from(new Set([...tags, ...newTags]))
+    }
+    return CATEGORIES.filter((category) => compareAliasString(category, tags))
+  }, [register])
 
   return (
-    <Card bordered={false} className="glass" bodyStyle={{ padding: 32 }}>
-      <Row gutter={[24, 32]}>
-        <Col span={24}>
-          <Row gutter={[24, 24]} justify="center">
-            <Col>
-              <Typography.Title type="secondary" level={3}>
-                Let's explore the Store
-              </Typography.Title>
-            </Col>
-          </Row>
-        </Col>
-        <Col span={24}>
-          <Row gutter={[24, 24]} justify="center">
-            {appIds.map((appId, i) => (
-              <Col key={i}>
-                <AppIcon
-                  appId={appId}
-                  size={72}
-                  onClick={() => onGoToStore({ appId })}
-                />
-              </Col>
-            ))}
-          </Row>
-        </Col>
-      </Row>
-    </Card>
+    <Row gutter={[24, 32]}>
+      <Col span={24}>
+        <Row gutter={[24, 24]} justify="space-between">
+          <Col>
+            <Typography.Title type="secondary" level={3}>
+              Explore the Store
+            </Typography.Title>
+          </Col>
+          <Col>
+            <Radio.Group
+              defaultValue={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <Space>
+                <Radio.Button value="all">All</Radio.Button>
+                {tags.map((tag) => (
+                  <Radio.Button value={tag} key={tag}>
+                    {tag}
+                  </Radio.Button>
+                ))}
+              </Space>
+            </Radio.Group>
+          </Col>
+        </Row>
+      </Col>
+      <Col span={24}>
+        <ListAppByCategory category={category} />
+      </Col>
+    </Row>
   )
 }
 

@@ -1,9 +1,7 @@
-import { useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useUI } from '@sentre/senhub'
 import { Navigation, Pagination } from 'swiper'
 
-import { Card } from 'antd'
+import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
 
 import storePanel1 from 'static/images/market/store-panel1.png'
 import storePanel2 from 'static/images/market/store-panel2.png'
@@ -11,21 +9,14 @@ import storePanel3 from 'static/images/market/store-panel3.png'
 import storePanel4 from 'static/images/market/store-panel4.png'
 import './index.less'
 
-const PAGE_PADDING = 20
 const PANELS = [storePanel1, storePanel2, storePanel3, storePanel4]
 
 const TopBanner = () => {
-  const {
-    ui: { infix, width },
-  } = useUI()
-
-  const isMobile = useMemo(() => infix === 'xs', [infix])
-
   return (
     <Swiper
       className="hero-banner"
       slidesPerView={1}
-      navigation={!isMobile}
+      navigation={false}
       pagination={{
         clickable: true,
         type: 'bullets',
@@ -39,7 +30,6 @@ const TopBanner = () => {
         return (
           <SwiperSlide
             style={{
-              height: Math.min(1920 / 3, (width - PAGE_PADDING * 2) / 3),
               cursor: 'pointer',
             }}
             key={index}
@@ -47,14 +37,37 @@ const TopBanner = () => {
             <Card
               style={{
                 height: '100%',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundImage: `url(${banner})`,
                 boxShadow: 'none',
               }}
+              bodyStyle={{ padding: 0 }}
               bordered={false}
-            />
+            >
+              <Row gutter={[24, 24]}>
+                <Col span={12}>
+                  <Space
+                    style={{ padding: '56px 32px' }}
+                    direction="vertical"
+                    size={32}
+                  >
+                    <Typography.Title level={1}>
+                      TFT - Dragonlands: Todos los campeones del Set
+                    </Typography.Title>
+                    <Typography.Text>
+                      Personalised ads and content, ad and content measurement,
+                      audience insights and product development, Precise
+                      geolocation data, and identification through device
+                      scanning, Storage and access to geolocation
+                    </Typography.Text>
+                    <Button onClick={() => {}} type="primary">
+                      Explore now
+                    </Button>
+                  </Space>
+                </Col>
+                <Col span={12} className="img-banner">
+                  <Image src={banner} preview={false} />
+                </Col>
+              </Row>
+            </Card>
           </SwiperSlide>
         )
       })}
