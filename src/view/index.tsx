@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import { Layout } from 'antd'
 
 import Market from './market'
-import AppInfos from 'view/appInfos'
+import AppInfo from 'view/appInfo'
 
 import configs from 'configs'
 
@@ -20,7 +20,7 @@ const View = () => {
       <Layout.Content>
         <Switch>
           <Route exact path={`/app/${appId}/`} component={Market} />
-          <Route exact path={`/app/${appId}/:appId`} component={AppInfos} />
+          <Route exact path={`/app/${appId}/:appId`} component={AppInfo} />
           <Route path="*">
             <Redirect to="/" />
           </Route>
