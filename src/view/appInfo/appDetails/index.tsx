@@ -39,7 +39,7 @@ const AppDetails = ({ appId }: { appId: string }) => {
     <Row gutter={[16, 16]}>
       <Col span={24}>
         <Row gutter={[16, 16]}>
-          <Col span={isMobile ? 24 : 14}>
+          <Col span={isMobile ? 24 : 16}>
             <Row gutter={[32, 24]} wrap={false}>
               <Col>
                 <AppIcon appId={appId} size={96} name={false} />
@@ -55,7 +55,7 @@ const AppDetails = ({ appId }: { appId: string }) => {
               </Col>
             </Row>
           </Col>
-          <Col span={isMobile ? 24 : 10}>
+          <Col span={isMobile ? 24 : 8}>
             <Row gutter={[16, 16]} justify={floatSocialButton}>
               <Col span={24}>
                 <InstalledApp appId={appId} installed={installed} />
