@@ -18,15 +18,22 @@ const ReadMoreModal = ({ content }: { content: string }) => {
         Read more
       </Typography.Text>
       <Modal
-        closable={false}
         visible={visible}
         onCancel={() => setVisible(false)}
         closeIcon={<IonIcon name="close" />}
         footer={null}
         centered
         bodyStyle={{ padding: 32 }}
+        className="readmore-modal"
       >
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <Row gutter={[20, 20]}>
+          <Col span={24}>
+            <Typography.Title level={4}>Description</Typography.Title>
+          </Col>
+          <Col span={24}>
+            <div dangerouslySetInnerHTML={{ __html: content }} />
+          </Col>
+        </Row>
       </Modal>
     </Fragment>
   )
