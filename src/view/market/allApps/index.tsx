@@ -1,8 +1,10 @@
 import { useMemo } from 'react'
-import { useGoToStoreCallback, useRegister } from '@sentre/senhub'
+import { useRegister } from '@sentre/senhub'
 
 import { Card, Col, Row, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
+
+import { useGoToStoreCallback } from 'hooks/useGotoStore'
 
 const AllApps = () => {
   const register = useRegister()
