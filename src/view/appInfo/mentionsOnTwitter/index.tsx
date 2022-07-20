@@ -10,13 +10,13 @@ const MentionsOnTwitter = () => {
       </Col>
       <Col span={24}>
         <Row gutter={[24, 24]}>
-          <Col span={8}>
+          <Col xs={24} md={8}>
             <CardTwitter />
           </Col>
-          <Col span={8}>
+          <Col xs={24} md={8}>
             <CardTwitter />
           </Col>
-          <Col span={8}>
+          <Col xs={24} md={8}>
             <CardTwitter />
           </Col>
         </Row>
