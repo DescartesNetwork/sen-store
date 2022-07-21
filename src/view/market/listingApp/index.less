@@ -1,35 +1,16 @@
-@keyframes moveStream {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes moveReverse {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.infinite-slide-wrapper {
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-  .slide-element {
-    display: flex;
-    width: 100%;
-    flex-flow: row nowrap;
-    gap: 32px;
-    &.slide-stream {
-      // animation: moveStream 30s linear infinite;
-    }
-    &.slide-reverse {
-      // animation: stylie-transform-keyframes 30s linear infinite;
-    }
+// .infinite-slide-wrapper {
+//   display: flex;
+//   width: 100%;
+//   overflow: hidden;
+//   .slide-element {
+//     display: flex;
+//     width: 100%;
+//     flex-flow: row nowrap;
+//     gap: 32px;
+//   }
+// }
+.apps-slide-infinite {
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
   }
 }

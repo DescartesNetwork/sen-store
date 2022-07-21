@@ -60,8 +60,6 @@ const Trending = () => {
         <CardTrending
           align="middle"
           bg="https://bafybeiefdbsycwts4chxsyu7vgm7fntmzwmiganngdfzq4pzjymdjlrjym.ipfs.infura-ipfs.io/"
-          middle
-          justify="center"
         >
           <Space direction="vertical">
             <Typography.Title level={4}>

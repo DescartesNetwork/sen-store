@@ -1,6 +1,6 @@
 import { useAppIds } from '@sentre/senhub'
 
-import { Col, Row } from 'antd'
+import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
 import InfiniteSlideIcon from './infiniteSlideIcon'
 
@@ -10,12 +10,15 @@ const ListingApp = () => {
   const appIds = useAppIds()
 
   return (
-    <Row gutter={[24, 24]} style={{ background: '#EAE6F5' }}>
+    <Row gutter={[24, 24]} style={{ background: '#EAE6F5' }} align="middle">
       <Col span={12}>
         <IntegrationCard />
       </Col>
       <Col span={12}>
-        <InfiniteSlideIcon appIds={appIds} reverse />
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <InfiniteSlideIcon appIds={appIds} />
+          <InfiniteSlideIcon appIds={appIds} reverse />
+        </Space>
       </Col>
     </Row>
   )
