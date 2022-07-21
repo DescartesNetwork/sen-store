@@ -3,7 +3,7 @@ import { useRegister } from '@sentre/senhub'
 
 import { Col, Radio, Row, Space, Typography } from 'antd'
 import { compareAliasString } from '../appCategory/hooks/custom'
-import ListAppByCategory from './listAppByCategory'
+import ListAppByCategory from './listExploreApp'
 
 import './index.less'
 

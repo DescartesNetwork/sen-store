@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Grid } from 'swiper'
 
 import { Card } from 'antd'
-import CardAppCateogry from './cardAppCateogry'
+import CardAppCateogry from './cardExploreApp'
 
 import { CategoryOptions, useAppCategory } from '../appCategory/hooks'
 

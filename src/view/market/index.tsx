@@ -7,7 +7,7 @@ import TopBanner from './topBanner'
 import BottomBanner from './bottomBanner'
 import AppCategorySeeAll from './appCategory/seeAll'
 import AppCategorySlice from './appCategory/slice'
-import AllApps from './allApps'
+import AllApps from './exploreApps'
 
 import { compareAliasString } from './appCategory/hooks/custom'
 import Trending from './trending'
