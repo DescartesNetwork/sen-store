@@ -6,6 +6,7 @@ import IonIcon from '@sentre/antd-ionicon'
 import AppDetails from './appDetails'
 import ScreenShot from './screenshot'
 import AppCategorySlice from '../market/appCategory/slice'
+import MentionsOnTwitter from './mentionsOnTwitter'
 
 import { CustomCategory } from '../market/appCategory/hooks'
 import './index.less'
@@ -32,7 +33,7 @@ const AppViewer = () => {
             </Button>
           </Col>
           <Col span={24}>
-            <Card bordered={false}>
+            <Card bordered={false} style={{ boxShadow: 'none' }}>
               <Row gutter={[24, 24]}>
                 <Col xs={24} lg={12}>
                   <AppDetails appId={appId} />
@@ -42,6 +43,9 @@ const AppViewer = () => {
                 </Col>
               </Row>
             </Card>
+          </Col>
+          <Col span={24}>
+            <MentionsOnTwitter />
           </Col>
           <Col span={24}>
             <AppCategorySlice
