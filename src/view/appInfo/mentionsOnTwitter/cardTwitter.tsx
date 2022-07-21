@@ -1,20 +1,25 @@
+import { useUI } from '@sentre/senhub'
 import { Avatar, Card, Col, Row, Space, Typography } from 'antd'
 import { useMemo } from 'react'
 
 import AvatarImage from 'static/images/logo.png'
 
 const BG_COLOR_1 =
-  'radial-gradient(circle 90px at 75% 60%, rgb(83 127 255 / 70%), transparent)'
+  'radial-gradient(circle 90px at 80% 60%, rgb(83 127 255 / 70%), transparent)'
 const BG_COLOR_2 =
-  'radial-gradient(circle 90px at 75% 60%, rgb(57 116 184 / 70%), transparent)'
+  'radial-gradient(circle 90px at 80% 60%, rgb(57 116 184 / 70%), transparent)'
 const BG_COLOR_3 =
-  'radial-gradient(circle 90px at 75% 60%, rgb(117 81 236 / 70%), transparent)'
+  'radial-gradient(circle 90px at 80% 60%, rgb(117 81 236 / 70%), transparent)'
 
 export type CardTwitterProps = {
   indexColor?: number
 }
 
 const CardTwitter = ({ indexColor = 0 }: CardTwitterProps) => {
+  const {
+    ui: { theme },
+  } = useUI()
+
   const cardBackground = useMemo(() => {
     switch (indexColor) {
       case 1:
@@ -32,10 +37,12 @@ const CardTwitter = ({ indexColor = 0 }: CardTwitterProps) => {
     <Card
       bordered={false}
       style={{
-        boxShadow: 'none',
         height: '100%',
+        background: theme === 'light' ? '#FFF' : undefined,
+        boxShadow: 'none',
       }}
       bodyStyle={{
+        height: '100%',
         background: cardBackground,
       }}
     >

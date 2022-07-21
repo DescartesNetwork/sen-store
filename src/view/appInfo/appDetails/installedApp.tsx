@@ -54,7 +54,7 @@ const InstalledApp = ({ installed, appId }: InstalledAppProps) => {
         <Col span={isMobile ? 24 : undefined}>
           <Button
             type="primary"
-            icon={<IonIcon name="cloud-download-outline" />}
+            icon={<IonIcon name="download-outline" />}
             onClick={onInstall}
             block={isMobile}
           >

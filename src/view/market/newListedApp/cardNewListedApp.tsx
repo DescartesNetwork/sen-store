@@ -1,9 +1,4 @@
-import {
-  useRegister,
-  useAppIds,
-  useInstallApp,
-  useGoToApp,
-} from '@sentre/senhub'
+import { useRegister } from '@sentre/senhub'
 
 import { Card, Col, Image, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
