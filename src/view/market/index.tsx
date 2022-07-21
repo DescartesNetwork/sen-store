@@ -12,6 +12,7 @@ import AllApps from './allApps'
 import { compareAliasString } from './appCategory/hooks/custom'
 import Trending from './trending'
 import NewListedApp from './newListedApp'
+import ListingApp from './listingApp'
 
 const CATEGORIES = ['utility']
 
@@ -55,6 +56,9 @@ const Market = () => {
           </Col>
           <Col span={24}>
             <NewListedApp />
+          </Col>
+          <Col span={24}>
+            <ListingApp />
           </Col>
           <Col span={24}>
             <BottomBanner />

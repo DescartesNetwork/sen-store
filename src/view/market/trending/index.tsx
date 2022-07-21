@@ -54,7 +54,7 @@ const Trending = () => {
   return (
     <Row gutter={[24, 24]}>
       <Col span={24}>
-        <Typography.Title level={5}>Trending topics</Typography.Title>
+        <Typography.Title level={2}>Trending topics</Typography.Title>
       </Col>
       <Col span={12}>
         <CardTrending

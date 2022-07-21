@@ -13,8 +13,6 @@ const AllApps = () => {
   const register = useRegister()
   const [category, setCategory] = useState('all')
 
-  console.log(register, 'sadasd ')
-
   const tags = useMemo(() => {
     let tags: string[] = []
     for (const appId in register) {
@@ -30,9 +28,7 @@ const AllApps = () => {
       <Col span={24}>
         <Row gutter={[24, 24]} justify="space-between">
           <Col>
-            <Typography.Title type="secondary" level={3}>
-              Explore the Store
-            </Typography.Title>
+            <Typography.Title level={2}>Explore the Store</Typography.Title>
           </Col>
           <Col>
             <Radio.Group
