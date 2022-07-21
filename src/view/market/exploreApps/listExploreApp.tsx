@@ -6,6 +6,7 @@ import { Card } from 'antd'
 import CardAppCateogry from './cardExploreApp'
 
 import { CategoryOptions, useAppCategory } from '../appCategory/hooks'
+import FlexibleCard from 'components/flexibleCard'
 
 type AppByCategoryProps = {
   seeAll?: boolean
@@ -27,22 +28,24 @@ const ListAppByCategory = ({
   const listAppId = seeAll || category === 'all' ? allAppIds : appIds
 
   return (
-    <Card bordered={false}>
-      <Swiper
-        modules={[Grid, Navigation]}
-        grid={{ rows: rows, fill: 'row' }}
-        slidesPerView={slicePerView}
-        spaceBetween={spacing}
-        navigation
-        className="apps-grid-view"
-      >
-        {listAppId.map((appId, idx) => (
-          <SwiperSlide key={idx}>
-            <CardAppCateogry appId={appId} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Card>
+    <FlexibleCard type="green">
+      <Card bordered={false}>
+        <Swiper
+          modules={[Grid, Navigation]}
+          grid={{ rows: rows, fill: 'row' }}
+          slidesPerView={slicePerView}
+          spaceBetween={spacing}
+          navigation
+          className="apps-grid-view"
+        >
+          {listAppId.map((appId, idx) => (
+            <SwiperSlide key={idx}>
+              <CardAppCateogry appId={appId} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Card>
+    </FlexibleCard>
   )
 }
 

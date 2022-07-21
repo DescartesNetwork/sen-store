@@ -1,7 +1,8 @@
 import { useRegister } from '@sentre/senhub'
 
-import { Card, Col, Image, Row, Space, Typography } from 'antd'
+import { Col, Image, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
+import FlexibleCard from 'components/flexibleCard'
 import Verification from 'components/verification'
 import { useMemo } from 'react'
 
@@ -26,7 +27,7 @@ const CardNewListedApp = ({
     : 'panel-img'
 
   return (
-    <Card bordered={false} className="new-listed-card">
+    <FlexibleCard className="new-listed-card" transparent type="pink">
       <Row gutter={[24, 24]} wrap={vertical}>
         <Col span={verticalSpan} className={clnHorizontalImg}>
           <Image
@@ -58,7 +59,7 @@ const CardNewListedApp = ({
           </Row>
         </Col>
       </Row>
-    </Card>
+    </FlexibleCard>
   )
 }
 

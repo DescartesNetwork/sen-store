@@ -2,7 +2,7 @@ import { useGoToStore } from 'hooks/useGotoStore'
 
 import { Button, Col, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
-import AppCard from '../appCard'
+import AppCard from './appCard'
 
 import { CategoryOptions, useAppCategory } from './hooks'
 
