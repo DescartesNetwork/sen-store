@@ -9,7 +9,12 @@ const AppTags = ({ tags = [] }: AppTagsProps) => {
     <Space size={8} wrap>
       {tags.map((tag, index) => (
         <Tag
-          style={{ margin: 0, borderRadius: 4, color: util.randomColor(tag) }}
+          style={{
+            margin: 0,
+            borderRadius: 4,
+            color: util.randomColor(tag),
+            textTransform: 'capitalize',
+          }}
           color={util.randomColor(tag, 0.2)}
           key={index}
         >
