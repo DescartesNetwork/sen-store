@@ -7,12 +7,10 @@ import './index.less'
 const NewListedApp = () => {
   const register = useRegister()
 
-  console.log(register, ' register')
-
   return (
     <Row gutter={[24, 24]}>
       <Col span={24}>
-        <Typography.Title level={3}>New listed</Typography.Title>
+        <Typography.Title level={2}>New listed</Typography.Title>
       </Col>
       <Col span={12}>
         <CardNewListedApp appId={Object.keys(register)[0]} vertical />
