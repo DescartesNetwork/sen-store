@@ -14,6 +14,12 @@ export const SwiperOs = ({
     ui: { infix },
   } = useUI()
   const isMobile = useMemo(() => infix === 'xs', [infix])
+  const navigaConfig = !isMobile
+    ? {
+        nextEl: '.swiper-next-element',
+        prevEl: '.swiper-prev-element',
+      }
+    : false
 
   return (
     <Swiper
@@ -21,7 +27,7 @@ export const SwiperOs = ({
       lazy
       spaceBetween={24}
       modules={isMobile ? [] : [Navigation]}
-      navigation={!isMobile}
+      navigation={{ ...navigaConfig }}
       {...rest}
     >
       {children}

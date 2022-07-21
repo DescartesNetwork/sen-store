@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react'
 import { useRegister } from '@sentre/senhub'
 
-import { Col, Radio, Row, Space, Typography } from 'antd'
+import { Button, Col, Radio, Row, Space, Typography } from 'antd'
 import { compareAliasString } from '../appCategory/hooks/custom'
 import ListAppByCategory from './listExploreApp'
 
 import './index.less'
+import IonIcon from '@sentre/antd-ionicon'
 
 const CATEGORIES = ['utility', 'DAO', 'liquidity', 'sentre', 'game']
 
@@ -24,14 +25,15 @@ const AllApps = () => {
   }, [register])
 
   return (
-    <Row gutter={[24, 32]}>
+    <Row gutter={[24, 32]} justify="center">
       <Col span={24}>
-        <Row gutter={[24, 24]} justify="space-between">
+        <Row gutter={[24, 24]} justify="space-between" align="middle">
           <Col>
             <Typography.Title level={2}>Explore the Store</Typography.Title>
           </Col>
           <Col>
             <Radio.Group
+              className="explore-apps-group-btn"
               defaultValue={category}
               onChange={(e) => setCategory(e.target.value)}
             >
@@ -49,6 +51,22 @@ const AllApps = () => {
       </Col>
       <Col span={24}>
         <ListAppByCategory category={category} />
+      </Col>
+      <Col>
+        <Space>
+          <Button
+            className="explore-app-swiper-prev"
+            shape="circle"
+            style={{ border: 'none' }}
+            icon={<IonIcon name="chevron-back-outline" />}
+          />
+          <Button
+            className="explore-app-swiper-next"
+            shape="circle"
+            style={{ border: 'none' }}
+            icon={<IonIcon name="chevron-forward-outline" />}
+          />
+        </Space>
       </Col>
     </Row>
   )

@@ -16,8 +16,16 @@ import AppTags from 'view/appInfo/appDetails/appTags'
 const LIMIT_TAG = 2
 const START_SPLICE = 0
 
-export type CardInfoProps = { appId: string }
-const CardInfo = ({ appId }: CardInfoProps) => {
+export type AppCardInfoProps = {
+  appId: string
+  radius?: string | number
+  padding?: string | number
+}
+const AppCardInfo = ({
+  appId,
+  radius = '0 0 12px 12px',
+  padding = '28px 16px 12px 16px',
+}: AppCardInfoProps) => {
   const register = useRegister()
   const appIds = useAppIds()
   const {
@@ -56,10 +64,10 @@ const CardInfo = ({ appId }: CardInfoProps) => {
       bordered={false}
       style={{
         boxShadow: 'unset',
-        borderRadius: '0 0 12px 12px',
+        borderRadius: radius,
       }}
       bodyStyle={{
-        padding: '28px 16px 12px 16px',
+        padding,
       }}
     >
       <Row align="top" gutter={[8, 8]}>
@@ -101,4 +109,4 @@ const CardInfo = ({ appId }: CardInfoProps) => {
   )
 }
 
-export default CardInfo
+export default AppCardInfo

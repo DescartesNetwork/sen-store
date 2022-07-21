@@ -35,7 +35,10 @@ const ListAppByCategory = ({
           grid={{ rows: rows, fill: 'row' }}
           slidesPerView={slicePerView}
           spaceBetween={spacing}
-          navigation
+          navigation={{
+            nextEl: '.explore-app-swiper-next',
+            prevEl: '.explore-app-swiper-prev',
+          }}
           className="apps-grid-view"
         >
           {listAppId.map((appId, idx) => (

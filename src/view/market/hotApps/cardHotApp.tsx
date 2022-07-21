@@ -2,19 +2,19 @@ import { CSSProperties, useEffect, useRef, useState } from 'react'
 
 import { Card, Col, Row } from 'antd'
 import { MultiStaticLoader } from 'components/staticLoader'
-import CardInfo from './cardInfo'
 import FlexibleCard from 'components/flexibleCard'
+import AppCardInfo from 'components/appCardInfo'
 
 import { useGoToStore } from 'hooks/useGotoStore'
 
 import imgError from 'static/images/error-image.svg'
 
-export type AppCardProps = {
+export type CardHotAppCardProps = {
   appId: string
   style?: CSSProperties
 }
 
-const AppCard = ({ appId, style = {} }: AppCardProps) => {
+const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
   const [cardHeight, setCardHeight] = useState(0)
   const ref = useRef(null)
   const onOpen = useGoToStore({ appId })
@@ -53,7 +53,7 @@ const AppCard = ({ appId, style = {} }: AppCardProps) => {
                   />
                 </Col>
                 <Col span={24} style={{ top: -16, zIndex: 0 }}>
-                  <CardInfo appId={appId} />
+                  <AppCardInfo appId={appId} />
                 </Col>
               </Row>
             </FlexibleCard>
@@ -64,4 +64,4 @@ const AppCard = ({ appId, style = {} }: AppCardProps) => {
   )
 }
 
-export default AppCard
+export default CardHotAppCard
