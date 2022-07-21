@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
 import { Row, Col, Card, Button } from 'antd'
@@ -8,14 +8,23 @@ import ScreenShot from './screenshot'
 import AppCategorySlice from '../market/appCategory/slice'
 import MentionsOnTwitter from './mentionsOnTwitter'
 
+import configs from 'configs'
 import { CustomCategory } from '../market/appCategory/hooks'
 import './index.less'
+
+const {
+  manifest: { appId: appStoreId },
+} = configs
 
 const AppViewer = () => {
   const history = useHistory()
   const { appId } = useParams<{ appId: string }>()
 
   const onBack = useCallback(() => history.goBack(), [history])
+
+  useEffect(() => {
+    if (appStoreId === appId) history.push('/app/' + appStoreId)
+  }, [appId, history])
 
   return (
     <Row gutter={[24, 24]} justify="center">
