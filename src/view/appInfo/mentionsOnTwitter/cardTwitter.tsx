@@ -5,11 +5,11 @@ import { useMemo } from 'react'
 import AvatarImage from 'static/images/logo.png'
 
 const BG_COLOR_1 =
-  'radial-gradient(circle 90px at 80% 60%, rgb(83 127 255 / 70%), transparent)'
+  'radial-gradient(circle 90px at 80% 60%, rgb(83 127 255 / 40%), transparent)'
 const BG_COLOR_2 =
-  'radial-gradient(circle 90px at 80% 60%, rgb(57 116 184 / 70%), transparent)'
+  'radial-gradient(circle 90px at 80% 60%, rgb(57 116 184 / 40%), transparent)'
 const BG_COLOR_3 =
-  'radial-gradient(circle 90px at 80% 60%, rgb(117 81 236 / 70%), transparent)'
+  'radial-gradient(circle 90px at 80% 60%, rgb(117 81 236 / 40%), transparent)'
 
 export type CardTwitterProps = {
   indexColor?: number
@@ -45,6 +45,7 @@ const CardTwitter = ({ indexColor = 0 }: CardTwitterProps) => {
         height: '100%',
         background: cardBackground,
       }}
+      className="card-twitter"
     >
       <Row gutter={[24, 24]} align="middle">
         <Col>
