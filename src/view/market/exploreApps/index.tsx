@@ -10,7 +10,7 @@ import IonIcon from '@sentre/antd-ionicon'
 
 const CATEGORIES = ['utility', 'DAO', 'liquidity', 'sentre', 'game']
 
-const AllApps = () => {
+const ExploreApps = () => {
   const register = useRegister()
   const [category, setCategory] = useState('all')
 
@@ -72,4 +72,4 @@ const AllApps = () => {
   )
 }
 
-export default AllApps
+export default ExploreApps

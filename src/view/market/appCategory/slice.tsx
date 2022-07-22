@@ -20,7 +20,6 @@ const AppCategorySlice = ({
     search: `?category=${options.category}`,
   })
 
-  console.log(options, '  options')
   // Do not display category if no application exists
   if (!appIds.length) return null
   return (

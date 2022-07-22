@@ -1,20 +1,24 @@
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useRegister } from '@sentre/senhub'
 
 import { Row, Col } from 'antd'
 import TopBanner from './topBanner'
 import BottomBanner from './bottomBanner'
 import AppCategorySeeAll from './appCategory/seeAll'
-import AllApps from './exploreApps'
-
 import Trending from './trending'
 import NewListedApp from './newListedApp'
 import ListingApp from './listingApp'
 import HotApps from './hotApps'
-import AppsPopularTwitter from './appsPopularTwitter'
+import ExploreApps from './exploreApps'
+import ListAppByCategories from './listAppByCategories'
+
+import { CustomCategory } from './appCategory/hooks'
+import MentionsOnTwitter from 'view/appInfo/mentionsOnTwitter'
 
 const Market = () => {
   const { search } = useLocation()
+  const resgister = useRegister()
 
   const category = useMemo(
     () => new URLSearchParams(search).get('category'),
@@ -32,14 +36,23 @@ const Market = () => {
           <Col span={24}>
             <HotApps />
           </Col>
+          {/* Popular on Twitter */}
           <Col span={24}>
-            <AppsPopularTwitter />
+            <ListAppByCategories
+              category={CustomCategory.suggest}
+              related={{ appIds: Object.keys(resgister).splice(0, 5) }}
+              title="Popular on Twitter"
+            />
+          </Col>
+          {/* Mentions twitter */}
+          <Col span={24}>
+            <MentionsOnTwitter />
           </Col>
           <Col span={24}>
             <Trending />
           </Col>
           <Col span={24}>
-            <AllApps />
+            <ExploreApps />
           </Col>
           <Col span={24}>
             <NewListedApp />

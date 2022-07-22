@@ -12,7 +12,11 @@ const {
 
 export const Page = () => {
   return (
-    <UIProvider appId={appId} antd={{ prefixCls: appId }}>
+    <UIProvider
+      appId={appId}
+      antd={{ prefixCls: appId }}
+      style={{ paddingBottom: 12 }}
+    >
       <WalletProvider>
         <Provider store={model}>
           <View />

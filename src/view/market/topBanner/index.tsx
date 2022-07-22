@@ -40,7 +40,8 @@ const TopBanner = () => {
               style={{
                 height: '100%',
                 boxShadow: 'none',
-                background: `url(${topBg}) no-repeat`,
+                backgroundImage: `url(${topBg})`,
+                backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
               }}
               bodyStyle={{ padding: 0 }}

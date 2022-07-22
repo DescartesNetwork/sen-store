@@ -4,23 +4,23 @@ import { Navigation, Grid } from 'swiper'
 
 import { Card } from 'antd'
 import CardAppCateogry from './cardExploreApp'
-
-import { CategoryOptions, useAppCategory } from '../appCategory/hooks'
 import FlexibleCard from 'components/flexibleCard'
 
-type AppByCategoryProps = {
+import { CategoryOptions, useAppCategory } from '../appCategory/hooks'
+
+type ListExploreAppProps = {
   seeAll?: boolean
   spacing?: number
   slicePerView?: number
   rows?: number
 } & CategoryOptions
-const ListAppByCategory = ({
+const ListExploreApp = ({
   seeAll = false,
   rows = 2,
   slicePerView = 4,
   spacing = 48,
   ...options
-}: AppByCategoryProps) => {
+}: ListExploreAppProps) => {
   const allAppIds = useAppIds()
   const { appIds } = useAppCategory(options)
   const { category } = options
@@ -52,4 +52,4 @@ const ListAppByCategory = ({
   )
 }
 
-export default ListAppByCategory
+export default ListExploreApp
