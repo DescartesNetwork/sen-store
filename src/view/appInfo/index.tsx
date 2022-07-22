@@ -1,16 +1,17 @@
 import { useCallback, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
-import { Row, Col, Card, Button } from 'antd'
+import { Row, Col, Card, Button, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
 import AppDetails from './appDetails'
 import ScreenShot from './screenshot'
-import AppCategorySlice from '../market/appCategory/slice'
 import MentionsOnTwitter from './mentionsOnTwitter'
 
 import configs from 'configs'
-import { CustomCategory } from '../market/appCategory/hooks'
+import { CustomCategory, useAppCategory } from '../market/appCategory/hooks'
 import './index.less'
+import FlexibleCard from 'components/flexibleCard'
+import AppCardInfo from 'components/appCardInfo'
 
 const {
   manifest: { appId: appStoreId },
@@ -19,6 +20,12 @@ const {
 const AppViewer = () => {
   const history = useHistory()
   const { appId } = useParams<{ appId: string }>()
+  const { title: suggestTitle, appIds: suggestAppIds } = useAppCategory({
+    category: CustomCategory.suggest,
+    related: { appIds: [appId] },
+  })
+
+  console.log(suggestAppIds, '   sss', CustomCategory.suggest)
 
   const onBack = useCallback(() => history.goBack(), [history])
 
@@ -57,11 +64,23 @@ const AppViewer = () => {
             <MentionsOnTwitter />
           </Col>
           <Col span={24}>
-            <AppCategorySlice
-              category={CustomCategory.suggest}
-              related={{ appIds: [appId] }}
-              seeAll={false}
-            />
+            <Row gutter={[24, 24]}>
+              <Col span={24}>
+                <Typography.Title
+                  level={2}
+                  style={{ textTransform: 'capitalize' }}
+                >
+                  {suggestTitle}
+                </Typography.Title>
+              </Col>
+              {suggestAppIds.map((appId, idx) => (
+                <Col xs={12} sm={12} md={8} key={idx}>
+                  <FlexibleCard type="green">
+                    <AppCardInfo appId={appId} radius={12} padding={12} />
+                  </FlexibleCard>
+                </Col>
+              ))}
+            </Row>
           </Col>
         </Row>
       </Col>
