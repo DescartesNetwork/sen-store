@@ -1,7 +1,7 @@
 import { CSSProperties, useMemo } from 'react'
 import { useRegister } from '@sentre/senhub'
 
-import { Card, Col, Image, Row, Space, Typography } from 'antd'
+import { Card, Col, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
 import FlexibleCard from 'components/flexibleCard'
 import { MultiStaticLoader } from 'components/staticLoader'
