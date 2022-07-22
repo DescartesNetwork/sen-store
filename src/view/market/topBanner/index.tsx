@@ -48,7 +48,7 @@ const TopBanner = () => {
               bordered={false}
             >
               <Row gutter={[24, 24]}>
-                <Col span={12}>
+                <Col xs={24} md={12}>
                   <Space
                     style={{ padding: '56px 32px' }}
                     direction="vertical"
@@ -65,8 +65,12 @@ const TopBanner = () => {
                     </Button>
                   </Space>
                 </Col>
-                <Col span={12} className="img-banner">
-                  <Image src={banner} preview={false} />
+                <Col xs={24} md={12} className="img-banner">
+                  <Image
+                    className="image-aspect-43"
+                    src={banner}
+                    preview={false}
+                  />
                 </Col>
               </Row>
             </Card>
