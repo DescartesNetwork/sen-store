@@ -1,18 +1,23 @@
+import { CSSProperties, useMemo } from 'react'
 import { useRegister } from '@sentre/senhub'
 
-import { Col, Image, Row, Space, Typography } from 'antd'
+import { Card, Col, Image, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
 import FlexibleCard from 'components/flexibleCard'
+import { MultiStaticLoader } from 'components/staticLoader'
 import Verification from 'components/verification'
-import { useMemo } from 'react'
+
+import imgError from 'static/images/error-image.svg'
 
 type CardNewListedAppProps = {
   vertical?: boolean
   appId: string
+  style?: CSSProperties
 }
 const CardNewListedApp = ({
   vertical = false,
   appId,
+  style,
 }: CardNewListedAppProps) => {
   const register = useRegister()
 
@@ -30,11 +35,28 @@ const CardNewListedApp = ({
     <FlexibleCard className="new-listed-card" transparent type="pink">
       <Row gutter={[24, 24]} wrap={vertical}>
         <Col span={verticalSpan} className={clnHorizontalImg}>
-          <Image
-            src={
-              'https://bafybeiefdbsycwts4chxsyu7vgm7fntmzwmiganngdfzq4pzjymdjlrjym.ipfs.infura-ipfs.io/'
-            }
-            preview={false}
+          <MultiStaticLoader
+            defaultData={[imgError]}
+            appId={appId}
+            type="panels"
+            render={(data) => (
+              <Card
+                className="listed-card-img"
+                bordered={false}
+                style={{
+                  backgroundImage: `url(${data[0] || imgError})`,
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  boxShadow: 'none',
+                  borderRadius: 12,
+                  ...style,
+                }}
+                bodyStyle={{ padding: 0 }}
+              />
+            )}
           />
         </Col>
         <Col span={verticalSpan}>
