@@ -25,8 +25,6 @@ const AppViewer = () => {
     related: { appIds: [appId] },
   })
 
-  console.log(suggestAppIds, '   sss', CustomCategory.suggest)
-
   const onBack = useCallback(() => history.goBack(), [history])
 
   useEffect(() => {

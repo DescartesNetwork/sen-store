@@ -47,7 +47,7 @@ const CardTwitter = ({ indexColor = 0 }: CardTwitterProps) => {
       }}
       className="card-twitter"
     >
-      <Row gutter={[24, 24]} align="middle">
+      <Row gutter={[16, 16]} align="middle">
         <Col>
           <Avatar size={44} src={AvatarImage} />
         </Col>

@@ -6,8 +6,6 @@ import { Button, Col, Row, Space, Typography } from 'antd'
 import CardHotAppCard from './cardHotApp'
 import IonIcon from '@sentre/antd-ionicon'
 
-import './index.less'
-
 const HotApps = () => {
   const appIds = useAppIds()
 
