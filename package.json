@@ -54,7 +54,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.2.1",
-    "@types/lunr": "^2.3.9",
+    "@types/lunr": "^2.3.4",
     "@types/bn.js": "^5.1.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.10.3",
