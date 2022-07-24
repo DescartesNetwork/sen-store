@@ -29,7 +29,6 @@ const ListAppByCategories = ({
     ui: { width },
   } = useUI()
   const { title: suggestTitle, appIds: suggestAppIds } = useAppCategory(options)
-  console.log(options, suggestAppIds)
 
   const isMobile = width < 768
   const slicePerView = isMobile ? SLICE_PER_VIEW_MOBILE : SLICE_PER_VIEW_DESKTOP
