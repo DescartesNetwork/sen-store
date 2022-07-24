@@ -1,4 +1,4 @@
-import { useAppIds } from '@sentre/senhub'
+import { useAppIds, useUI } from '@sentre/senhub'
 
 import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
@@ -8,27 +8,33 @@ import './index.less'
 
 const ListingApp = () => {
   const appIds = useAppIds()
+  const {
+    ui: { width },
+  } = useUI()
+
+  const isMobile = width < 768
 
   return (
     <Row gutter={[24, 24]} style={{ margin: 0 }}>
       <Col
-        span={12}
+        xs={24}
+        md={12}
         style={{
-          borderRadius: '16px 0 0 16px',
+          borderRadius: !isMobile ? '16px 0 0 16px' : '16px',
           background: '#EAE6F5',
           padding: 0,
         }}
       >
         <IntegrationCard />
       </Col>
-      <Col span={12}>
+      <Col xs={24} md={12}>
         <Row
           gutter={[24, 24]}
           align="middle"
           style={{
             height: '100%',
             background: '#EAE6F5',
-            borderRadius: '0 16px 16px 0',
+            borderRadius: !isMobile ? '0 16px 16px 0' : '16px',
           }}
         >
           <Col span={24}>
