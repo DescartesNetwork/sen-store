@@ -69,21 +69,15 @@ const Search = ({ scrollToCategory }: SearchProps) => {
       </Col>
       <Col xs={24} md={16} style={{ textAlign: 'right' }}>
         <Space>
-          <Button
-            size="large"
-            style={{ borderColor: '#6333FF', color: '#6333FF' }}
-            ghost
-            onClick={scrollToCategory}
-          >
+          <Button size="large" ghost onClick={scrollToCategory}>
             Categories
           </Button>
           <Button
             size="large"
-            style={{ borderColor: '#6333FF', color: '#6333FF' }}
             ghost
             onClick={() => history.push('/app/' + appStoreId + '/your-apps')}
           >
-            Your dapp
+            Your dapps
           </Button>
         </Space>
       </Col>
