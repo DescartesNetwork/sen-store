@@ -1,7 +1,6 @@
 {
-  "name": "module-template",
-  "version": "3.0.47",
-  "private": true,
+  "name": "store",
+  "version": "0.0.1",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
     "@senswap/sen-js": "^1.4.0",
