@@ -1,6 +1,6 @@
 {
   "name": "store",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
     "@senswap/sen-js": "^1.4.0",
