@@ -1,6 +1,7 @@
 {
-  "name": "store",
-  "version": "0.1.0",
+  "name": "module-template",
+  "version": "3.0.47",
+  "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
     "@senswap/sen-js": "^1.4.0",
@@ -53,9 +54,9 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.2.1",
-    "@types/lunr": "^2.3.4",
     "@types/bn.js": "^5.1.0",
     "@types/jest": "^27.0.2",
+    "@types/lunr": "^2.3.4",
     "@types/node": "^16.10.3",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
