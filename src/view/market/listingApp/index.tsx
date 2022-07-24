@@ -15,14 +15,15 @@ const ListingApp = () => {
   const isMobile = width < 768
 
   return (
-    <Row gutter={[24, 24]} style={{ margin: 0 }}>
+    <Row gutter={[24, 24]} style={{ marginLeft: 0, marginRight: 0 }}>
       <Col
         xs={24}
         md={12}
         style={{
-          borderRadius: !isMobile ? '16px 0 0 16px' : '16px',
+          borderRadius: !isMobile ? '16px 0px 0px 16px' : '16px',
           background: '#EAE6F5',
-          padding: 0,
+          paddingLeft: 0,
+          paddingRight: 0,
         }}
       >
         <IntegrationCard />
@@ -34,7 +35,7 @@ const ListingApp = () => {
           style={{
             height: '100%',
             background: '#EAE6F5',
-            borderRadius: !isMobile ? '0 16px 16px 0' : '16px',
+            borderRadius: !isMobile ? '0px 16px 16px 0px' : '16px',
           }}
         >
           <Col span={24}>
