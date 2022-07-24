@@ -61,7 +61,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
             <Select.Option value={appId} key={appId}>
               <Space size={8}>
                 <AppIcon size={32} appId={appId} name={false} />
-                <Typography.Text>{appId}</Typography.Text>
+                <Typography.Text>{register[appId]?.name}</Typography.Text>
               </Space>
             </Select.Option>
           ))}
