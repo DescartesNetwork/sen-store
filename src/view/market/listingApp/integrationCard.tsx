@@ -2,7 +2,7 @@ import { Button, Card, Space, Typography } from 'antd'
 
 const IntegrationCard = () => {
   return (
-    <Card bordered={false} style={{ boxShadow: 'none' }}>
+    <Card bordered={false} style={{ boxShadow: 'none', background: '#FFF' }}>
       <Space direction="vertical">
         <Typography.Text style={{ fontSize: 32 }}>Integration</Typography.Text>
         <Typography.Title level={2}>Ready to list your DApp?</Typography.Title>
