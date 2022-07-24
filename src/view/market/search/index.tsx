@@ -10,7 +10,7 @@ import configs from 'configs'
 import SearchEngine from './searchEngine'
 
 const {
-  manifest: { appId },
+  manifest: { appId: appStoreId },
 } = configs
 
 export type SearchProps = {
@@ -53,9 +53,12 @@ const Search = ({ scrollToCategory }: SearchProps) => {
           style={{ width: '100%', border: 'none' }}
           showSearch
           notFoundContent={null}
+          onSelect={(value: string) =>
+            history.push(`/app/${appStoreId}/${value}`)
+          }
         >
           {appIds.map((appId) => (
-            <Select.Option key={appId}>
+            <Select.Option value={appId} key={appId}>
               <Space size={8}>
                 <AppIcon size={32} appId={appId} name={false} />
                 <Typography.Text>{appId}</Typography.Text>
@@ -78,7 +81,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
             size="large"
             style={{ borderColor: '#6333FF', color: '#6333FF' }}
             ghost
-            onClick={() => history.push('/app/' + appId + '/your-apps')}
+            onClick={() => history.push('/app/' + appStoreId + '/your-apps')}
           >
             Your dapp
           </Button>
