@@ -1,4 +1,4 @@
-import { useAppIds } from '@sentre/senhub'
+import { useAppIds, useUI } from '@sentre/senhub'
 
 import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
@@ -8,17 +8,42 @@ import './index.less'
 
 const ListingApp = () => {
   const appIds = useAppIds()
+  const {
+    ui: { width },
+  } = useUI()
+
+  const isMobile = width < 768
 
   return (
-    <Row gutter={[24, 24]} style={{ background: '#EAE6F5' }} align="middle">
-      <Col span={12}>
+    <Row gutter={[24, 24]} style={{ margin: 0 }}>
+      <Col
+        xs={24}
+        md={12}
+        style={{
+          borderRadius: !isMobile ? '16px 0 0 16px' : '16px',
+          background: '#EAE6F5',
+          padding: 0,
+        }}
+      >
         <IntegrationCard />
       </Col>
-      <Col span={12}>
-        <Space direction="vertical" style={{ width: '100%' }}>
-          <InfiniteSlideIcon appIds={appIds} />
-          <InfiniteSlideIcon appIds={appIds} reverse />
-        </Space>
+      <Col xs={24} md={12}>
+        <Row
+          gutter={[24, 24]}
+          align="middle"
+          style={{
+            height: '100%',
+            background: '#EAE6F5',
+            borderRadius: !isMobile ? '0 16px 16px 0' : '16px',
+          }}
+        >
+          <Col span={24}>
+            <Space direction="vertical" style={{ width: '100%' }}>
+              <InfiniteSlideIcon appIds={appIds} />
+              <InfiniteSlideIcon appIds={appIds} reverse />
+            </Space>
+          </Col>
+        </Row>
       </Col>
     </Row>
   )

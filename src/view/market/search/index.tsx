@@ -44,7 +44,6 @@ const Search = ({ scrollToCategory }: SearchProps) => {
       <Col xs={24} md={8}>
         <Select
           size="large"
-          value={search}
           onSearch={setSearch}
           placeholder="Search dapp name, author"
           suffixIcon={
