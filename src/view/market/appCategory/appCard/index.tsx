@@ -1,9 +1,10 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react'
-import { useGoToStore } from '@sentre/senhub'
 
 import { Card, Col, Row } from 'antd'
 import AppCardInfo from './appCardInfo'
 import { MultiStaticLoader } from 'components/staticLoader'
+
+import { useGoToStore } from 'hooks/useGotoStore'
 
 import imgError from 'static/images/error-image.svg'
 

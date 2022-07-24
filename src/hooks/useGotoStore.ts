@@ -8,6 +8,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, AppState } from 'model'
 
+import configs from 'configs'
+const {
+  manifest: { appId: storeId },
+} = configs
+
 export type GoToStoreProps = {
   appId?: string
   blank?: boolean
@@ -31,7 +36,7 @@ export const useGoToStoreCallback = () => {
       const nav = blank
         ? (url: string) => window.open(url, '_blank')
         : history.push
-      let url = appId ? `/app/store/${appId}` : '/app/store'
+      let url = appId ? `/app/${storeId}/${appId}` : `/app/${storeId}`
       url = search ? url + search : url
       return nav(url)
     },

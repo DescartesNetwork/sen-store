@@ -1,11 +1,11 @@
 import { Button, Col, Row, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
-import AppCard from '../appCard'
+import AppCard from './appCard'
 import { SwiperOs } from 'components/swiperOS'
 import { SwiperSlide } from 'swiper/react'
 
 import { CategoryOptions, useAppCategory } from './hooks'
-import { useGoToStore } from '@sentre/senhub'
+import { useGoToStore } from 'hooks/useGotoStore'
 
 export type AppCategorySliceProps = {
   seeAll?: boolean

@@ -1,8 +1,7 @@
-.hero-banner {
-  padding-bottom: 24px;
+.twitter-mention-swiper {
+  padding: 0 0 30px 0;
   & .swiper-pagination {
-    text-align: right;
-    bottom: 0;
+    bottom: 0 !important;
     @media (max-width: 768px) {
       bottom: 2px !important;
     }
@@ -11,7 +10,7 @@
     width: 25px;
     height: 4px;
     border-radius: 4px !important;
-    background: #212433;
+    background: #0e0e0e;
     margin: 0 5px;
     border-radius: unset;
     cursor: pointer;
@@ -19,6 +18,9 @@
       width: 18px;
       height: 2px;
       border-radius: 2px !important;
+    }
+    &.swiper-pagination-bullet-active {
+      background: #212433;
     }
   }
   .img-banner {
@@ -32,4 +34,11 @@
       }
     }
   }
+}
+
+.image-aspect-43 {
+  width: auto;
+  height: 100%;
+  aspect-ratio: 4/3; /* will make width equal to height (100px container) */
+  object-fit: cover; /* use the one you need */
 }
