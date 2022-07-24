@@ -40,7 +40,7 @@ const CardAppCateogry = ({ appId }: CardAppCateogryProps) => {
             {shortenString(description)}
           </Typography.Text>
           {installed ? (
-            <Button onClick={onGoToApp} size="small" type="primary">
+            <Button onClick={onGoToApp} size="small" ghost>
               Open
             </Button>
           ) : (

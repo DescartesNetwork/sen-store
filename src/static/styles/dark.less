@@ -58,8 +58,11 @@
 @btn-primary-shadow: unset;
 @btn-text-shadow: unset;
 @btn-default-border: @NEUTRAL20;
-@btn-default-ghost-color: @NEUTRAL100;
-@btn-default-ghost-border: @NEUTRAL100;
+@btn-default-ghost-color: @primary-color;
+@btn-default-ghost-border: @primary-color;
+
+@btn-primary-color: #fff;
+@btn-primary-bg: @primary-color;
 
 // Input
 @input-placeholder-color: @NEUTRAL60;
@@ -70,6 +73,11 @@
 
 // Checkbox
 @checkbox-border-radius: @border-radius-base - 4;
+
+// Select
+@select-border-color: none;
+@select-background: #e9e6f0;
+@select-clear-background: #e9e6f0;
 
 // Patch
 .@{ant-prefix}-layout {

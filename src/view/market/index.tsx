@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRegister } from '@sentre/senhub'
 
@@ -12,6 +12,7 @@ import ListingApp from './listingApp'
 import HotApps from './hotApps'
 import ExploreApps from './exploreApps'
 import ListAppByCategories from './listAppByCategories'
+import Search from './search'
 
 import { CustomCategory } from './appCategory/hooks'
 import MentionsOnTwitter from 'view/appInfo/mentionsOnTwitter'
@@ -19,17 +20,24 @@ import MentionsOnTwitter from 'view/appInfo/mentionsOnTwitter'
 const Market = () => {
   const { search } = useLocation()
   const resgister = useRegister()
+  const categoryRef = useRef<HTMLDivElement>(null)
 
   const category = useMemo(
     () => new URLSearchParams(search).get('category'),
     [search],
   )
+  const scrollToCategory = () => {
+    if (categoryRef.current) window.scrollTo(0, categoryRef.current.offsetTop)
+  }
 
   if (category) return <AppCategorySeeAll category={category} />
   return (
     <Row gutter={[16, 48]} justify="center">
       <Col span={24} className="sentre-col-container">
         <Row gutter={[16, 48]}>
+          <Col span={24}>
+            <Search scrollToCategory={scrollToCategory} />
+          </Col>
           <Col span={24}>
             <TopBanner />
           </Col>
@@ -51,7 +59,7 @@ const Market = () => {
           <Col span={24}>
             <Trending />
           </Col>
-          <Col span={24}>
+          <Col span={24} ref={categoryRef}>
             <ExploreApps />
           </Col>
           <Col span={24}>

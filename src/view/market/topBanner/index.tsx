@@ -4,14 +4,11 @@ import { Navigation, Pagination } from 'swiper'
 import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
 
 import storePanel1 from 'static/images/market/store-panel1.png'
-import storePanel2 from 'static/images/market/store-panel2.png'
-import storePanel3 from 'static/images/market/store-panel3.png'
-import storePanel4 from 'static/images/market/store-panel4.png'
 import topBg from 'static/images/top-bg.png'
 
 import './index.less'
 
-const PANELS = [storePanel1, storePanel2, storePanel3, storePanel4]
+const PANELS = [storePanel1]
 
 const TopBanner = () => {
   return (
@@ -65,7 +62,12 @@ const TopBanner = () => {
                     </Button>
                   </Space>
                 </Col>
-                <Col xs={24} md={12} className="img-banner">
+                <Col
+                  xs={24}
+                  md={12}
+                  className="img-banner"
+                  style={{ textAlign: 'right' }}
+                >
                   <Image
                     className="image-aspect-43"
                     src={banner}
