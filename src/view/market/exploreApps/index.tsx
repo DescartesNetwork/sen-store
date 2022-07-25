@@ -40,7 +40,11 @@ const ExploreApps = () => {
               <Space>
                 <Radio.Button value="all">All</Radio.Button>
                 {tags.map((tag) => (
-                  <Radio.Button value={tag} key={tag}>
+                  <Radio.Button
+                    value={tag}
+                    key={tag}
+                    style={{ textTransform: 'capitalize' }}
+                  >
                     {tag}
                   </Radio.Button>
                 ))}

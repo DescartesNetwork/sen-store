@@ -7,9 +7,7 @@ import AppCardInfo from 'components/appCardInfo'
 import FlexibleCard from 'components/flexibleCard'
 import { useUI } from '@sentre/senhub'
 import { CategoryOptions, useAppCategory } from '../appCategory/hooks'
-
-const SLICE_PER_VIEW_MOBILE = 1
-const SLICE_PER_VIEW_DESKTOP = 4
+import { useMemo } from 'react'
 
 type ListAppByCategoriesProps = {
   title?: string
@@ -30,8 +28,12 @@ const ListAppByCategories = ({
   } = useUI()
   const { title: suggestTitle, appIds: suggestAppIds } = useAppCategory(options)
 
-  const isMobile = width < 768
-  const slicePerView = isMobile ? SLICE_PER_VIEW_MOBILE : SLICE_PER_VIEW_DESKTOP
+  const slicePerView = useMemo(() => {
+    if (width < 768) return 1
+    if (width < 991) return 2
+    if (width < 1200) return 3
+    return 4
+  }, [width])
 
   return (
     <Row gutter={[24, 24]}>

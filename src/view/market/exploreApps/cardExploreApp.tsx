@@ -31,7 +31,7 @@ const CardAppCateogry = ({ appId }: CardAppCateogryProps) => {
         <AppIcon appId={appId} size={64} name={false} />
       </Col>
       <Col>
-        <Space direction="vertical" size={0}>
+        <Space direction="vertical" size={1}>
           <Space size={4}>
             <Typography.Title level={5}>{name}</Typography.Title>
             <Verification verified={verified} />

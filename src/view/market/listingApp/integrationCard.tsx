@@ -11,9 +11,13 @@ const IntegrationCard = () => {
           tools, tutorials, and libraries built or submitted by the Sentre
           community.
         </Typography.Text>
-        <Space>
-          <Button type="primary">Submit project</Button>
-          <Button onClick={() => {}}>Learn more</Button>
+        <Space size={12}>
+          <Button type="primary" size="large">
+            Submit project
+          </Button>
+          <Button size="large" onClick={() => {}}>
+            Learn more
+          </Button>
         </Space>
       </Space>
     </Card>

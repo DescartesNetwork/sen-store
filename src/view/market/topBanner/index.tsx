@@ -57,7 +57,7 @@ const TopBanner = () => {
                     <Typography.Text>
                       A Customizable DAO Solution for various purposes.
                     </Typography.Text>
-                    <Button onClick={() => {}} type="primary">
+                    <Button onClick={() => {}} type="primary" size="large">
                       Explore now
                     </Button>
                   </Space>
@@ -68,11 +68,7 @@ const TopBanner = () => {
                   className="img-banner"
                   style={{ textAlign: 'right' }}
                 >
-                  <Image
-                    className="image-aspect-43"
-                    src={banner}
-                    preview={false}
-                  />
+                  <Image src={banner} preview={false} />
                 </Col>
               </Row>
             </Card>
