@@ -11,7 +11,7 @@ import topBgDark from 'static/images/top-bg-dark.png'
 
 import './index.less'
 
-const PANELS = [storePanel1]
+const PANELS = [storePanel1, storePanel1]
 
 const TopBanner = () => {
   const {
@@ -53,7 +53,11 @@ const TopBanner = () => {
               bordered={false}
             >
               <Row gutter={[24, 24]}>
-                <Col xs={24} md={12}>
+                <Col
+                  xs={{ span: 24, order: 2 }}
+                  md={{ span: 24, order: 2 }}
+                  lg={{ span: 12, order: 1 }}
+                >
                   <Space
                     style={{ padding: '56px 32px' }}
                     direction="vertical"
@@ -65,18 +69,28 @@ const TopBanner = () => {
                     <Typography.Text>
                       A Customizable DAO Solution for various purposes.
                     </Typography.Text>
-                    <Button onClick={() => {}} type="primary" size="large">
+                    <Button
+                      className="btn-explore-now"
+                      onClick={() => {}}
+                      size="large"
+                      type="primary"
+                    >
                       Explore now
                     </Button>
                   </Space>
                 </Col>
                 <Col
-                  xs={24}
-                  md={12}
+                  xs={{ span: 24, order: 1 }}
+                  md={{ span: 24, order: 1 }}
+                  lg={{ span: 12, order: 2 }}
                   className="img-banner"
                   style={{ textAlign: 'right' }}
                 >
-                  <Image src={banner} preview={false} />
+                  <Image
+                    className="image-aspect-43"
+                    src={banner}
+                    preview={false}
+                  />
                 </Col>
               </Row>
             </Card>

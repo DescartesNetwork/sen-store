@@ -1,11 +1,11 @@
-import { useGoToStore } from 'hooks/useGotoStore'
-
-import { Button, Col, Row, Space, Typography } from 'antd'
+import { Button, Col, Row, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
 
-import { CategoryOptions, useAppCategory } from './hooks'
 import FlexibleCard from 'components/flexibleCard'
 import AppCardInfo from 'components/appCardInfo'
+
+import { CategoryOptions, useAppCategory } from './hooks'
+import { useGoToStore } from 'hooks/useGotoStore'
 
 const CategorySeeAll = (options: CategoryOptions) => {
   const { title, appIds } = useAppCategory(options)
@@ -14,16 +14,20 @@ const CategorySeeAll = (options: CategoryOptions) => {
   return (
     <Row gutter={[24, 24]}>
       <Col span={24}>
-        <Space>
-          <Button
-            type="text"
-            icon={<IonIcon name="arrow-back-outline" />}
-            onClick={onGoToStore}
-          />
-          <Typography.Title level={2} style={{ textTransform: 'capitalize' }}>
-            {title}
-          </Typography.Title>
-        </Space>
+        <Button
+          type="text"
+          size="small"
+          icon={<IonIcon name="arrow-back-outline" />}
+          onClick={onGoToStore}
+          style={{ marginLeft: -7 }}
+        >
+          Back
+        </Button>
+      </Col>
+      <Col span={24}>
+        <Typography.Title level={2} style={{ textTransform: 'capitalize' }}>
+          {title}
+        </Typography.Title>
       </Col>
       {appIds.map((appId) => (
         <Col xs={24} sm={12} md={12} lg={8} xl={6} key={appId}>

@@ -8,47 +8,27 @@ import './index.less'
 
 const ListingApp = () => {
   const register = useRegister()
+  const appIds = Object.keys(register)
   const {
-    ui: { width, theme },
+    ui: { theme },
   } = useUI()
 
-  const isMobile = width < 768
   const isLightTheme = theme === 'light'
 
   return (
-    <Row style={{ marginLeft: 0, marginRight: 0 }}>
-      <Col
-        xs={24}
-        md={12}
-        style={{
-          borderRadius: !isMobile ? '16px 0px 0px 16px' : '16px 16px 0 0',
-          background: isLightTheme ? '#EAE6F5' : '#09090D',
-          paddingLeft: 0,
-          paddingRight: 0,
-        }}
-      >
+    <Row
+      gutter={[24, 24]}
+      style={{ background: isLightTheme ? '#EAE6F5' : '#09090D' }}
+      align="middle"
+    >
+      <Col span={12}>
         <IntegrationCard />
       </Col>
-      <Col xs={24} md={12}>
-        <Row
-          gutter={[24, 24]}
-          align="middle"
-          style={{
-            height: '100%',
-            background: isLightTheme ? '#EAE6F5' : '#09090D',
-            borderRadius: !isMobile ? '0px 16px 16px 0px' : '0 0 16px 16px',
-            padding: isMobile ? '32px 0' : undefined,
-            marginLeft: 0,
-            marginRight: 0,
-          }}
-        >
-          <Col span={24}>
-            <Space size={24} direction="vertical" style={{ width: '100%' }}>
-              <InfiniteSlideIcon appIds={Object.keys(register)} />
-              <InfiniteSlideIcon appIds={Object.keys(register)} reverse />
-            </Space>
-          </Col>
-        </Row>
+      <Col span={12}>
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <InfiniteSlideIcon appIds={appIds} />
+          <InfiniteSlideIcon appIds={appIds} reverse />
+        </Space>
       </Col>
     </Row>
   )

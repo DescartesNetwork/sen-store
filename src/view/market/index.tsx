@@ -32,7 +32,7 @@ const Market = () => {
 
   if (category) return <AppCategorySeeAll category={category} />
   return (
-    <Row gutter={[16, 48]} justify="center" className="scroll-bar">
+    <Row gutter={[16, 48]} justify="center">
       <Col span={24} className="sentre-col-container">
         <Row gutter={[16, 48]}>
           <Col span={24}>

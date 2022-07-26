@@ -40,7 +40,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   }, [onSearch])
 
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[12, 12]} justify="space-between">
       <Col xs={24} md={8}>
         <Select
           size="large"
@@ -66,19 +66,28 @@ const Search = ({ scrollToCategory }: SearchProps) => {
           ))}
         </Select>
       </Col>
-      <Col xs={24} md={16} style={{ textAlign: 'right' }}>
-        <Space>
-          <Button size="large" ghost onClick={scrollToCategory}>
-            Categories
-          </Button>
-          <Button
-            size="large"
-            ghost
-            onClick={() => history.push('/app/' + appStoreId + '/your-apps')}
-          >
-            Your dapps
-          </Button>
-        </Space>
+      <Col
+        xs={{ span: 24, offset: undefined }}
+        md={{ span: 12, offset: 4 }}
+        lg={{ span: 8, offset: 8 }}
+      >
+        <Row gutter={[12, 0]}>
+          <Col span={12}>
+            <Button size="large" ghost block onClick={scrollToCategory}>
+              Categories
+            </Button>
+          </Col>
+          <Col span={12}>
+            <Button
+              size="large"
+              ghost
+              block
+              onClick={() => history.push('/app/' + appStoreId + '/your-apps')}
+            >
+              Your DApps
+            </Button>
+          </Col>
+        </Row>
       </Col>
     </Row>
   )
