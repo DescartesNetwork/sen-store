@@ -1,3 +1,6 @@
+import { useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import { Button, Col, Row, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
 
@@ -5,11 +8,11 @@ import FlexibleCard from 'components/flexibleCard'
 import AppCardInfo from 'components/appCardInfo'
 
 import { CategoryOptions, useAppCategory } from './hooks'
-import { useGoToStore } from 'hooks/useGotoStore'
 
 const CategorySeeAll = (options: CategoryOptions) => {
+  const history = useHistory()
   const { title, appIds } = useAppCategory(options)
-  const onGoToStore = useGoToStore()
+  const onBack = useCallback(() => history.goBack(), [history])
 
   return (
     <Row gutter={[24, 24]}>
@@ -18,7 +21,7 @@ const CategorySeeAll = (options: CategoryOptions) => {
           type="text"
           size="small"
           icon={<IonIcon name="arrow-back-outline" />}
-          onClick={onGoToStore}
+          onClick={onBack}
           style={{ marginLeft: -7 }}
         >
           Back

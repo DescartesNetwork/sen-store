@@ -7,6 +7,8 @@ import FlexibleCard from 'components/flexibleCard'
 import { MultiStaticLoader } from 'components/staticLoader'
 import Verification from 'components/verification'
 
+import { useGoToStore } from 'hooks/useGotoStore'
+
 import imgError from 'static/images/error-image.svg'
 
 type CardNewListedAppProps = {
@@ -20,6 +22,7 @@ const CardNewListedApp = ({
   style,
 }: CardNewListedAppProps) => {
   const register = useRegister()
+  const onOpenAppDetail = useGoToStore({ appId })
   const {
     ui: { width },
   } = useUI()
@@ -43,7 +46,12 @@ const CardNewListedApp = ({
       spacing={spacing}
       style={{ height: '100%' }}
     >
-      <Row gutter={[24, 24]} wrap={vertical}>
+      <Row
+        gutter={[24, 24]}
+        wrap={vertical}
+        onClick={onOpenAppDetail}
+        style={{ cursor: 'pointer' }}
+      >
         <Col span={verticalSpan || 8} className={clnHorizontalImg}>
           <MultiStaticLoader
             defaultData={[imgError]}

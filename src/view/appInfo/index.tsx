@@ -6,12 +6,13 @@ import IonIcon from '@sentre/antd-ionicon'
 import AppDetails from './appDetails'
 import ScreenShot from './screenshot'
 import MentionsOnTwitter from './mentionsOnTwitter'
+import FlexibleCard from 'components/flexibleCard'
+import AppCardInfo from 'components/appCardInfo'
 
 import configs from 'configs'
 import { CustomCategory, useAppCategory } from '../market/appCategory/hooks'
+
 import './index.less'
-import FlexibleCard from 'components/flexibleCard'
-import AppCardInfo from 'components/appCardInfo'
 
 const {
   manifest: { appId: appStoreId },

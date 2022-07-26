@@ -68,7 +68,7 @@ const FlexibleCard = ({
           boxShadow: 'unset',
           height: '100%',
         }}
-        bodyStyle={{ padding: bodySpacing }}
+        bodyStyle={{ padding: bodySpacing, height: '100%' }}
       >
         {children}
       </Card>

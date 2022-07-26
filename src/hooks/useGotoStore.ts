@@ -38,6 +38,7 @@ export const useGoToStoreCallback = () => {
         : history.push
       let url = appId ? `/app/${storeId}/${appId}` : `/app/${storeId}`
       url = search ? url + search : url
+      window.scrollTo(0, 0)
       return nav(url)
     },
     [dispatch, history, visibleActionCenter, visibleInstaller],
