@@ -2,7 +2,7 @@
  * Available vars: https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
  */
 
-@import '~antd/dist/antd.less';
+@import '~antd/dist/antd.dark.less';
 @import './common/vars.less';
 @import './common/polyfill.less';
 @import './common/typography.less';
@@ -16,49 +16,52 @@
 @warning-color: @WARNING;
 @error-color: @ERROR;
 @popover-background: @NEUTRAL100;
-@body-background: @NEUTRAL05;
-@component-background: @NEUTRAL05;
-@disabled-bg: @NEUTRAL10;
-@item-hover-bg: @NEUTRAL10;
+@body-background: @NEUTRAL100;
+@component-background: @NEUTRAL100;
+@disabled-bg: @NEUTRAL90;
+@item-hover-bg: @NEUTRAL90;
 
 // Typography
 @font-family: 'Nunito', sans-serif;
-@text-color: @NEUTRAL100;
+@text-color: @NEUTRAL10;
 @text-color-secondary: @NEUTRAL60;
-@heading-color: @NEUTRAL100;
-@disabled-color: @NEUTRAL40;
+@heading-color: @NEUTRAL05;
+@disabled-color: @NEUTRAL60;
 @typography-title-margin-top: 0px;
 @typography-title-margin-bottom: 0px;
 
 // Border
 @border-radius-base: 8px;
-@border-color-base: @WHITE;
+@border-color-base: rgba(255, 255, 255, 0.2);
 @border-width-base: 1px;
 @popover-customize-border-color: @border-color-base;
 @border-color-split: @border-color-base;
 
 // Card
 @card-radius: @border-radius-base * 2;
-@card-actions-background: @NEUTRAL05;
-@card-background: @NEUTRAL05;
-@card-shadow: @LIGHT_SHADOW2;
+@card-actions-background: @DARK_BG;
+@card-background: @DARK_BG;
+@card-shadow: @DARK_SHADOW2;
 
 // Modal
-@modal-header-bg: @NEUTRAL05;
-@modal-content-bg: @NEUTRAL05;
-@modal-footer-bg: @NEUTRAL05;
+@modal-header-bg: @NEUTRAL100;
+@modal-content-bg: @NEUTRAL100;
+@modal-footer-bg: @NEUTRAL100;
 @modal-footer-padding-horizontal: 24px;
 
 // Drawer
-@drawer-bg: @NEUTRAL05;
+@drawer-bg: @NEUTRAL100;
 
 // Button
 @btn-font-weight: 700;
 @btn-shadow: unset;
 @btn-primary-shadow: unset;
 @btn-text-shadow: unset;
+
+@btn-default-color: @text-color;
 @btn-default-border: @NEUTRAL20;
-@btn-default-ghost-color: @primary-color;
+@btn-default-bg: @DARK_BG;
+@btn-default-ghost-color: @NEUTRAL05;
 @btn-default-ghost-border: @primary-color;
 
 @btn-primary-color: #fff;
@@ -68,7 +71,7 @@
 @input-placeholder-color: @NEUTRAL60;
 
 // Divider
-@divider-color: @NEUTRAL10;
+@divider-color: @NEUTRAL90;
 @divider-orientation-margin: 0;
 
 // Checkbox
@@ -76,15 +79,15 @@
 
 // Select
 @select-border-color: none;
-@select-background: #e9e6f0;
-@select-clear-background: #e9e6f0;
+@select-background: #09090d;
+@select-clear-background: #09090d;
 
 // Patch
 .@{ant-prefix}-layout {
   background: unset;
 }
 .@{ant-prefix}-card {
-  box-shadow: @LIGHT_SHADOW1;
+  box-shadow: @DARK_SHADOW1;
   &.glass {
     background-color: color(~`('@{card-background}aa') `);
     backdrop-filter: blur(16px);
@@ -93,6 +96,6 @@
 
 .readme-loader {
   .read-more {
-    background-image: linear-gradient(to bottom, transparent, #f4f4f5);
+    background-image: linear-gradient(to bottom, transparent, @DARK_BG);
   }
 }

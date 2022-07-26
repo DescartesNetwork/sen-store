@@ -9,10 +9,11 @@ import './index.less'
 const ListingApp = () => {
   const register = useRegister()
   const {
-    ui: { width },
+    ui: { width, theme },
   } = useUI()
 
   const isMobile = width < 768
+  const isLightTheme = theme === 'light'
 
   return (
     <Row style={{ marginLeft: 0, marginRight: 0 }}>
@@ -21,7 +22,7 @@ const ListingApp = () => {
         md={12}
         style={{
           borderRadius: !isMobile ? '16px 0px 0px 16px' : '16px 16px 0 0',
-          background: '#EAE6F5',
+          background: isLightTheme ? '#EAE6F5' : '#09090D',
           paddingLeft: 0,
           paddingRight: 0,
         }}
@@ -34,7 +35,7 @@ const ListingApp = () => {
           align="middle"
           style={{
             height: '100%',
-            background: '#EAE6F5',
+            background: isLightTheme ? '#EAE6F5' : '#09090D',
             borderRadius: !isMobile ? '0px 16px 16px 0px' : '0 0 16px 16px',
             padding: isMobile ? '32px 0' : undefined,
             marginLeft: 0,

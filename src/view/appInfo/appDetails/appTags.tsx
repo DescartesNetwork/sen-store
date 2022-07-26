@@ -2,11 +2,11 @@ import { Space, Tag } from 'antd'
 
 import { util } from '@sentre/senhub'
 
-export type AppTagsProps = { tags?: string[] }
+export type AppTagsProps = { tags?: string[]; wrap?: boolean }
 
-const AppTags = ({ tags = [] }: AppTagsProps) => {
+const AppTags = ({ tags = [], wrap = true }: AppTagsProps) => {
   return (
-    <Space size={8} wrap>
+    <Space size={8} wrap={wrap}>
       {tags.map((tag, index) => (
         <Tag
           style={{

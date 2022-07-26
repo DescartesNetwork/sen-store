@@ -25,7 +25,7 @@ const View = () => {
   const isMobile = width < 768
 
   useEffect(() => {
-    setBackground({ light: '#f5f2fa', dark: '#f5f2fa' })
+    setBackground({ light: '#f5f2fa', dark: '#16151b' })
   }, [setBackground])
 
   return (

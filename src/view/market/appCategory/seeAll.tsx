@@ -2,9 +2,10 @@ import { useGoToStore } from 'hooks/useGotoStore'
 
 import { Button, Col, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
-import AppCard from './appCard'
 
 import { CategoryOptions, useAppCategory } from './hooks'
+import FlexibleCard from 'components/flexibleCard'
+import AppCardInfo from 'components/appCardInfo'
 
 const CategorySeeAll = (options: CategoryOptions) => {
   const { title, appIds } = useAppCategory(options)
@@ -25,8 +26,10 @@ const CategorySeeAll = (options: CategoryOptions) => {
         </Space>
       </Col>
       {appIds.map((appId) => (
-        <Col xs={24} sm={12} md={8} xl={6} key={appId}>
-          <AppCard appId={appId} />
+        <Col xs={24} sm={12} md={12} lg={8} xl={6} key={appId}>
+          <FlexibleCard type="green">
+            <AppCardInfo appId={appId} radius={12} padding={12} />
+          </FlexibleCard>
         </Col>
       ))}
     </Row>

@@ -1,16 +1,24 @@
+import { useUI } from '@sentre/senhub'
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper'
 
 import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
 
 import storePanel1 from 'static/images/market/store-panel1.png'
-import topBg from 'static/images/top-bg.png'
+import topBgLight from 'static/images/top-bg.png'
+import topBgDark from 'static/images/top-bg-dark.png'
 
 import './index.less'
 
 const PANELS = [storePanel1]
 
 const TopBanner = () => {
+  const {
+    ui: { theme },
+  } = useUI()
+  const topBg = theme === 'light' ? topBgLight : topBgDark
+
   return (
     <Swiper
       className="hero-banner"

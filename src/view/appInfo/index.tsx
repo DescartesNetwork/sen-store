@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
 import { Row, Col, Card, Button, Typography } from 'antd'
@@ -20,9 +20,13 @@ const {
 const AppViewer = () => {
   const history = useHistory()
   const { appId } = useParams<{ appId: string }>()
+  const related = useMemo(() => {
+    return { appIds: [appId] }
+  }, [appId])
+
   const { title: suggestTitle, appIds: suggestAppIds } = useAppCategory({
     category: CustomCategory.suggest,
-    related: { appIds: [appId] },
+    related,
   })
 
   const onBack = useCallback(() => history.goBack(), [history])
@@ -72,7 +76,7 @@ const AppViewer = () => {
                 </Typography.Title>
               </Col>
               {suggestAppIds.map((appId, idx) => (
-                <Col xs={12} sm={12} md={8} key={idx}>
+                <Col xs={12} sm={12} md={12} lg={8} xl={6} key={idx}>
                   <FlexibleCard type="green">
                     <AppCardInfo appId={appId} radius={12} padding={12} />
                   </FlexibleCard>
