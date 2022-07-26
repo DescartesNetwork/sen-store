@@ -44,7 +44,6 @@ const CardNewListedApp = ({
       transparent
       type="pink"
       spacing={spacing}
-      style={{ height: '100%' }}
     >
       <Row
         gutter={[24, 24]}
