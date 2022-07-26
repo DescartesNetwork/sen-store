@@ -34,6 +34,7 @@ const InstalledApp = ({ installed, appId }: InstalledAppProps) => {
               icon={<IonIcon name="trash-outline" />}
               onClick={onUninstall}
               block={isMobile}
+              ghost
             >
               Uninstall
             </Button>

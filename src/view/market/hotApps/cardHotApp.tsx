@@ -47,6 +47,7 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
                       borderRadius: 12,
                       ...style,
                     }}
+                    bordered={false}
                     bodyStyle={{ padding: 0 }}
                     key={appId}
                     onClick={onOpen}

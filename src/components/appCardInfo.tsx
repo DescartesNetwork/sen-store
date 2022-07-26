@@ -13,6 +13,8 @@ import AppIcon from 'components/appIcon'
 import Verification from 'components/verification'
 import AppTags from 'view/appInfo/appDetails/appTags'
 
+import { useGoToStore } from 'hooks/useGotoStore'
+
 const LIMIT_TAG = 2
 const START_SPLICE = 0
 
@@ -33,6 +35,7 @@ const AppCardInfo = ({
   } = useWallet()
   const onInstallApp = useInstallApp(appId)
   const onGoToApp = useGoToApp({ appId })
+  const onOpenAppDetail = useGoToStore({ appId })
 
   const { name, verified, description, tags } = useMemo(
     () => register[appId] || ({} as ComponentManifest),
@@ -65,42 +68,56 @@ const AppCardInfo = ({
       style={{
         boxShadow: 'unset',
         borderRadius: radius,
+        cursor: 'pointer',
       }}
       bodyStyle={{
         padding,
       }}
+      onClick={onOpenAppDetail}
     >
       <Row align="top" gutter={[8, 8]}>
-        <Col>
-          <AppIcon size={52} appId={appId} name={false} />
-        </Col>
-        <Col flex="auto">
-          <Space direction="vertical" size={0}>
-            <Space align="center" style={{ lineHeight: 1 }}>
-              <Typography.Title level={5}>{name}</Typography.Title>
-              <Verification verified={verified} />
-            </Space>
-            <AppTags tags={[...tags].splice(START_SPLICE, LIMIT_TAG)} />
-          </Space>
-        </Col>
-        <Col>
-          {installed ? (
-            <Button ghost size="small" onClick={onOpen} id="open-action-button">
-              Open
-            </Button>
-          ) : (
-            <Button
-              type="primary"
-              onClick={onInstall}
-              size="small"
-              id="install-action-button"
-            >
-              Install
-            </Button>
-          )}
+        <Col span={24}>
+          <Row gutter={[8, 8]} wrap={false}>
+            <Col>
+              <AppIcon size={52} appId={appId} name={false} />
+            </Col>
+            <Col flex="auto">
+              <Space direction="vertical" size={0}>
+                <Space align="center" style={{ lineHeight: 1 }}>
+                  <Typography.Title level={5}>{name}</Typography.Title>
+                  <Verification verified={verified} />
+                </Space>
+                <AppTags
+                  tags={[...tags].splice(START_SPLICE, LIMIT_TAG)}
+                  wrap={false}
+                />
+              </Space>
+            </Col>
+            <Col>
+              {installed ? (
+                <Button
+                  ghost
+                  size="small"
+                  onClick={onOpen}
+                  id="open-action-button"
+                >
+                  Open
+                </Button>
+              ) : (
+                <Button
+                  type="primary"
+                  onClick={onInstall}
+                  size="small"
+                  id="install-action-button"
+                >
+                  Install
+                </Button>
+              )}
+            </Col>
+          </Row>
         </Col>
         <Col span={24}>
-          <Typography.Text type="secondary" ellipsis>
+          <Typography.Text type="secondary" ellipsis={{ tooltip: true }}>
             {description}
           </Typography.Text>
         </Col>

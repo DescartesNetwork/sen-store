@@ -1,36 +1,78 @@
-.twitter-mention-swiper {
-  padding: 0 0 30px 0;
-  & .swiper-pagination {
-    bottom: 0 !important;
-    @media (max-width: 768px) {
-      bottom: 2px !important;
+#light {
+  .twitter-mention-swiper {
+    padding: 0 0 30px 0;
+    & .swiper-pagination {
+      bottom: 0 !important;
+      @media (max-width: 768px) {
+        bottom: 2px !important;
+      }
+    }
+    & .indicator {
+      width: 25px;
+      height: 4px;
+      border-radius: 4px !important;
+      background: #d3d3d6;
+      margin: 0 5px;
+      border-radius: unset;
+      cursor: pointer;
+      @media (max-width: 768px) {
+        width: 18px;
+        height: 2px;
+        border-radius: 2px !important;
+      }
+      &.swiper-pagination-bullet-active {
+        background: #212433;
+      }
+    }
+    .img-banner {
+      .store-image {
+        height: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        img {
+          height: 100% !important;
+          object-fit: cover;
+        }
+      }
     }
   }
-  & .indicator {
-    width: 25px;
-    height: 4px;
-    border-radius: 4px !important;
-    background: #0e0e0e;
-    margin: 0 5px;
-    border-radius: unset;
-    cursor: pointer;
-    @media (max-width: 768px) {
-      width: 18px;
-      height: 2px;
-      border-radius: 2px !important;
+}
+
+#dark {
+  .twitter-mention-swiper {
+    padding: 0 0 30px 0;
+    & .swiper-pagination {
+      bottom: 0 !important;
+      @media (max-width: 768px) {
+        bottom: 2px !important;
+      }
     }
-    &.swiper-pagination-bullet-active {
-      background: #212433;
+    & .indicator {
+      width: 25px;
+      height: 4px;
+      border-radius: 4px !important;
+      background: #4e4f5c;
+      margin: 0 5px;
+      border-radius: unset;
+      cursor: pointer;
+      @media (max-width: 768px) {
+        width: 18px;
+        height: 2px;
+        border-radius: 2px !important;
+      }
+      &.swiper-pagination-bullet-active {
+        background: #f4f4f5;
+      }
     }
-  }
-  .img-banner {
-    .store-image {
-      height: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      img {
-        height: 100% !important;
-        object-fit: cover;
+    .img-banner {
+      .store-image {
+        height: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        img {
+          height: 100% !important;
+          object-fit: cover;
+        }
       }
     }
   }

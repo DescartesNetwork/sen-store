@@ -27,12 +27,10 @@ const InfiniteSlideIcon = ({
     ui: { width },
   } = useUI()
 
-  const isMobile = width < 768
-
   const calculatePerCard = useMemo(() => {
-    if (isMobile) return 3
+    if (width < 991) return 3
     return 5
-  }, [isMobile])
+  }, [width])
 
   return (
     <div>

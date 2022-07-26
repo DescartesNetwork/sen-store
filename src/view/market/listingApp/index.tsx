@@ -1,4 +1,4 @@
-import { useAppIds, useUI } from '@sentre/senhub'
+import { useRegister, useUI } from '@sentre/senhub'
 
 import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
@@ -7,43 +7,28 @@ import InfiniteSlideIcon from './infiniteSlideIcon'
 import './index.less'
 
 const ListingApp = () => {
-  const appIds = useAppIds()
+  const register = useRegister()
+  const appIds = Object.keys(register)
   const {
-    ui: { width },
+    ui: { theme },
   } = useUI()
 
-  const isMobile = width < 768
+  const isLightTheme = theme === 'light'
 
   return (
-    <Row gutter={[24, 24]} style={{ margin: 0 }}>
-      <Col
-        xs={24}
-        md={12}
-        style={{
-          borderRadius: !isMobile ? '16px 0 0 16px' : '16px',
-          background: '#EAE6F5',
-          padding: 0,
-        }}
-      >
+    <Row
+      gutter={[24, 24]}
+      style={{ background: isLightTheme ? '#EAE6F5' : '#09090D' }}
+      align="middle"
+    >
+      <Col span={12}>
         <IntegrationCard />
       </Col>
-      <Col xs={24} md={12}>
-        <Row
-          gutter={[24, 24]}
-          align="middle"
-          style={{
-            height: '100%',
-            background: '#EAE6F5',
-            borderRadius: !isMobile ? '0 16px 16px 0' : '16px',
-          }}
-        >
-          <Col span={24}>
-            <Space direction="vertical" style={{ width: '100%' }}>
-              <InfiniteSlideIcon appIds={appIds} />
-              <InfiniteSlideIcon appIds={appIds} reverse />
-            </Space>
-          </Col>
-        </Row>
+      <Col span={12}>
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <InfiniteSlideIcon appIds={appIds} />
+          <InfiniteSlideIcon appIds={appIds} reverse />
+        </Space>
       </Col>
     </Row>
   )

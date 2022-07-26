@@ -1,19 +1,36 @@
+import { useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useRegister } from '@sentre/senhub'
 
-import { Col, Row, Typography } from 'antd'
+import { Button, Col, Row, Typography } from 'antd'
+import IonIcon from '@sentre/antd-ionicon'
+
 import { CustomCategory } from 'view/market/appCategory/hooks'
 import ListAppByCategories from 'view/market/listAppByCategories'
 import ListYourApp from './listYourApp'
 
 const YourApps = () => {
+  const history = useHistory()
   const resgister = useRegister()
+  const onBack = useCallback(() => history.goBack(), [history])
 
   return (
     <Row gutter={[24, 64]}>
       <Col span={24}>
-        <Row gutter={[8, 8]}>
+        <Row gutter={[24, 24]}>
           <Col span={24}>
-            <Typography.Title level={2}>Your Dapp</Typography.Title>
+            <Button
+              type="text"
+              size="small"
+              icon={<IonIcon name="arrow-back-outline" />}
+              onClick={onBack}
+              style={{ marginLeft: -7 }}
+            >
+              Back
+            </Button>
+          </Col>
+          <Col span={24}>
+            <Typography.Title level={2}>Your DApps</Typography.Title>
           </Col>
           <Col span={24}>
             <ListYourApp />

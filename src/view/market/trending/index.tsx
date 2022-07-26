@@ -1,18 +1,41 @@
 import { ReactNode } from 'react'
+import { useUI } from '@sentre/senhub'
 
 import { Card, Col, Image, Row, Space, Typography } from 'antd'
 
+import { useGoToStore } from 'hooks/useGotoStore'
+import { useAppCategory } from '../appCategory/hooks'
+
 import './index.less'
 
-import Trending1 from 'static/images/trending/trending-1.png'
-import Trending2 from 'static/images/trending/trending-2.png'
-import Trending3 from 'static/images/trending/trending-3.png'
-import Trending4 from 'static/images/trending/trending-4.png'
+import Trending1_LIGHT from 'static/images/trending/trending-1.png'
+import Trending2_LIGHT from 'static/images/trending/trending-2.png'
+import Trending3_LIGHT from 'static/images/trending/trending-3.png'
+import Trending4_LIGHT from 'static/images/trending/trending-4.png'
+
+import Trending1_DARK from 'static/images/trending/trending-1-dark.png'
+import Trending2_DARK from 'static/images/trending/trending-2-dark.png'
+import Trending3_DARK from 'static/images/trending/trending-3-dark.png'
+import Trending4_DARK from 'static/images/trending/trending-4-dark.png'
 
 import Utility from 'static/images/trending/Utility.png'
 import Liquidity from 'static/images/trending/Liquidity.png'
 import Game from 'static/images/trending/Game.png'
 import DAO from 'static/images/trending/DAO.png'
+
+const CATEGORIES = ['utility', 'DAO', 'game', 'liquidity']
+const MULTI_BG_LIGHT = {
+  trending_1: Trending1_LIGHT,
+  trending_2: Trending2_LIGHT,
+  trending_3: Trending3_LIGHT,
+  trending_4: Trending4_LIGHT,
+}
+const MULTI_BG_DARK = {
+  trending_1: Trending1_DARK,
+  trending_2: Trending2_DARK,
+  trending_3: Trending3_DARK,
+  trending_4: Trending4_DARK,
+}
 
 type CardTrendingProps = {
   align?: 'top' | 'bottom' | 'middle' | 'stretch'
@@ -27,6 +50,7 @@ type CardTrendingProps = {
   middle?: boolean
   children?: ReactNode
   bgRight?: string
+  category: string
 }
 const CardTrending = ({
   align = 'middle',
@@ -35,7 +59,12 @@ const CardTrending = ({
   middle = false,
   children,
   bgRight,
+  category,
 }: CardTrendingProps) => {
+  const { appIds } = useAppCategory({ category: category })
+  const onSeeAll = useGoToStore({
+    search: `?category=${category}`,
+  })
   const colWithAlign = !middle ? 24 : undefined
 
   return (
@@ -50,11 +79,23 @@ const CardTrending = ({
           bordered={false}
           style={{
             boxShadow: 'unset',
-            borderRadius: 0,
             background: 'transparent',
+            zIndex: 1,
           }}
         >
-          {children}
+          <Space direction="vertical">
+            <Typography.Title level={4} style={{ textTransform: 'capitalize' }}>
+              {category}
+            </Typography.Title>
+            <Typography.Text
+              type="secondary"
+              style={{ cursor: 'pointer' }}
+              onClick={onSeeAll}
+            >
+              {appIds.length} dapps
+            </Typography.Text>
+            {children}
+          </Space>
         </Card>
       </Col>
       {bgRight && (
@@ -71,52 +112,49 @@ const CardTrending = ({
 }
 
 const Trending = () => {
+  const {
+    ui: { theme },
+  } = useUI()
+  const BG_COLOR = theme === 'light' ? MULTI_BG_LIGHT : MULTI_BG_DARK
+
   return (
     <Row gutter={[24, 24]}>
       <Col span={24}>
         <Typography.Title level={2}>Trending topics</Typography.Title>
       </Col>
       <Col span={12}>
-        <CardTrending align="middle" bg={Trending1} bgRight={Utility}>
-          <Space direction="vertical">
-            <Typography.Title level={4}>Utility</Typography.Title>
-            <Typography.Text type="secondary" style={{ cursor: 'pointer' }}>
-              6 dapps
-            </Typography.Text>
-          </Space>
-        </CardTrending>
+        <CardTrending
+          align="middle"
+          bg={BG_COLOR.trending_1}
+          bgRight={Utility}
+          category={CATEGORIES[0]}
+        />
       </Col>
       <Col span={12}>
         <Row gutter={[24, 24]}>
           <Col span={24}>
-            <CardTrending align="middle" bg={Trending2} bgRight={DAO}>
-              <Space direction="vertical">
-                <Typography.Title level={4}>DAO</Typography.Title>
-                <Typography.Text type="secondary" style={{ cursor: 'pointer' }}>
-                  6 dapps
-                </Typography.Text>
-              </Space>
-            </CardTrending>
+            <CardTrending
+              align="middle"
+              bg={BG_COLOR.trending_2}
+              bgRight={DAO}
+              category={CATEGORIES[1]}
+            />
           </Col>
           <Col xs={24} md={12}>
-            <CardTrending align="middle" bg={Trending3} bgRight={Game}>
-              <Space direction="vertical">
-                <Typography.Title level={4}>Game</Typography.Title>
-                <Typography.Text type="secondary" style={{ cursor: 'pointer' }}>
-                  6 dapps
-                </Typography.Text>
-              </Space>
-            </CardTrending>
+            <CardTrending
+              align="middle"
+              bg={BG_COLOR.trending_3}
+              bgRight={Game}
+              category={CATEGORIES[2]}
+            />
           </Col>
           <Col xs={24} md={12}>
-            <CardTrending align="middle" bg={Trending4} bgRight={Liquidity}>
-              <Space direction="vertical">
-                <Typography.Title level={4}>Liquidity</Typography.Title>
-                <Typography.Text type="secondary" style={{ cursor: 'pointer' }}>
-                  6 dapps
-                </Typography.Text>
-              </Space>
-            </CardTrending>
+            <CardTrending
+              align="middle"
+              bg={BG_COLOR.trending_4}
+              bgRight={Liquidity}
+              category={CATEGORIES[3]}
+            />
           </Col>
         </Row>
       </Col>

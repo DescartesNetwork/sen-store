@@ -12,11 +12,15 @@ const NewListedApp = () => {
       <Col span={24}>
         <Typography.Title level={2}>New listed</Typography.Title>
       </Col>
-      <Col span={12}>
+      <Col xs={24} md={12}>
         <CardNewListedApp appId={Object.keys(register)[0]} vertical />
       </Col>
-      <Col span={12}>
-        <Row gutter={[24, 24]}>
+      <Col xs={24} md={12}>
+        <Row
+          gutter={[24, 24]}
+          justify="space-between"
+          style={{ height: '100%' }}
+        >
           {Object.keys(register)
             .splice(0, 3)
             .map((appId, idx) => (

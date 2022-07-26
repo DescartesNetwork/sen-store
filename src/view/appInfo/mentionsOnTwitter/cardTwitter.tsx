@@ -38,7 +38,7 @@ const CardTwitter = ({ indexColor = 0 }: CardTwitterProps) => {
       bordered={false}
       style={{
         height: '100%',
-        background: theme === 'light' ? '#FFF' : '#FFF',
+        background: theme === 'light' ? '#FFF' : undefined,
         boxShadow: 'none',
       }}
       bodyStyle={{

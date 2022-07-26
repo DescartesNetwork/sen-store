@@ -1,16 +1,24 @@
+import { useUI } from '@sentre/senhub'
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper'
 
 import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
 
 import storePanel1 from 'static/images/market/store-panel1.png'
-import topBg from 'static/images/top-bg.png'
+import topBgLight from 'static/images/top-bg.png'
+import topBgDark from 'static/images/top-bg-dark.png'
 
 import './index.less'
 
-const PANELS = [storePanel1]
+const PANELS = [storePanel1, storePanel1]
 
 const TopBanner = () => {
+  const {
+    ui: { theme },
+  } = useUI()
+  const topBg = theme === 'light' ? topBgLight : topBgDark
+
   return (
     <Swiper
       className="hero-banner"
@@ -45,7 +53,11 @@ const TopBanner = () => {
               bordered={false}
             >
               <Row gutter={[24, 24]}>
-                <Col xs={24} md={12}>
+                <Col
+                  xs={{ span: 24, order: 2 }}
+                  md={{ span: 24, order: 2 }}
+                  lg={{ span: 12, order: 1 }}
+                >
                   <Space
                     style={{ padding: '56px 32px' }}
                     direction="vertical"
@@ -57,14 +69,20 @@ const TopBanner = () => {
                     <Typography.Text>
                       A Customizable DAO Solution for various purposes.
                     </Typography.Text>
-                    <Button onClick={() => {}} type="primary">
+                    <Button
+                      className="btn-explore-now"
+                      onClick={() => {}}
+                      size="large"
+                      type="primary"
+                    >
                       Explore now
                     </Button>
                   </Space>
                 </Col>
                 <Col
-                  xs={24}
-                  md={12}
+                  xs={{ span: 24, order: 1 }}
+                  md={{ span: 24, order: 1 }}
+                  lg={{ span: 12, order: 2 }}
                   className="img-banner"
                   style={{ textAlign: 'right' }}
                 >

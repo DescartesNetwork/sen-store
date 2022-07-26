@@ -1,11 +1,13 @@
 import { CSSProperties, useMemo } from 'react'
-import { useRegister } from '@sentre/senhub'
+import { useRegister, useUI } from '@sentre/senhub'
 
 import { Card, Col, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
 import FlexibleCard from 'components/flexibleCard'
 import { MultiStaticLoader } from 'components/staticLoader'
 import Verification from 'components/verification'
+
+import { useGoToStore } from 'hooks/useGotoStore'
 
 import imgError from 'static/images/error-image.svg'
 
@@ -20,6 +22,10 @@ const CardNewListedApp = ({
   style,
 }: CardNewListedAppProps) => {
   const register = useRegister()
+  const onOpenAppDetail = useGoToStore({ appId })
+  const {
+    ui: { width },
+  } = useUI()
 
   const { name, verified, author, description } = useMemo(
     () => register[appId] || ({} as ComponentManifest),
@@ -30,11 +36,22 @@ const CardNewListedApp = ({
   const clnHorizontalImg = !vertical
     ? 'panel-img horizontal-panel'
     : 'panel-img'
+  const spacing = width < 768 ? 16 : 32
 
   return (
-    <FlexibleCard className="new-listed-card" transparent type="pink">
-      <Row gutter={[24, 24]} wrap={vertical}>
-        <Col span={verticalSpan} className={clnHorizontalImg}>
+    <FlexibleCard
+      className="new-listed-card"
+      transparent
+      type="pink"
+      spacing={spacing}
+    >
+      <Row
+        gutter={[24, 24]}
+        wrap={vertical}
+        onClick={onOpenAppDetail}
+        style={{ cursor: 'pointer' }}
+      >
+        <Col span={verticalSpan || 8} className={clnHorizontalImg}>
           <MultiStaticLoader
             defaultData={[imgError]}
             appId={appId}
@@ -59,11 +76,11 @@ const CardNewListedApp = ({
             )}
           />
         </Col>
-        <Col span={verticalSpan}>
+        <Col span={verticalSpan || 16}>
           <Row gutter={[24, 24]}>
             {/* Group App Infos */}
             <Col span={24}>
-              <Space size={16}>
+              <Space size={16} align="start">
                 <AppIcon appId={appId} size={40} name={false} />
                 <Space direction="vertical" size={0}>
                   <Space>

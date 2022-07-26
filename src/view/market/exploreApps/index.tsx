@@ -31,7 +31,7 @@ const ExploreApps = () => {
           <Col>
             <Typography.Title level={2}>Explore the Store</Typography.Title>
           </Col>
-          <Col>
+          <Col className="scrollbar">
             <Radio.Group
               className="explore-apps-group-btn"
               defaultValue={category}
@@ -40,7 +40,11 @@ const ExploreApps = () => {
               <Space>
                 <Radio.Button value="all">All</Radio.Button>
                 {tags.map((tag) => (
-                  <Radio.Button value={tag} key={tag}>
+                  <Radio.Button
+                    value={tag}
+                    key={tag}
+                    style={{ textTransform: 'capitalize' }}
+                  >
                     {tag}
                   </Radio.Button>
                 ))}

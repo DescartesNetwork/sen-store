@@ -17,15 +17,20 @@ const {
 } = configs
 
 const View = () => {
-  const { setBackground } = useUI()
+  const {
+    setBackground,
+    ui: { width },
+  } = useUI()
+
+  const isMobile = width < 768
 
   useEffect(() => {
-    setBackground({ light: '#f5f2fa', dark: '#f5f2fa' })
+    setBackground({ light: '#f5f2fa', dark: '#16151b' })
   }, [setBackground])
 
   return (
     <Layout>
-      <Layout.Content>
+      <Layout.Content style={{ padding: !isMobile ? '0 72px' : undefined }}>
         <Switch>
           <Route exact path={`/app/${appId}/`} component={Market} />
           <Route exact path={`/app/${appId}/your-apps`} component={YourApps} />
