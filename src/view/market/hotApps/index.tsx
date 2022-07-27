@@ -1,4 +1,4 @@
-import { useAppIds } from '@sentre/senhub'
+import { useRegister } from '@sentre/senhub'
 import { SwiperOs } from 'components/swiperOS'
 import { SwiperSlide } from 'swiper/react'
 
@@ -7,7 +7,7 @@ import CardHotAppCard from './cardHotApp'
 import IonIcon from '@sentre/antd-ionicon'
 
 const HotApps = () => {
-  const appIds = useAppIds()
+  const register = useRegister()
 
   return (
     <Row gutter={[24, 24]}>
@@ -39,7 +39,7 @@ const HotApps = () => {
       {/* Apps in the category */}
       <Col span={24}>
         <SwiperOs>
-          {appIds.map((appId) => (
+          {Object.keys(register).map((appId) => (
             <SwiperSlide key={appId} style={{ maxWidth: 334, width: '75vw' }}>
               <CardHotAppCard appId={appId} />
             </SwiperSlide>

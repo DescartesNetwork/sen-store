@@ -1,47 +1,45 @@
 import { useRegister, useUI } from '@sentre/senhub'
 
-import { Card, Col, Row, Space } from 'antd'
+import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
 import InfiniteSlideIcon from './infiniteSlideIcon'
 
 import './index.less'
+import FlexibleCard from 'components/flexibleCard'
 
 const ListingApp = () => {
   const register = useRegister()
   const appIds = Object.keys(register)
   const {
-    ui: { theme, width },
+    ui: { width },
   } = useUI()
 
-  const isLightTheme = theme === 'light'
   const isMobile = width < 768
   const slideStyle = isMobile
-    ? { padding: '0 12px' }
-    : { padding: 0, marginLeft: -12 }
-  const paddingBottom = isMobile ? { paddingBottom: 24 } : {}
+    ? { paddingLeft: 12, paddingRight: 12 }
+    : { paddingLeft: 0, paddingRight: 0, marginLeft: -12 }
+  const paddingCard = isMobile ? { padding: '0 0 24px 0' } : { padding: 0 }
 
   return (
-    <Card
+    <FlexibleCard
+      type="murrey"
+      spacing={0}
+      bodyStyle={{ ...paddingCard }}
       bordered={false}
-      style={{
-        height: '100%',
-        background: isLightTheme ? '#EAE6F5' : '#09090D',
-        boxShadow: 'unset',
-      }}
-      bodyStyle={{ padding: 0, ...paddingBottom }}
+      transparent
     >
       <Row gutter={[24, 24]} align="middle">
         <Col xs={24} md={12}>
           <IntegrationCard />
         </Col>
         <Col xs={24} md={12} style={{ ...slideStyle }}>
-          <Space direction="vertical" style={{ width: '100%' }}>
+          <Space direction="vertical" style={{ width: '100%' }} size={32}>
             <InfiniteSlideIcon appIds={appIds} />
             <InfiniteSlideIcon appIds={appIds} reverse />
           </Space>
         </Col>
       </Row>
-    </Card>
+    </FlexibleCard>
   )
 }
 

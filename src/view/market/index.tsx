@@ -1,23 +1,24 @@
-import { useMemo, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useCallback, useMemo, useRef } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useRegister } from '@sentre/senhub'
 
-import { Row, Col } from 'antd'
+import { Row, Col, Button } from 'antd'
 import TopBanner from './topBanner'
 import BottomBanner from './bottomBanner'
-import AppCategorySeeAll from './appCategory/seeAll'
 import Trending from './trending'
 import NewListedApp from './newListedApp'
 import ListingApp from './listingApp'
 import HotApps from './hotApps'
 import ExploreApps from './exploreApps'
-import ListAppByCategories from './listAppByCategories'
 import Search from './search'
 
-import { CustomCategory } from './appCategory/hooks'
+import { CustomCategory } from './listAppByCategories/hooks'
 import MentionsOnTwitter from 'view/appInfo/mentionsOnTwitter'
+import ListAppByCategories from './listAppByCategories'
+import IonIcon from '@sentre/antd-ionicon'
 
 const Market = () => {
+  const history = useHistory()
   const { search } = useLocation()
   const resgister = useRegister()
   const categoryRef = useRef<HTMLDivElement>(null)
@@ -26,11 +27,33 @@ const Market = () => {
     () => new URLSearchParams(search).get('category'),
     [search],
   )
+
+  const onBack = useCallback(() => history.goBack(), [history])
+
   const scrollToCategory = () => {
     if (categoryRef.current) window.scrollTo(0, categoryRef.current.offsetTop)
   }
 
-  if (category) return <AppCategorySeeAll category={category} />
+  if (category)
+    return (
+      <Row gutter={[24, 24]}>
+        <Col span={24}>
+          <Button
+            type="text"
+            size="small"
+            icon={<IonIcon name="arrow-back-outline" />}
+            onClick={onBack}
+            style={{ marginLeft: -7 }}
+          >
+            Back
+          </Button>
+        </Col>
+        <Col span={24}>
+          <ListAppByCategories swiper={false} category={category} />
+        </Col>
+      </Row>
+    )
+
   return (
     <Row gutter={[16, 48]} justify="center">
       <Col span={24} className="sentre-col-container">

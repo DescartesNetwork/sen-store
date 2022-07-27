@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useRegister } from '@sentre/senhub'
 
 import { Button, Col, Radio, Row, Space, Typography } from 'antd'
-import { compareAliasString } from '../appCategory/hooks/custom'
+import { compareAliasString } from '../listAppByCategories/hooks/custom'
 import ListAppByCategory from './listExploreApp'
 
 import './index.less'
