@@ -1,17 +1,17 @@
 import { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useRegister } from '@sentre/senhub'
+import { useAppIds } from '@sentre/senhub'
 
 import { Button, Col, Row, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
 
-import { CustomCategory } from 'view/market/appCategory/hooks'
+import { CustomCategory } from 'view/market/listAppByCategories/hooks'
 import ListAppByCategories from 'view/market/listAppByCategories'
 import ListYourApp from './listYourApp'
 
 const YourApps = () => {
   const history = useHistory()
-  const resgister = useRegister()
+  const yourAppIds = useAppIds()
   const onBack = useCallback(() => history.goBack(), [history])
 
   return (
@@ -40,7 +40,7 @@ const YourApps = () => {
       <Col span={24}>
         <ListAppByCategories
           category={CustomCategory.suggest}
-          related={{ appIds: Object.keys(resgister).splice(0, 5) }}
+          related={{ appIds: yourAppIds }}
           navigation
         />
       </Col>

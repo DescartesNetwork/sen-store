@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react'
 import { useRegister } from '@sentre/senhub'
 
 import { Button, Col, Radio, Row, Space, Typography } from 'antd'
-import { compareAliasString } from '../appCategory/hooks/custom'
-import ListAppByCategory from './listExploreApp'
+import { compareAliasString } from '../listAppByCategories/hooks/custom'
 
 import './index.less'
 import IonIcon from '@sentre/antd-ionicon'
+import ListExploreApp from './listExploreApp'
 
 const CATEGORIES = ['utility', 'DAO', 'liquidity', 'sentre', 'game']
 
@@ -54,7 +54,7 @@ const ExploreApps = () => {
         </Row>
       </Col>
       <Col span={24}>
-        <ListAppByCategory category={category} />
+        <ListExploreApp category={category} />
       </Col>
       <Col>
         <Space>

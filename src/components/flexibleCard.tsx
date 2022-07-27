@@ -9,17 +9,20 @@ const MULTI_BG_LIGHT = {
     'linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), rgba(14, 181, 111, 0.1)',
   blue: 'linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), rgba(51, 139, 255, 0.1)',
   pink: 'linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), rgba(255, 111, 216, 0.1)',
+  murrey: '#EAE6F5',
 }
 const MULTI_BG_DARK = {
   purple: '#201A32',
   green: '#2B3330',
   blue: 'linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), rgba(51, 139, 255, 0.1)',
   pink: '#2E252C',
+  murrey: '#09090D',
 }
 
+export type FlexibleCardType = 'purple' | 'green' | 'blue' | 'pink' | 'murrey'
 type FlexibleCardProps = {
   children?: ReactNode
-  type?: 'purple' | 'green' | 'blue' | 'pink'
+  type?: FlexibleCardType
   style?: CSSProperties
   spacing?: number
   bodySpacing?: number
@@ -28,6 +31,7 @@ type FlexibleCardProps = {
   bodyStyle?: CSSProperties
   transparent?: boolean
   className?: string
+  bordered?: boolean
 }
 const FlexibleCard = ({
   children,
@@ -40,6 +44,7 @@ const FlexibleCard = ({
   bodyStyle,
   transparent = false,
   className = '',
+  bordered = true,
 }: FlexibleCardProps) => {
   const {
     ui: { theme },
@@ -58,6 +63,7 @@ const FlexibleCard = ({
       }}
       className={className}
       bodyStyle={{ padding: spacing, height: '100%' }}
+      bordered={bordered}
     >
       <Card
         bordered={false}

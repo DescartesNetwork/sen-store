@@ -4,7 +4,7 @@ import { useUI } from '@sentre/senhub'
 import { Card, Col, Image, Row, Space, Typography } from 'antd'
 
 import { useGoToStore } from 'hooks/useGotoStore'
-import { useAppCategory } from '../appCategory/hooks'
+import { useAppCategory } from '../listAppByCategories/hooks'
 
 import './index.less'
 

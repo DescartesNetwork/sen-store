@@ -1,4 +1,5 @@
-import { useAppIds, useUI } from '@sentre/senhub'
+import { useMemo } from 'react'
+import { useRegister, useUI } from '@sentre/senhub'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Grid } from 'swiper'
 
@@ -6,8 +7,7 @@ import { Card } from 'antd'
 import CardAppCateogry from './cardExploreApp'
 import FlexibleCard from 'components/flexibleCard'
 
-import { CategoryOptions, useAppCategory } from '../appCategory/hooks'
-import { useMemo } from 'react'
+import { CategoryOptions, useAppCategory } from '../listAppByCategories/hooks'
 
 type ListExploreAppProps = {
   seeAll?: boolean
@@ -20,19 +20,20 @@ const ListExploreApp = ({
   spacing = 48,
   ...options
 }: ListExploreAppProps) => {
-  const allAppIds = useAppIds()
+  const register = useRegister()
   const { appIds } = useAppCategory(options)
   const {
     ui: { width },
   } = useUI()
   const { category } = options
 
-  const listAppId = seeAll || category === 'all' ? allAppIds : appIds
+  const listAppId =
+    seeAll || category === 'all' ? Object.keys(register) : appIds
 
   const calSlicePerView = useMemo(() => {
     if (width < 768) return 1
     if (width < 991) return 2
-    if (width < 1200) return 3
+    if (width < 1390) return 3
     return 4
   }, [width])
 
