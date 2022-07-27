@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useRegister, useUI, useWallet } from '@sentre/senhub'
+import { useRegister, useUI } from '@sentre/senhub'
 
 import { Button, Card, Col, Input, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
@@ -28,7 +28,6 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const {
     ui: { theme },
   } = useUI()
-  const { wallet } = useWallet()
   const history = useHistory()
   const register = useRegister()
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -57,6 +56,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
       throw new Error(`Node expected`)
     }
   }
+  console.log('window.sentre.wallet:', window.sentre.wallet)
 
   useEffect(() => {
     const ctxWrapper = wrapperRef.current
@@ -135,7 +135,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
               Categories
             </Button>
           </Col>
-          {wallet && (
+          {window.sentre.wallet && (
             <Col span={12}>
               <Button
                 size="large"
