@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useRegister } from '@sentre/senhub'
+import { useRegister, useWallet } from '@sentre/senhub'
 
 import { Button, Col, Row, Select, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
@@ -22,6 +22,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const [search, setSearch] = useState('')
   const [appIds, setAppIds] = useState<AppIds>([])
 
+  const { wallet } = useWallet()
   const history = useHistory()
   const register = useRegister()
 
@@ -44,7 +45,9 @@ const Search = ({ scrollToCategory }: SearchProps) => {
       <Col xs={24} md={8}>
         <Select
           size="large"
+          autoClearSearchValue={false}
           onSearch={setSearch}
+          searchValue={search}
           placeholder="Search dapp name, author"
           suffixIcon={
             <IonIcon name="search-outline" style={{ fontSize: '18px' }} />
@@ -55,6 +58,8 @@ const Search = ({ scrollToCategory }: SearchProps) => {
           onSelect={(value: string) =>
             history.push(`/app/${appStoreId}/${value}`)
           }
+          filterOption={false}
+          mode="multiple"
         >
           {appIds.map((appId) => (
             <Select.Option value={appId} key={appId}>
@@ -71,22 +76,26 @@ const Search = ({ scrollToCategory }: SearchProps) => {
         md={{ span: 12, offset: 4 }}
         lg={{ span: 8, offset: 8 }}
       >
-        <Row gutter={[12, 0]}>
+        <Row gutter={[12, 0]} justify="end">
           <Col span={12}>
             <Button size="large" ghost block onClick={scrollToCategory}>
               Categories
             </Button>
           </Col>
-          <Col span={12}>
-            <Button
-              size="large"
-              ghost
-              block
-              onClick={() => history.push('/app/' + appStoreId + '/your-apps')}
-            >
-              Your DApps
-            </Button>
-          </Col>
+          {wallet && (
+            <Col span={12}>
+              <Button
+                size="large"
+                ghost
+                block
+                onClick={() =>
+                  history.push('/app/' + appStoreId + '/your-apps')
+                }
+              >
+                Your DApps
+              </Button>
+            </Col>
+          )}
         </Row>
       </Col>
     </Row>
