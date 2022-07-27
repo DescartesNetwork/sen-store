@@ -9,7 +9,38 @@ import CardTwitter from './cardTwitter'
 
 import './index.less'
 
-const listTwitter = [0, 1, 2, 3, 4]
+const LIST_TWITTER = [
+  {
+    name: 'Chris Tian',
+    tag: '@Stirail · Jul 24',
+    reweet:
+      'This is the moment we all have been waiting for! Us = with no more funds to buy more SOL hihihihi',
+    appId: 'any_arts',
+    avatar:
+      'https://pbs.twimg.com/profile_images/1531595293946683392/iozpRS2F_400x400.jpg',
+  },
+
+  {
+    name: '𝐒𝐎𝐋𝐀𝐍𝐀 𝐔𝐍𝐈𝐕𝐄𝐑𝐒𝐄 🧬',
+    tag: '@SolanaUnivers',
+    reweet: `🔥
+      @SentreProtocol
+       is an All-in-One 
+      @Solana
+       open platform with #dApps Store and Universal Protocol for Liquidity!
+      
+      🔥 $SNTR TOKEN UTILITY UPDATE 
+      
+      ♻️Revenue Sharing
+      ⛏️Mining Tokens
+      
+      🔽INFO
+      https://sentre.io/#/home`,
+    appId: '',
+    avatar:
+      'https://pbs.twimg.com/profile_images/1527303517589086209/ZPbM5Gk__400x400.jpg',
+  },
+]
 
 const MentionsOnTwitter = () => {
   const {
@@ -24,18 +55,18 @@ const MentionsOnTwitter = () => {
 
   const listTwitterRender = () => {
     let indexColor = 0
-    return listTwitter.map((item) => {
+    return LIST_TWITTER.map((data, idx) => {
       if (indexColor === 3) indexColor = 0
       indexColor++
       return (
         <SwiperSlide
           style={{
             cursor: 'pointer',
-            height: '250px',
+            height: 260,
           }}
-          key={item}
+          key={idx}
         >
-          <CardTwitter indexColor={indexColor} />
+          <CardTwitter data={data} indexColor={indexColor} />
         </SwiperSlide>
       )
     })
