@@ -56,7 +56,6 @@ const Search = ({ scrollToCategory }: SearchProps) => {
       throw new Error(`Node expected`)
     }
   }
-  console.log('window.sentre.wallet:', window.sentre.wallet)
 
   useEffect(() => {
     const ctxWrapper = wrapperRef.current
@@ -135,7 +134,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
               Categories
             </Button>
           </Col>
-          {window.sentre.wallet && (
+          {window.sentre?.wallet && (
             <Col span={12}>
               <Button
                 size="large"
