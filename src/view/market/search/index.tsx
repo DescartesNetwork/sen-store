@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useRegister, useUI, useWallet } from '@sentre/senhub'
 
@@ -21,8 +21,9 @@ export type SearchProps = {
 let searching: NodeJS.Timeout
 
 const Search = ({ scrollToCategory }: SearchProps) => {
-  const [search, setSearch] = useState('')
+  const [searchKey, setSearchKey] = useState('')
   const [appIds, setAppIds] = useState<AppIds>([])
+  const [searchVisible, setSearchVisible] = useState(false)
 
   const {
     ui: { theme },
@@ -30,16 +31,18 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const { wallet } = useWallet()
   const history = useHistory()
   const register = useRegister()
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
   const engine = useMemo(() => new SearchEngine(register), [register])
 
   const onSearch = useCallback(async () => {
     if (searching) clearTimeout(searching)
     searching = setTimeout(async () => {
-      const appIds = engine.search(search)
+      const appIds = engine.search(searchKey)
       setAppIds(appIds)
+      if (!!appIds.length) setSearchVisible(true)
     }, 500)
-  }, [engine, search])
+  }, [engine, searchKey])
 
   const onPressEnter = useCallback(() => {
     if (appIds.length > 0) history.push(`/app/${appStoreId}/${appIds[0]}`)
@@ -49,26 +52,41 @@ const Search = ({ scrollToCategory }: SearchProps) => {
     onSearch()
   }, [onSearch])
 
+  function assertIsNode(e: EventTarget | null): asserts e is Node {
+    if (!e || !('nodeType' in e)) {
+      throw new Error(`Node expected`)
+    }
+  }
+
+  useEffect(() => {
+    const ctxWrapper = wrapperRef.current
+    if (!ctxWrapper) return
+    document.addEventListener('click', ({ target }) => {
+      assertIsNode(target)
+      if (!ctxWrapper.contains(target)) setSearchVisible(false)
+    })
+    return () => document.removeEventListener('click', () => {})
+  }, [])
+
   return (
     <Row gutter={[12, 12]} justify="space-between">
       <Col xs={24} md={8}>
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative' }} ref={wrapperRef}>
           <Input
             size="large"
             placeholder="Search dapp name, author"
             bordered={false}
-            onChange={(event) => setSearch(event.target.value)}
-            value={search}
+            onChange={(event) => setSearchKey(event.target.value)}
+            value={searchKey}
+            allowClear
             prefix={
               <Button
                 type="text"
                 size="small"
+                style={{ fontSize: '24px' }}
                 icon={
-                  <IonIcon
-                    name={search ? 'close-circle-outline' : 'search-outline'}
-                  />
+                  <IonIcon name="search-outline" style={{ fontSize: '24px' }} />
                 }
-                onClick={() => (search ? setSearch('') : () => {})}
               />
             }
             style={{
@@ -76,8 +94,9 @@ const Search = ({ scrollToCategory }: SearchProps) => {
             }}
             autoFocus
             onPressEnter={onPressEnter}
+            onFocus={() => setSearchVisible(true)}
           />
-          {appIds.length > 0 && (
+          {appIds.length > 0 && searchVisible && (
             <Card
               className="list-apps-search"
               bordered={false}
