@@ -1,6 +1,6 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useAppIds } from '@sentre/senhub'
+import { useAppIds, useWallet } from '@sentre/senhub'
 
 import { Button, Col, Row, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
@@ -8,11 +8,23 @@ import IonIcon from '@sentre/antd-ionicon'
 import { CustomCategory } from 'view/market/listAppByCategories/hooks'
 import ListAppByCategories from 'view/market/listAppByCategories'
 import ListYourApp from './listYourApp'
+import configs from 'configs'
+
+const {
+  manifest: { appId: appStoreId },
+} = configs
 
 const YourApps = () => {
+  const {
+    wallet: { address: walletAddress },
+  } = useWallet()
   const history = useHistory()
   const yourAppIds = useAppIds()
   const onBack = useCallback(() => history.goBack(), [history])
+
+  useEffect(() => {
+    if (!walletAddress) history.push('/app/' + appStoreId)
+  }, [history, walletAddress])
 
   return (
     <Row gutter={[24, 64]}>
