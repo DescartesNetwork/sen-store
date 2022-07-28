@@ -1,9 +1,7 @@
 import { MouseEvent, useCallback, useMemo } from 'react'
-import { account } from '@senswap/sen-js'
 import {
   useGoToApp,
   useInstallApp,
-  useWallet,
   useRegister,
   useAppIds,
 } from '@sentre/senhub'
@@ -30,9 +28,6 @@ const AppCardInfo = ({
 }: AppCardInfoProps) => {
   const register = useRegister()
   const appIds = useAppIds()
-  const {
-    wallet: { address: walletAddress },
-  } = useWallet()
   const onInstallApp = useInstallApp(appId)
   const onGoToApp = useGoToApp({ appId })
   const onOpenAppDetail = useGoToStore({ appId })
@@ -42,16 +37,6 @@ const AppCardInfo = ({
     [register, appId],
   )
   const installed = useMemo(() => appIds.includes(appId), [appIds, appId])
-
-  const onInstall = useCallback(
-    async (e: MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation()
-      if (!account.isAddress(walletAddress))
-        throw new Error('Please connect the wallet!')
-      return onInstallApp()
-    },
-    [onInstallApp, walletAddress],
-  )
 
   const onOpen = useCallback(
     async (e: MouseEvent<HTMLButtonElement>) => {
@@ -106,7 +91,10 @@ const AppCardInfo = ({
               ) : (
                 <Button
                   type="primary"
-                  onClick={onInstall}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onInstallApp()
+                  }}
                   size="small"
                   id="install-action-button"
                 >
