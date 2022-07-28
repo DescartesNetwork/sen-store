@@ -80,18 +80,16 @@ const CardTrending = ({
           style={{
             boxShadow: 'unset',
             background: 'transparent',
+            cursor: 'pointer',
             zIndex: 1,
           }}
+          onClick={onSeeAll}
         >
           <Space direction="vertical">
             <Typography.Title level={4} style={{ textTransform: 'capitalize' }}>
               {category}
             </Typography.Title>
-            <Typography.Text
-              type="secondary"
-              style={{ cursor: 'pointer' }}
-              onClick={onSeeAll}
-            >
+            <Typography.Text type="secondary">
               {appIds.length} dapps
             </Typography.Text>
             {children}

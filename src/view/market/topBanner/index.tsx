@@ -1,24 +1,35 @@
-import { useUI } from '@sentre/senhub'
-
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper'
 
-import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
-
-import storePanel1 from 'static/images/market/store-panel1.png'
-import topBgLight from 'static/images/top-bg.png'
-import topBgDark from 'static/images/top-bg-dark.png'
+import interdao from 'static/images/banner/interdao.png'
+import lightningTunnel from 'static/images/banner/lightning-tunnel.png'
+import anyArts from 'static/images/banner/any-arts.png'
 
 import './index.less'
+import CardBanner from './cardBanner'
 
-const PANELS = [storePanel1, storePanel1]
+const PANELS = [
+  {
+    image: interdao,
+    title: 'The Universal DAO solution for Solana.',
+    description: 'A Customizable DAO Solution for various purposes.',
+    appId: 'interdao',
+  },
+  {
+    image: anyArts,
+    title: 'The Most Powerful NFT Aggregator',
+    description: 'Multi-token support & Fast Inclusive',
+    appId: 'any_arts',
+  },
+  {
+    image: lightningTunnel,
+    title: 'One-time sign for bulk transation',
+    description: 'Supper speed & Fee saving',
+    appId: 'lightning_tunnel',
+  },
+]
 
 const TopBanner = () => {
-  const {
-    ui: { theme },
-  } = useUI()
-  const topBg = theme === 'light' ? topBgLight : topBgDark
-
   return (
     <Swiper
       className="hero-banner"
@@ -33,7 +44,7 @@ const TopBanner = () => {
       }}
       modules={[Navigation, Pagination]}
     >
-      {PANELS.map((banner, index) => {
+      {PANELS.map(({ appId, description, image, title }, index) => {
         return (
           <SwiperSlide
             style={{
@@ -41,59 +52,12 @@ const TopBanner = () => {
             }}
             key={index}
           >
-            <Card
-              style={{
-                height: '100%',
-                boxShadow: 'none',
-                backgroundImage: `url(${topBg})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-              }}
-              bodyStyle={{ padding: 0 }}
-              bordered={false}
-            >
-              <Row gutter={[24, 24]}>
-                <Col
-                  xs={{ span: 24, order: 2 }}
-                  md={{ span: 24, order: 2 }}
-                  lg={{ span: 12, order: 1 }}
-                >
-                  <Space
-                    style={{ padding: '56px 32px' }}
-                    direction="vertical"
-                    size={32}
-                  >
-                    <Typography.Title level={1}>
-                      The Universal DAO solution for Solana.
-                    </Typography.Title>
-                    <Typography.Text>
-                      A Customizable DAO Solution for various purposes.
-                    </Typography.Text>
-                    <Button
-                      className="btn-explore-now"
-                      onClick={() => {}}
-                      size="large"
-                      type="primary"
-                    >
-                      Explore now
-                    </Button>
-                  </Space>
-                </Col>
-                <Col
-                  xs={{ span: 24, order: 1 }}
-                  md={{ span: 24, order: 1 }}
-                  lg={{ span: 12, order: 2 }}
-                  className="img-banner"
-                  style={{ textAlign: 'right' }}
-                >
-                  <Image
-                    className="image-aspect-43"
-                    src={banner}
-                    preview={false}
-                  />
-                </Col>
-              </Row>
-            </Card>
+            <CardBanner
+              image={image}
+              appId={appId}
+              title={title}
+              description={description}
+            />
           </SwiperSlide>
         )
       })}

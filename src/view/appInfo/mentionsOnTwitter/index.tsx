@@ -19,7 +19,6 @@ const LIST_TWITTER = [
     avatar:
       'https://pbs.twimg.com/profile_images/1531595293946683392/iozpRS2F_400x400.jpg',
   },
-
   {
     name: '𝐒𝐎𝐋𝐀𝐍𝐀 𝐔𝐍𝐈𝐕𝐄𝐑𝐒𝐄 🧬',
     tag: '@SolanaUnivers',
@@ -39,6 +38,25 @@ const LIST_TWITTER = [
     appId: '',
     avatar:
       'https://pbs.twimg.com/profile_images/1527303517589086209/ZPbM5Gk__400x400.jpg',
+  },
+  {
+    name: 'Thien Nguyen',
+    tag: '@ThienNV_DesNet',
+    reweet: `Really surprised at the cost and sending speed of Lightning Tunnel. A retweet for 
+    @SentreProtocol
+      ⚡️⚡️⚡️`,
+    appId: 'lightning_tunnel',
+    avatar:
+      'https://pbs.twimg.com/profile_images/1506533084728291328/TyE_CSfQ_400x400.jpg',
+  },
+  {
+    name: 'Thanh Tuấn Lê',
+    tag: '@Tuanle1899',
+    reweet:
+      'Amazing! No code, no platform needed for DAO with vote by NFT and token. I think it’s a good solution for the project, frens 🤟',
+    appId: 'interdao',
+    avatar:
+      'https://pbs.twimg.com/profile_images/1469313225707573248/cKhPXTWE_400x400.jpg',
   },
 ]
 
