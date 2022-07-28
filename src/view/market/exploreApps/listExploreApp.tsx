@@ -39,7 +39,7 @@ const ListExploreApp = ({
 
   return (
     <FlexibleCard type="green">
-      <Card bordered={false}>
+      <Card bordered={false} style={{ boxShadow: 'none' }}>
         <Swiper
           modules={[Grid, Navigation]}
           grid={{ rows: rows, fill: 'row' }}
