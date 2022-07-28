@@ -2,9 +2,12 @@ import { useUI } from '@sentre/senhub'
 
 import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
 
+import AppIcon from 'components/appIcon'
+
+import { useGoToStore } from 'hooks/useGotoStore'
+
 import topBgLight from 'static/images/top-bg.png'
 import topBgDark from 'static/images/top-bg-dark.png'
-
 import './index.less'
 
 type CardBannerProps = {
@@ -17,6 +20,7 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
   const {
     ui: { theme },
   } = useUI()
+  const onGoToApp = useGoToStore({ appId })
   const topBg = theme === 'light' ? topBgLight : topBgDark
 
   return (
@@ -42,11 +46,17 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
             direction="vertical"
             size={32}
           >
-            <Typography.Title level={1}>{title}</Typography.Title>
+            <AppIcon appId={appId} direction="horizontal" />
+            <Typography.Title
+              level={1}
+              style={{ fontSize: 72, fontWeight: 800 }}
+            >
+              {title}
+            </Typography.Title>
             <Typography.Text>{description}</Typography.Text>
             <Button
               className="btn-explore-now"
-              onClick={() => {}}
+              onClick={onGoToApp}
               size="large"
               type="primary"
             >
