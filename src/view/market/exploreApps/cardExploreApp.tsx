@@ -51,7 +51,14 @@ const CardAppCateogry = ({ appId }: CardAppCateogryProps) => {
               Open
             </Button>
           ) : (
-            <Button onClick={onInstallApp} size="small" type="primary">
+            <Button
+              onClick={(e) => {
+                e.stopPropagation()
+                onInstallApp()
+              }}
+              size="small"
+              type="primary"
+            >
               Install
             </Button>
           )}
