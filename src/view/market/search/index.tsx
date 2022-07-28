@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useRegister, useUI } from '@sentre/senhub'
+import { useRegister, useUI, useWallet } from '@sentre/senhub'
 
 import { Button, Card, Col, Input, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
@@ -28,6 +28,9 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const {
     ui: { theme },
   } = useUI()
+  const {
+    wallet: { address: walletAddress },
+  } = useWallet()
   const history = useHistory()
   const register = useRegister()
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -134,7 +137,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
               Categories
             </Button>
           </Col>
-          {window.sentre?.wallet && (
+          {walletAddress && (
             <Col span={12}>
               <Button
                 size="large"
