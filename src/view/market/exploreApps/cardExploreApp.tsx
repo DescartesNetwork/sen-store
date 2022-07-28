@@ -33,6 +33,7 @@ const CardAppCateogry = ({ appId }: CardAppCateogryProps) => {
       align="middle"
       onClick={onOpenAppDetail}
       style={{ cursor: 'pointer' }}
+      className="hoverable-flash"
     >
       <Col>
         <AppIcon appId={appId} size={64} name={false} />
@@ -40,7 +41,9 @@ const CardAppCateogry = ({ appId }: CardAppCateogryProps) => {
       <Col>
         <Space direction="vertical" size={1}>
           <Space size={4}>
-            <Typography.Title level={5}>{name}</Typography.Title>
+            <Typography.Title className="title" level={5}>
+              {name}
+            </Typography.Title>
             <Verification verified={verified} />
           </Space>
           <Typography.Text type="secondary">

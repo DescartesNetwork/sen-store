@@ -91,7 +91,7 @@ const MentionsOnTwitter = () => {
   }
 
   return (
-    <Row gutter={[20, 20]} align="bottom">
+    <Row gutter={[24, 12]} align="bottom">
       {/* Title */}
       <Col span={24}>
         <Typography.Title level={2}>Mentions On Twitter</Typography.Title>
@@ -110,6 +110,7 @@ const MentionsOnTwitter = () => {
             },
           }}
           modules={[Navigation, Pagination]}
+          style={{ paddingTop: 12 }}
         >
           {listTwitterRender()}
         </Swiper>
