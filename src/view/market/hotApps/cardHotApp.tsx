@@ -9,7 +9,7 @@ import { useGoToStore } from 'hooks/useGotoStore'
 
 import imgError from 'static/images/error-image.svg'
 
-const CARD_SPACING = 13
+const CARD_SPACING = 26
 
 export type CardHotAppCardProps = {
   appId: string
