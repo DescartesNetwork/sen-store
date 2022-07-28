@@ -22,10 +22,6 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
   const onOpen = useGoToStore({ appId })
 
   useEffect(() => {
-    console.log(
-      (ref?.current as any)?.offsetWidth,
-      ' (ref?.current as any)?.offsetWidth',
-    )
     setCardHeight(((ref?.current as any)?.offsetWidth - CARD_SPACING) * 0.75)
   }, [ref])
 
