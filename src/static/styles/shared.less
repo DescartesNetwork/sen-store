@@ -42,3 +42,17 @@ body {
   aspect-ratio: 4/3;
   object-fit: cover; /* use the one you need */
 }
+
+.hoverable-transform {
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-10px);
+  }
+}
+.hoverable-flash {
+  &:hover {
+    .title {
+      color: #825cff !important;
+    }
+  }
+}

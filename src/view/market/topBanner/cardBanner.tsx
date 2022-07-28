@@ -53,7 +53,9 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
             >
               {title}
             </Typography.Title>
-            <Typography.Text>{description}</Typography.Text>
+            <Typography.Text style={{ fontSize: 20 }}>
+              {description}
+            </Typography.Text>
             <Button
               className="btn-explore-now"
               onClick={onGoToApp}

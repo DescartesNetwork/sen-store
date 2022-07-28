@@ -42,7 +42,7 @@ const SwiperListApp = ({
   }, [width])
 
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[24, 12]}>
       <Col span={24}>
         <Row justify="space-between">
           <Col>
@@ -80,11 +80,12 @@ const SwiperListApp = ({
             nextEl: `.${lowerTitle}-explore-app-swiper-next`,
             prevEl: `.${lowerTitle}-explore-app-swiper-prev`,
           }}
+          style={{ paddingTop: 12 }}
           className="apps-grid-view"
         >
           {suggestAppIds.map((appId, idx) => (
             <SwiperSlide key={idx}>
-              <FlexibleCard type="green">
+              <FlexibleCard type="green" className="hoverable-transform">
                 <AppCardInfo appId={appId} radius={12} padding={12} />
               </FlexibleCard>
             </SwiperSlide>

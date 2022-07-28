@@ -40,7 +40,7 @@ const CardNewListedApp = ({
 
   return (
     <FlexibleCard
-      className="new-listed-card"
+      className="new-listed-card hoverable-transform"
       transparent
       type="pink"
       spacing={spacing}

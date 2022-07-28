@@ -53,7 +53,7 @@ const CardTwitter = ({ indexColor = 0, data }: CardTwitterProps) => {
         height: '100%',
         background: cardBackground,
       }}
-      className="card-twitter"
+      className="card-twitter hoverable-transform"
     >
       <Row gutter={[16, 16]} align="middle">
         <Col>

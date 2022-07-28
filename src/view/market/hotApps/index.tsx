@@ -10,7 +10,7 @@ const HotApps = () => {
   const register = useRegister()
 
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[24, 12]}>
       <Col span={24}>
         <Row justify="space-between">
           <Col>
@@ -40,7 +40,10 @@ const HotApps = () => {
       <Col span={24}>
         <SwiperOs>
           {Object.keys(register).map((appId) => (
-            <SwiperSlide key={appId} style={{ maxWidth: 334, width: '75vw' }}>
+            <SwiperSlide
+              key={appId}
+              style={{ maxWidth: 334, width: '75vw', paddingTop: 12 }}
+            >
               <CardHotAppCard appId={appId} />
             </SwiperSlide>
           ))}

@@ -13,7 +13,7 @@ const ListYourApp = () => {
     <Row gutter={[24, 24]}>
       {appIds.map((appId, idx) => (
         <Col xs={24} sm={12} md={12} lg={8} key={idx}>
-          <FlexibleCard type="green">
+          <FlexibleCard type="green" className="hoverable-transform">
             <AppCardInfo appId={appId} padding={12} radius={12} />
           </FlexibleCard>
         </Col>

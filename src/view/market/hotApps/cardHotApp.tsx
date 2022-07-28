@@ -9,6 +9,8 @@ import { useGoToStore } from 'hooks/useGotoStore'
 
 import imgError from 'static/images/error-image.svg'
 
+const CARD_SPACING = 13
+
 export type CardHotAppCardProps = {
   appId: string
   style?: CSSProperties
@@ -20,7 +22,7 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
   const onOpen = useGoToStore({ appId })
 
   useEffect(() => {
-    setCardHeight((ref?.current as any)?.offsetWidth * 0.75)
+    setCardHeight(((ref?.current as any)?.offsetWidth - CARD_SPACING) * 0.75)
   }, [ref])
 
   return (
@@ -31,7 +33,7 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
           appId={appId}
           type="panels"
           render={(data) => (
-            <FlexibleCard type="purple">
+            <FlexibleCard type="purple" className="hoverable-transform">
               <Row gutter={0}>
                 <Col span={24} style={{ zIndex: 1 }}>
                   <Card
