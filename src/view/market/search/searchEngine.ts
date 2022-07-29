@@ -13,7 +13,9 @@ class SearchEngine {
       this.field('appId')
       this.field('name')
       this.field('description')
-      this.field('tags')
+      this.field('tags', {
+        extractor: (doc: any) => doc?.tags.join(' ') || '',
+      })
       this.field('author:name', {
         extractor: (doc: any) => doc?.author?.name || '',
       })
@@ -31,7 +33,7 @@ class SearchEngine {
   search = (keyword: string, limit = 10) => {
     let appIds: string[] = []
     if (!keyword) return []
-    const fuzzy = `*${keyword}*`
+    const fuzzy = `${keyword} *${keyword}*`
     this.index.search(fuzzy).forEach(({ ref }) => {
       if (!appIds.includes(ref)) return appIds.push(ref)
     })

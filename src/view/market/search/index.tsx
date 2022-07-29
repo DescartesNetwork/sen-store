@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useRegister, useUI, useWallet } from '@sentre/senhub'
 
-import { Button, Card, Col, Input, Row, Space, Typography } from 'antd'
+import { Button, Card, Col, Empty, Input, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
 import AppIcon from 'components/appIcon'
 
@@ -98,30 +98,38 @@ const Search = ({ scrollToCategory }: SearchProps) => {
             onPressEnter={onPressEnter}
             onFocus={() => setSearchVisible(true)}
           />
-          {appIds.length > 0 && searchVisible && (
+          {searchKey.length > 0 && searchVisible && (
             <Card
               className="list-apps-search"
               bordered={false}
               bodyStyle={{ padding: '8px 0' }}
             >
-              <Row className="scrollbar">
-                {appIds.map((appId) => (
-                  <Col
-                    key={appId}
-                    span={24}
-                    onClick={() => history.push(`/app/${appStoreId}/${appId}`)}
-                    className="app-item-select"
-                  >
-                    <Space
-                      size={8}
-                      style={{ cursor: 'pointer', padding: '12px 16px' }}
+              {appIds.length === 0 ? (
+                <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+              ) : (
+                <Row className="scrollbar">
+                  {appIds.map((appId) => (
+                    <Col
+                      key={appId}
+                      span={24}
+                      onClick={() =>
+                        history.push(`/app/${appStoreId}/${appId}`)
+                      }
+                      className="app-item-select"
                     >
-                      <AppIcon size={32} appId={appId} name={false} />
-                      <Typography.Text>{register[appId]?.name}</Typography.Text>
-                    </Space>
-                  </Col>
-                ))}
-              </Row>
+                      <Space
+                        size={8}
+                        style={{ cursor: 'pointer', padding: '12px 16px' }}
+                      >
+                        <AppIcon size={32} appId={appId} name={false} />
+                        <Typography.Text>
+                          {register[appId]?.name}
+                        </Typography.Text>
+                      </Space>
+                    </Col>
+                  ))}
+                </Row>
+              )}
             </Card>
           )}
         </div>
