@@ -1,5 +1,5 @@
 import { CSSProperties, useMemo } from 'react'
-import { useRegister, useUI } from '@sentre/senhub'
+import { useRegister } from '@sentre/senhub'
 
 import { Card, Col, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
@@ -25,17 +25,16 @@ type CardNewListedAppProps = {
   vertical?: boolean
   appId: string
   style?: CSSProperties
+  spacing?: number
 }
 const CardNewListedApp = ({
   vertical = false,
   appId,
   style,
+  spacing,
 }: CardNewListedAppProps) => {
   const register = useRegister()
   const onOpenAppDetail = useGoToStore({ appId })
-  const {
-    ui: { width },
-  } = useUI()
 
   const { name, verified, author, description } = useMemo(
     () => register[appId] || APP_DEFAULT,
@@ -43,10 +42,6 @@ const CardNewListedApp = ({
   )
 
   const verticalSpan = vertical ? 24 : undefined
-  const clnHorizontalImg = !vertical
-    ? 'panel-img horizontal-panel'
-    : 'panel-img'
-  const spacing = width < 768 ? 16 : 32
 
   return (
     <FlexibleCard
@@ -61,7 +56,7 @@ const CardNewListedApp = ({
         onClick={onOpenAppDetail}
         style={{ cursor: 'pointer' }}
       >
-        <Col span={verticalSpan || 8} className={clnHorizontalImg}>
+        <Col span={verticalSpan || 11} className="panel-img">
           <MultiStaticLoader
             defaultData={[imgError]}
             appId={appId}
@@ -86,26 +81,22 @@ const CardNewListedApp = ({
             )}
           />
         </Col>
-        <Col span={verticalSpan || 16}>
-          <Row gutter={[24, 24]}>
-            {/* Group App Infos */}
-            <Col span={24}>
-              <Space size={16} align="start">
-                <AppIcon appId={appId} size={40} name={false} />
-                <Space direction="vertical" size={0}>
-                  <Space>
-                    <Typography.Title level={5}>{name}</Typography.Title>
-                    <Verification verified={verified} />
-                  </Space>
-                  <Typography.Text type="secondary">
-                    {author.name}
-                  </Typography.Text>
+        <Col span={verticalSpan}>
+          <Space direction="vertical" size={16} style={{ paddingTop: 32 }}>
+            <Space size={16} align="start">
+              <AppIcon appId={appId} size={40} name={false} />
+              <Space direction="vertical" size={0}>
+                <Space>
+                  <Typography.Title level={5}>{name}</Typography.Title>
+                  <Verification verified={verified} />
                 </Space>
+                <Typography.Text type="secondary">
+                  {author.name}
+                </Typography.Text>
               </Space>
-            </Col>
-            {/* App pannel */}
-            <Col span={24}>{description}</Col>
-          </Row>
+            </Space>
+            <Typography.Text>{description}</Typography.Text>
+          </Space>
         </Col>
       </Row>
     </FlexibleCard>
