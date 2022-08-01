@@ -11,6 +11,16 @@ import { useGoToStore } from 'hooks/useGotoStore'
 
 import imgError from 'static/images/error-image.svg'
 
+const APP_DEFAULT: ComponentManifest = {
+  name: '',
+  verified: false,
+  author: { name: '', email: '' },
+  description: '',
+  url: '',
+  appId: '',
+  tags: [],
+}
+
 type CardNewListedAppProps = {
   vertical?: boolean
   appId: string
@@ -28,7 +38,7 @@ const CardNewListedApp = ({
   } = useUI()
 
   const { name, verified, author, description } = useMemo(
-    () => register[appId] || ({} as ComponentManifest),
+    () => register[appId] || APP_DEFAULT,
     [register, appId],
   )
 

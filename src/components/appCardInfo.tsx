@@ -62,13 +62,13 @@ const AppCardInfo = ({
     >
       <Row align="top" gutter={[8, 8]}>
         <Col span={24}>
-          <Row gutter={[8, 8]} wrap={false}>
+          <Row gutter={[16, 16]} wrap={false}>
             <Col>
               <AppIcon size={52} appId={appId} name={false} />
             </Col>
             <Col flex="auto">
               <Space direction="vertical" size={0}>
-                <Space align="center" style={{ lineHeight: 1 }}>
+                <Space align="baseline">
                   <Typography.Title level={5}>{name}</Typography.Title>
                   <Verification verified={verified} />
                 </Space>
