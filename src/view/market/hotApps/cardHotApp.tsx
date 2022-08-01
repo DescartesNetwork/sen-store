@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { CSSProperties } from 'react'
 
 import { Card, Col, Row } from 'antd'
 import { MultiStaticLoader } from 'components/staticLoader'
@@ -9,24 +9,16 @@ import { useGoToStore } from 'hooks/useGotoStore'
 
 import imgError from 'static/images/error-image.svg'
 
-const CARD_SPACING = 26
-
 export type CardHotAppCardProps = {
   appId: string
   style?: CSSProperties
 }
 
 const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
-  const [cardHeight, setCardHeight] = useState(0)
-  const ref = useRef(null)
   const onOpen = useGoToStore({ appId })
 
-  useEffect(() => {
-    setCardHeight(((ref?.current as any)?.offsetWidth - CARD_SPACING) * 0.75)
-  }, [ref])
-
   return (
-    <Row ref={ref}>
+    <Row>
       <Col span={24}>
         <MultiStaticLoader
           defaultData={[imgError]}
@@ -45,7 +37,6 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
                       cursor: 'pointer',
                       overflow: 'hidden',
                       boxShadow: 'none',
-                      height: cardHeight,
                       borderRadius: 12,
                       ...style,
                     }}

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useUI } from '@sentre/senhub'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
-import { Layout } from 'antd'
+import { Col, Layout, Row } from 'antd'
 import Market from './market'
 import AppInfo from 'view/appInfo'
 import YourApps from './yourApps'
@@ -17,12 +17,7 @@ const {
 } = configs
 
 const View = () => {
-  const {
-    setBackground,
-    ui: { width },
-  } = useUI()
-
-  const isMobile = width < 768
+  const { setBackground } = useUI()
 
   useEffect(() => {
     setBackground({ light: '#f5f2fa', dark: '#16151b' })
@@ -30,15 +25,23 @@ const View = () => {
 
   return (
     <Layout>
-      <Layout.Content style={{ padding: !isMobile ? '0 72px' : undefined }}>
-        <Switch>
-          <Route exact path={`/app/${appId}/`} component={Market} />
-          <Route exact path={`/app/${appId}/your-apps`} component={YourApps} />
-          <Route exact path={`/app/${appId}/:appId`} component={AppInfo} />
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
+      <Layout.Content>
+        <Row justify="center">
+          <Col xs={24} xl={22} xxl={18}>
+            <Switch>
+              <Route exact path={`/app/${appId}/`} component={Market} />
+              <Route
+                exact
+                path={`/app/${appId}/your-apps`}
+                component={YourApps}
+              />
+              <Route exact path={`/app/${appId}/:appId`} component={AppInfo} />
+              <Route path="*">
+                <Redirect to="/" />
+              </Route>
+            </Switch>
+          </Col>
+        </Row>
       </Layout.Content>
     </Layout>
   )

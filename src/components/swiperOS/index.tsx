@@ -7,11 +7,12 @@ import './index.less'
 
 export const SwiperOs = ({
   children,
+  navigationId = '',
   ...rest
-}: { children: ReactNode } & SwiperOptions) => {
+}: { children: ReactNode; navigationId?: string } & SwiperOptions) => {
   const navigaConfig = {
-    nextEl: '.swiper-next-element',
-    prevEl: '.swiper-prev-element',
+    nextEl: `.${navigationId}swiper-next-element`,
+    prevEl: `.${navigationId}swiper-prev-element`,
   }
 
   return (
