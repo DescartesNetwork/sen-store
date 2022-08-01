@@ -34,8 +34,12 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const history = useHistory()
   const register = useRegister()
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const {
+    ui: { width },
+  } = useUI()
 
   const engine = useMemo(() => new SearchEngine(register), [register])
+  const isMobile = width < 768
 
   const onSearch = useCallback(async () => {
     if (searching) clearTimeout(searching)
@@ -134,12 +138,8 @@ const Search = ({ scrollToCategory }: SearchProps) => {
           )}
         </div>
       </Col>
-      <Col
-        xs={{ span: 24, offset: undefined }}
-        md={{ span: 12, offset: 4 }}
-        lg={{ span: 8, offset: 8 }}
-      >
-        <Row gutter={[12, 0]} justify="end">
+      <Col span={isMobile ? 24 : undefined}>
+        <Row gutter={[16, 16]}>
           <Col span={12}>
             <Button size="large" ghost block onClick={scrollToCategory}>
               Categories

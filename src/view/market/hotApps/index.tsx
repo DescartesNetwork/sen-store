@@ -43,11 +43,6 @@ const HotApps = () => {
       HEIGHT_RATIO
     )
   }, [slidePerViews, width])
-  console.log(
-    cardHeight,
-    'cardHeight',
-    width * SCREEN_RATIO - ELEMENT_SPACING * 2,
-  )
 
   const hotAppIds = useMemo(() => {
     if (!register) return []
