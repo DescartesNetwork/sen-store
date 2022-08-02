@@ -27,7 +27,7 @@ const View = () => {
     <Layout>
       <Layout.Content>
         <Row justify="center">
-          <Col xs={24} xl={22} xxl={18}>
+          <Col xs={24} xl={22}>
             <Switch>
               <Route exact path={`/app/${appId}/`} component={Market} />
               <Route

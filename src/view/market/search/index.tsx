@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useRegister, useUI, useWallet } from '@sentre/senhub'
+import { account } from '@senswap/sen-js'
 
 import { Button, Card, Col, Empty, Input, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
@@ -40,6 +41,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
 
   const engine = useMemo(() => new SearchEngine(register), [register])
   const isMobile = width < 768
+  const walletConnected = account.isAddress(walletAddress)
 
   const onSearch = useCallback(async () => {
     if (searching) clearTimeout(searching)
@@ -140,12 +142,12 @@ const Search = ({ scrollToCategory }: SearchProps) => {
       </Col>
       <Col span={isMobile ? 24 : undefined}>
         <Row gutter={[16, 16]}>
-          <Col span={12}>
+          <Col span={walletConnected ? 12 : 24}>
             <Button size="large" ghost block onClick={scrollToCategory}>
               Categories
             </Button>
           </Col>
-          {walletAddress && (
+          {walletConnected && (
             <Col span={12}>
               <Button
                 size="large"
