@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useRegister, useUI, useWallet } from '@sentre/senhub'
+import { account } from '@senswap/sen-js'
 
 import { Button, Card, Col, Empty, Input, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
@@ -10,7 +11,6 @@ import configs from 'configs'
 import SearchEngine from './searchEngine'
 
 import './index.less'
-import { account } from '@senswap/sen-js'
 
 const {
   manifest: { appId: appStoreId },
