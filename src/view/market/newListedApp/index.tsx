@@ -5,7 +5,7 @@ import CardNewListedApp from './cardNewListedApp'
 
 import './index.less'
 
-const NEW_LISTED_APP_ID = ['lido', 'any_arts', 'hedge', 'balansol']
+const NEW_LISTED_APP_ID = ['solend', 'any_arts', 'hedge', 'zeta_markets']
 
 const NewListedApp = () => {
   const {
