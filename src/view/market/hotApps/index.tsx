@@ -10,7 +10,7 @@ import { useMemo } from 'react'
 const SENTRE_TAG = 'sentre'
 const HEIGHT_RATIO = 0.75
 const MOBILE_WIDTH_RATIO = 0.85
-const SCREEN_RATIO = 18 / 24
+const SCREEN_RATIO = 22 / 24
 const ELEMENT_SPACING = 12
 const ITEM_SPACING = 24
 const ITEM_BODY_SPACING = 26
@@ -33,16 +33,24 @@ const HotApps = () => {
     return {}
   }, [width])
 
+  const screenWidth = useMemo(
+    () => (width < 1200 ? width : width * SCREEN_RATIO),
+    [width],
+  )
+
   const cardHeight = useMemo(() => {
     if (slidePerViews === 'auto')
-      return width * MOBILE_WIDTH_RATIO * HEIGHT_RATIO
+      return (width * MOBILE_WIDTH_RATIO - ITEM_BODY_SPACING) * HEIGHT_RATIO
 
     return (
-      ((width * SCREEN_RATIO - ELEMENT_SPACING * 2) / slidePerViews -
-        ((slidePerViews - 1) * ITEM_SPACING - ITEM_BODY_SPACING)) *
+      ((screenWidth -
+        ELEMENT_SPACING * 2 -
+        (slidePerViews - 1) * ITEM_SPACING) /
+        slidePerViews -
+        ITEM_BODY_SPACING) *
       HEIGHT_RATIO
     )
-  }, [slidePerViews, width])
+  }, [screenWidth, slidePerViews, width])
 
   const hotAppIds = useMemo(() => {
     if (!register) return []

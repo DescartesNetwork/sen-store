@@ -68,8 +68,10 @@ const AppCardInfo = ({
             </Col>
             <Col flex="auto">
               <Space direction="vertical" size={0}>
-                <Space align="baseline">
-                  <Typography.Title level={5}>{name}</Typography.Title>
+                <Space align="baseline" size={4}>
+                  <Typography.Title style={{ whiteSpace: 'nowrap' }} level={5}>
+                    {name}
+                  </Typography.Title>
                   <Verification verified={verified} />
                 </Space>
                 <AppTags
