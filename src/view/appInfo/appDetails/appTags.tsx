@@ -13,7 +13,6 @@ const AppTags = ({ tags = [], wrap = true }: AppTagsProps) => {
             margin: 0,
             borderRadius: 4,
             color: util.randomColor(tag),
-            textTransform: 'capitalize',
           }}
           color={util.randomColor(tag, 0.2)}
           key={index}

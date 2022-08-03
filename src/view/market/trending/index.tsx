@@ -90,7 +90,7 @@ const CardTrending = ({
               {category}
             </Typography.Title>
             <Typography.Text type="secondary">
-              {appIds.length} dapps
+              {appIds.length} DApps
             </Typography.Text>
             {children}
           </Space>
