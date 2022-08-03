@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination } from 'swiper'
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper'
 
 import interdao from 'static/images/banner/interdao.png'
 import lightningTunnel from 'static/images/banner/lightning-tunnel.png'
@@ -30,6 +30,7 @@ const PANELS = [
 ]
 
 const TopBanner = () => {
+  SwiperCore.use([Autoplay])
   return (
     <Swiper
       className="hero-banner"
@@ -43,6 +44,8 @@ const TopBanner = () => {
         },
       }}
       modules={[Navigation, Pagination]}
+      autoplay
+      loop
     >
       {PANELS.map(({ appId, description, image, title }, index) => {
         return (
