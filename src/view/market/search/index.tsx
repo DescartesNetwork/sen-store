@@ -1,20 +1,23 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useRegister, useUI, useWallet } from '@sentre/senhub'
 import { account } from '@senswap/sen-js'
 
 import { Button, Card, Col, Empty, Input, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
 import AppIcon from 'components/appIcon'
-
-import configs from 'configs'
 import SearchEngine from './searchEngine'
 
+import configs from 'configs'
 import './index.less'
 
 const {
   manifest: { appId: appStoreId },
 } = configs
+
+export enum QueryParams {
+  search = 'search',
+}
 
 export type SearchProps = {
   scrollToCategory: () => void
@@ -25,20 +28,22 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const [searchKey, setSearchKey] = useState('')
   const [appIds, setAppIds] = useState<AppIds>([])
   const [searchVisible, setSearchVisible] = useState(false)
-
   const {
-    ui: { theme },
+    ui: { theme, width },
   } = useUI()
   const {
     wallet: { address: walletAddress },
   } = useWallet()
   const history = useHistory()
   const register = useRegister()
+  const location = useLocation()
   const wrapperRef = useRef<HTMLDivElement>(null)
-  const {
-    ui: { width },
-  } = useUI()
 
+  const query = useMemo(
+    () => new URLSearchParams(location.search),
+    [location.search],
+  )
+  const urlSearchKeys = query.get(QueryParams.search) || ''
   const engine = useMemo(() => new SearchEngine(register), [register])
   const isMobile = width < 768
   const walletConnected = account.isAddress(walletAddress)
@@ -46,15 +51,22 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const onSearch = useCallback(async () => {
     if (searching) clearTimeout(searching)
     searching = setTimeout(async () => {
+      if (!!searchKey.length) setSearchVisible(true)
       const appIds = engine.search(searchKey)
       setAppIds(appIds)
-      if (!!appIds.length) setSearchVisible(true)
     }, 500)
   }, [engine, searchKey])
 
   const onPressEnter = useCallback(() => {
     if (appIds.length > 0) history.push(`/app/${appStoreId}/${appIds[0]}`)
   }, [appIds, history])
+
+  // using url search key for the first time
+  useEffect(() => {
+    ;(() => {
+      if (!!urlSearchKeys.length) setSearchKey(urlSearchKeys)
+    })()
+  }, [urlSearchKeys])
 
   useEffect(() => {
     onSearch()

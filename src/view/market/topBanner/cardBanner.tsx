@@ -9,6 +9,7 @@ import { useGoToStore } from 'hooks/useGotoStore'
 import topBgLight from 'static/images/top-bg.png'
 import topBgDark from 'static/images/top-bg-dark.png'
 import './index.less'
+import { useMemo } from 'react'
 
 type CardBannerProps = {
   image: string
@@ -18,10 +19,17 @@ type CardBannerProps = {
 }
 const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
   const {
-    ui: { theme },
+    ui: { theme, width },
   } = useUI()
   const onGoToApp = useGoToStore({ appId })
   const topBg = theme === 'light' ? topBgLight : topBgDark
+  const titleSize = useMemo(() => {
+    if (width > 1600) return { fontSize: 72 }
+    if (width > 1320) return { fontSize: 54 }
+    if (width > 992) return { fontSize: 42 }
+    return {}
+  }, [width])
+  const cardTitleSize = width < 1200 ? 16 : 32
 
   return (
     <Card
@@ -44,13 +52,10 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
           <Space
             style={{ padding: '56px 32px' }}
             direction="vertical"
-            size={32}
+            size={cardTitleSize}
           >
             <AppIcon appId={appId} direction="horizontal" />
-            <Typography.Title
-              level={1}
-              style={{ fontSize: 72, fontWeight: 800 }}
-            >
+            <Typography.Title level={1} style={{ ...titleSize }}>
               {title}
             </Typography.Title>
             <Typography.Text style={{ fontSize: 20 }}>
