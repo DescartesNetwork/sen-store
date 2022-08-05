@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Swiper } from 'swiper/react'
-import { Navigation, SwiperOptions } from 'swiper'
+import SwiperCore, { Lazy, Navigation, SwiperOptions } from 'swiper'
 
 import 'swiper/css/bundle'
 import './index.less'
@@ -14,6 +14,7 @@ export const SwiperOs = ({
     nextEl: `.${navigationId}swiper-next-element`,
     prevEl: `.${navigationId}swiper-prev-element`,
   }
+  SwiperCore.use([Lazy])
 
   return (
     <Swiper

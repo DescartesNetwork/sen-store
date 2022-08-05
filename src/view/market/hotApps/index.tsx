@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useRegister, useUI } from '@sentre/senhub'
 import { SwiperOs } from 'components/swiperOS'
 import { SwiperSlide } from 'swiper/react'
@@ -5,7 +6,6 @@ import { SwiperSlide } from 'swiper/react'
 import { Button, Col, Row, Space, Typography } from 'antd'
 import CardHotAppCard from './cardHotApp'
 import IonIcon from '@sentre/antd-ionicon'
-import { useMemo } from 'react'
 
 const SENTRE_TAG = 'sentre'
 const HEIGHT_RATIO = 0.75

@@ -82,6 +82,7 @@ const SwiperListApp = ({
           }}
           style={{ paddingTop: 12 }}
           className="apps-grid-view"
+          lazy
         >
           {suggestAppIds.map((appId, idx) => (
             <SwiperSlide key={idx}>
