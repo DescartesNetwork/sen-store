@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useAppIds, useWallet } from '@sentre/senhub'
+import { useAppIds, useWalletAddress } from '@sentre/senhub'
 
 import { Button, Col, Row, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
@@ -15,9 +15,7 @@ const {
 } = configs
 
 const YourApps = () => {
-  const {
-    wallet: { address: walletAddress },
-  } = useWallet()
+  const walletAddress = useWalletAddress()
   const history = useHistory()
   const yourAppIds = useAppIds()
   const onBack = useCallback(() => history.goBack(), [history])
