@@ -2,16 +2,14 @@ import { ComponentProps, ElementType, useCallback } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { account } from '@senswap/sen-js'
 
-import { useWallet } from '@sentre/senhub'
+import { useWalletAddress } from '@sentre/senhub'
 
 export type PrivateRouteProps = {
   component: ElementType
 } & ComponentProps<typeof Route>
 
 const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteProps) => {
-  const {
-    wallet: { address: walletAddress },
-  } = useWallet()
+  const walletAddress = useWalletAddress()
 
   const render = useCallback(
     (props) => {
