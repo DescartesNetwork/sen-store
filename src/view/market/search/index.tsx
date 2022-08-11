@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import { useRegister, useUI, useWallet } from '@sentre/senhub'
+import { useRegister, useUI, useWalletAddress } from '@sentre/senhub'
 import { account } from '@senswap/sen-js'
 
 import { Button, Card, Col, Empty, Input, Row, Space, Typography } from 'antd'
@@ -31,9 +31,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const {
     ui: { theme, width },
   } = useUI()
-  const {
-    wallet: { address: walletAddress },
-  } = useWallet()
+  const walletAddress = useWalletAddress()
   const history = useHistory()
   const register = useRegister()
   const location = useLocation()

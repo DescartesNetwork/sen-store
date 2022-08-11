@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useRegister, useAppIds, useWallet, useUI } from '@sentre/senhub'
+import { useRegister, useAppIds, useUI, useWalletAddress } from '@sentre/senhub'
 import { account } from '@senswap/sen-js'
 
 import { Row, Col, Typography, Space } from 'antd'
@@ -17,9 +17,7 @@ const AppDetails = ({ appId }: { appId: string }) => {
   } = useUI()
   const register = useRegister()
   const appIds = useAppIds()
-  const {
-    wallet: { address: walletAddress },
-  } = useWallet()
+  const walletAddress = useWalletAddress()
 
   const { author, name, tags, verified } = useMemo(
     () => register[appId] || ({} as ComponentManifest),
