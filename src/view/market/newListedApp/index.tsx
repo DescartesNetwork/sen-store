@@ -1,4 +1,4 @@
-import { useUI } from '@sentre/senhub'
+import { useWidth } from '@sentre/senhub'
 
 import { Col, Row, Typography } from 'antd'
 import CardNewListedApp from './cardNewListedApp'
@@ -8,9 +8,7 @@ import './index.less'
 const NEW_LISTED_APP_ID = ['solend', 'any_arts', 'hedge', 'zeta_markets']
 
 const NewListedApp = () => {
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
 
   const cardSpacing = width < 768 ? 16 : 32
 

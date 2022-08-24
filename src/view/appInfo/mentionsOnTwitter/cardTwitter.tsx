@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useUI } from '@sentre/senhub'
+import { useTheme } from '@sentre/senhub'
 
 import { Avatar, Card, Col, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
@@ -24,9 +24,7 @@ export type CardTwitterProps = {
 }
 
 const CardTwitter = ({ indexColor = 0, data }: CardTwitterProps) => {
-  const {
-    ui: { theme },
-  } = useUI()
+  const theme = useTheme()
 
   const cardBackground = useMemo(() => {
     switch (indexColor) {

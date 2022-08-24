@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useRegister, useUI } from '@sentre/senhub'
+import { Infix, useRegister, useWidth } from '@sentre/senhub'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Grid } from 'swiper'
 
@@ -22,17 +22,15 @@ const ListExploreApp = ({
 }: ListExploreAppProps) => {
   const register = useRegister()
   const { appIds } = useAppCategory(options)
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
   const { category } = options
 
   const listAppId =
     seeAll || category === 'all' ? Object.keys(register) : appIds
 
   const calSlicePerView = useMemo(() => {
-    if (width < 768) return 1
-    if (width < 991) return 2
+    if (width < Infix.md) return 1
+    if (width < Infix.lg) return 2
     if (width < 1390) return 3
     return 4
   }, [width])

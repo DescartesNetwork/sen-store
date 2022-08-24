@@ -1,4 +1,4 @@
-import { useUI } from '@sentre/senhub'
+import { Infix, useTheme, useWidth } from '@sentre/senhub'
 
 import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
 
@@ -18,15 +18,14 @@ type CardBannerProps = {
   appId: string
 }
 const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
-  const {
-    ui: { theme, width },
-  } = useUI()
+  const theme = useTheme()
+  const width = useWidth()
   const onGoToApp = useGoToStore({ appId })
   const topBg = theme === 'light' ? topBgLight : topBgDark
   const titleSize = useMemo(() => {
     if (width > 1600) return { fontSize: 72 }
     if (width > 1320) return { fontSize: 54 }
-    if (width > 992) return { fontSize: 42 }
+    if (width > Infix.lg) return { fontSize: 42 }
     return {}
   }, [width])
   const cardTitleSize = width < 1200 ? 16 : 32

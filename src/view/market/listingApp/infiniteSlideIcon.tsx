@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Autoplay } from 'swiper'
-import { useUI } from '@sentre/senhub'
+import { Infix, useWidth } from '@sentre/senhub'
 
 import AppIcon from 'components/appIcon'
 
@@ -23,12 +23,10 @@ const InfiniteSlideIcon = ({
   speed = 7000,
 }: InfiniteSlideIconProps) => {
   SwiperCore.use([Autoplay])
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
 
   const calculatePerCard = useMemo(() => {
-    if (width < 991) return 3
+    if (width < Infix.lg) return 3
     return 5
   }, [width])
 

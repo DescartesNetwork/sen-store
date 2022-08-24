@@ -1,14 +1,12 @@
 import ReactJson from 'react-json-view'
-import { useUI } from '@sentre/senhub'
+import { useTheme } from '@sentre/senhub'
 
 import { Card } from 'antd'
 
 export type JsonViewerProps = { value?: object }
 
 const JsonViewer = ({ value = {} }: JsonViewerProps) => {
-  const {
-    ui: { theme },
-  } = useUI()
+  const theme = useTheme()
 
   return (
     <Card bordered={false}>

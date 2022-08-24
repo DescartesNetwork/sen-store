@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Grid } from 'swiper'
-import { useUI } from '@sentre/senhub'
+import { Infix, useWidth } from '@sentre/senhub'
 
 import IonIcon from '@sentre/antd-ionicon'
 import { Button, Col, Row, Space, Typography } from 'antd'
@@ -23,9 +23,7 @@ const SwiperListApp = ({
   spacing = 24,
   ...options
 }: SwiperListAppProps) => {
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
   const { title: suggestTitle, appIds: suggestAppIds } = useAppCategory(options)
 
   const { title: displayTitle, lowerTitle } = useMemo(() => {
@@ -35,8 +33,8 @@ const SwiperListApp = ({
   }, [suggestTitle, title])
 
   const slicePerView = useMemo(() => {
-    if (width < 768) return 1
-    if (width < 991) return 2
+    if (width < Infix.md) return 1
+    if (width < Infix.lg) return 2
     if (width < 1390) return 3
     return 4
   }, [width])

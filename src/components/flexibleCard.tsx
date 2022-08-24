@@ -1,4 +1,4 @@
-import { useUI } from '@sentre/senhub'
+import { useTheme } from '@sentre/senhub'
 import { Card } from 'antd'
 import { CSSProperties, ReactNode } from 'react'
 
@@ -46,9 +46,7 @@ const FlexibleCard = ({
   className = '',
   bordered = true,
 }: FlexibleCardProps) => {
-  const {
-    ui: { theme },
-  } = useUI()
+  const theme = useTheme()
   const bgColor = theme === 'dark' ? MULTI_BG_DARK[type] : MULTI_BG_LIGHT[type]
   const styleBodyBg = transparent ? { background: 'transparent' } : {}
 
