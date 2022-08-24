@@ -3,7 +3,8 @@ import {
   useGoToApp,
   useInstallApp,
   useUninstallApp,
-  useUI,
+  useInfix,
+  Infix,
 } from '@sentre/senhub'
 
 import { Button, Col, Row } from 'antd'
@@ -15,14 +16,12 @@ export type InstalledAppProps = {
 }
 
 const InstalledApp = ({ installed, appId }: InstalledAppProps) => {
-  const {
-    ui: { infix },
-  } = useUI()
   const opOpen = useGoToApp({ appId })
   const onInstall = useInstallApp(appId)
   const onUninstall = useUninstallApp(appId)
+  const infix = useInfix()
 
-  const isMobile = useMemo(() => infix === 'xs' || infix === 'sm', [infix])
+  const isMobile = infix < Infix.sm
   const justify = useMemo(() => (isMobile ? 'start' : 'end'), [isMobile])
 
   return (

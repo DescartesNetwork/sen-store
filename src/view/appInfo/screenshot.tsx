@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useUI } from '@sentre/senhub'
+import { useWidth } from '@sentre/senhub'
 
 import { Col, Image, Row } from 'antd'
 import { SwiperSlide } from 'swiper/react'
@@ -13,9 +13,7 @@ const PADDING_CARD = 24
 const PADDING_PAGE = 39 // padding 24 + width scroll bar 15
 
 const ScreenShot = ({ appId }: { appId: string }) => {
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
 
   const calculatePerCard = useCallback(() => {
     if (width < 768) return 1

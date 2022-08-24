@@ -1,10 +1,8 @@
-import { useUI } from '@sentre/senhub'
+import { useTheme } from '@sentre/senhub'
 import { Button, Card, Space, Typography } from 'antd'
 
 const IntegrationCard = () => {
-  const {
-    ui: { theme },
-  } = useUI()
+  const theme = useTheme()
   return (
     <Card
       bordered={false}

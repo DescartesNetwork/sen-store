@@ -1,5 +1,11 @@
 import { useMemo } from 'react'
-import { useRegister, useAppIds, useUI, useWalletAddress } from '@sentre/senhub'
+import {
+  useRegister,
+  useAppIds,
+  useWalletAddress,
+  useInfix,
+  Infix,
+} from '@sentre/senhub'
 import { account } from '@senswap/sen-js'
 
 import { Row, Col, Typography, Space } from 'antd'
@@ -12,9 +18,6 @@ import AppAuthor from './appAuthor'
 import AppShare from './appShare'
 
 const AppDetails = ({ appId }: { appId: string }) => {
-  const {
-    ui: { infix },
-  } = useUI()
   const register = useRegister()
   const appIds = useAppIds()
   const walletAddress = useWalletAddress()
@@ -23,7 +26,9 @@ const AppDetails = ({ appId }: { appId: string }) => {
     () => register[appId] || ({} as ComponentManifest),
     [register, appId],
   )
-  const isMobile = useMemo(() => infix === 'xs' || infix === 'sm', [infix])
+  const infix = useInfix()
+
+  const isMobile = infix < Infix.sm
   const floatSocialButton = useMemo(
     () => (isMobile ? 'start' : 'end'),
     [isMobile],

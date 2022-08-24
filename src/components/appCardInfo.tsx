@@ -6,7 +6,7 @@ import {
   useAppIds,
 } from '@sentre/senhub'
 
-import { Button, Card, Col, Row, Space, Typography } from 'antd'
+import { Button, Card, Col, Row, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
 import Verification from 'components/verification'
 import AppTags from 'view/appInfo/appDetails/appTags'
@@ -67,18 +67,20 @@ const AppCardInfo = ({
               <AppIcon size={52} appId={appId} name={false} />
             </Col>
             <Col flex="auto">
-              <Space direction="vertical" size={0}>
-                <Space align="baseline" size={4}>
-                  <Typography.Title style={{ whiteSpace: 'nowrap' }} level={5}>
-                    {name}
+              {/* Don't use Space tag, because Typography ellipsis not working */}
+              <Row gutter={[2, 2]}>
+                <Col>
+                  <Typography.Title ellipsis={{ tooltip: true }} level={5}>
+                    {name} <Verification verified={verified} />
                   </Typography.Title>
-                  <Verification verified={verified} />
-                </Space>
-                <AppTags
-                  tags={[...tags].splice(START_SPLICE, LIMIT_TAG)}
-                  wrap={false}
-                />
-              </Space>
+                </Col>
+                <Col span={24}>
+                  <AppTags
+                    tags={[...tags].splice(START_SPLICE, LIMIT_TAG)}
+                    wrap={false}
+                  />
+                </Col>
+              </Row>
             </Col>
             <Col>
               {installed ? (

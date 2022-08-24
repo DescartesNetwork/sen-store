@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { useUI } from '@sentre/senhub'
+import { useTheme } from '@sentre/senhub'
 
 import { Card, Col, Image, Row, Space, Typography } from 'antd'
 
@@ -110,9 +110,7 @@ const CardTrending = ({
 }
 
 const Trending = () => {
-  const {
-    ui: { theme },
-  } = useUI()
+  const theme = useTheme()
   const BG_COLOR = theme === 'light' ? MULTI_BG_LIGHT : MULTI_BG_DARK
 
   return (

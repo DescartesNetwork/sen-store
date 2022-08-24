@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useUI } from '@sentre/senhub'
+import { Infix, useWidth } from '@sentre/senhub'
 
 import { Card, Col, Row } from 'antd'
 
@@ -23,17 +23,15 @@ const PANELS = [
 ]
 
 const BottomBanner = () => {
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
 
   const bannerHeightRatio = useMemo(
-    () => (width < 768 ? HEIGHT_RATIO : HEIGHT_RATIO * 2),
+    () => (width < Infix.md ? HEIGHT_RATIO : HEIGHT_RATIO * 2),
     [width],
   )
   const bannerWidth = useMemo(
     () =>
-      width < 768
+      width < Infix.md
         ? width - PAGE_PADDING
         : width - PAGE_PADDING - ELEMENT_PADDING,
     [width],

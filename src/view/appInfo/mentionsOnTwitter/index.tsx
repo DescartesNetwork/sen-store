@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useUI } from '@sentre/senhub'
+import { Infix, useWidth } from '@sentre/senhub'
 
 import { Row, Col, Typography } from 'antd'
 
@@ -61,13 +61,11 @@ const LIST_TWITTER = [
 ]
 
 const MentionsOnTwitter = () => {
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
 
   const calculatePerCard = useMemo(() => {
-    if (width < 768) return 1
-    if (width < 991) return 2
+    if (width < Infix.md) return 1
+    if (width < Infix.lg) return 2
     return 3
   }, [width])
 

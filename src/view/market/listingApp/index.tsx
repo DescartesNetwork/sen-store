@@ -1,4 +1,4 @@
-import { useRegister, useUI } from '@sentre/senhub'
+import { Infix, useRegister, useWidth } from '@sentre/senhub'
 
 import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
@@ -10,11 +10,9 @@ import FlexibleCard from 'components/flexibleCard'
 const ListingApp = () => {
   const register = useRegister()
   const appIds = Object.keys(register)
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
 
-  const isMobile = width < 768
+  const isMobile = width < Infix.md
   const slideStyle = isMobile
     ? { paddingLeft: 12, paddingRight: 12 }
     : { paddingLeft: 0, paddingRight: 0, marginLeft: -12 }

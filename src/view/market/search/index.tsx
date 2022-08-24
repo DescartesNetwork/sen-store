@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import { useRegister, useUI, useWalletAddress } from '@sentre/senhub'
+import {
+  Infix,
+  useInfix,
+  useRegister,
+  useTheme,
+  useWalletAddress,
+} from '@sentre/senhub'
 import { account } from '@senswap/sen-js'
 
 import { Button, Card, Col, Empty, Input, Row, Space, Typography } from 'antd'
@@ -28,14 +34,13 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   const [searchKey, setSearchKey] = useState('')
   const [appIds, setAppIds] = useState<AppIds>([])
   const [searchVisible, setSearchVisible] = useState(false)
-  const {
-    ui: { theme, width },
-  } = useUI()
   const walletAddress = useWalletAddress()
   const history = useHistory()
   const register = useRegister()
   const location = useLocation()
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const theme = useTheme()
+  const infix = useInfix()
 
   const query = useMemo(
     () => new URLSearchParams(location.search),
@@ -43,7 +48,7 @@ const Search = ({ scrollToCategory }: SearchProps) => {
   )
   const urlSearchKeys = query.get(QueryParams.search) || ''
   const engine = useMemo(() => new SearchEngine(register), [register])
-  const isMobile = width < 768
+  const isMobile = infix < Infix.md
   const walletConnected = account.isAddress(walletAddress)
 
   const onSearch = useCallback(async () => {

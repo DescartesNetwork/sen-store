@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useRegister, useUI } from '@sentre/senhub'
+import { Infix, useRegister, useWidth } from '@sentre/senhub'
 import { SwiperOs } from 'components/swiperOS'
 import { SwiperSlide } from 'swiper/react'
 
@@ -16,25 +16,23 @@ const ITEM_SPACING = 24
 const ITEM_BODY_SPACING = 26
 
 const HotApps = () => {
-  const {
-    ui: { width },
-  } = useUI()
+  const width = useWidth()
   const register = useRegister()
 
   const slidePerViews = useMemo(() => {
     if (width > 1430) return 4
-    if (width > 992) return 3
-    if (width > 768) return 2
+    if (width > Infix.lg) return 3
+    if (width > Infix.md) return 2
     return 'auto'
   }, [width])
 
   const slideMobile = useMemo(() => {
-    if (width < 768) return { width: '85vw' }
+    if (width < Infix.md) return { width: '85vw' }
     return {}
   }, [width])
 
   const screenWidth = useMemo(
-    () => (width < 1200 ? width : width * SCREEN_RATIO),
+    () => (width < Infix.xl ? width : width * SCREEN_RATIO),
     [width],
   )
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useUI } from '@sentre/senhub'
+import { useSetBackground } from '@sentre/senhub'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
 import { Col, Layout, Row } from 'antd'
@@ -17,7 +17,7 @@ const {
 } = configs
 
 const View = () => {
-  const { setBackground } = useUI()
+  const setBackground = useSetBackground()
 
   useEffect(() => {
     setBackground({ light: '#f5f2fa', dark: '#16151b' })
