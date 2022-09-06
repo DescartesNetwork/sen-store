@@ -27,10 +27,10 @@ const View = () => {
   return (
     <Layout>
       <Layout.Content>
-        <Row justify="center">
+        <Row justify="center" style={{ marginBottom: 96 }}>
           <Col xs={24} xl={22}>
             <Switch>
-              <Route exact path={`/app/${appId}/`} component={Market} />
+              <Route exact path={`/app/${appId}`} component={Market} />
               <Route
                 exact
                 path={`/app/${appId}/your-apps`}

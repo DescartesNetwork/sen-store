@@ -1,12 +1,11 @@
-export const ALL = 'all'
-
 export enum AppCategories {
-  Overview = 'Overview',
+  Overview = 'overview',
+  All = 'all',
   Utility = 'utility',
   Liquidity = 'liquidity',
   Sentre = 'sentre',
   Game = 'game',
-  DApp = 'Your DApps',
+  Yours = 'Your DApps',
 }
 
 export const YOUR_DAPP = 'your-apps'

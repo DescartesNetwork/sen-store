@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux'
-import { WalletProvider, AntdProvider } from '@sentre/senhub'
+import { AntdProvider } from '@sentre/senhub'
 
 import View from 'view'
 
@@ -13,11 +13,9 @@ const {
 export const Page = () => {
   return (
     <AntdProvider appId={appId} prefixCls={appId}>
-      <WalletProvider>
-        <Provider store={model}>
-          <View />
-        </Provider>
-      </WalletProvider>
+      <Provider store={model}>
+        <View />
+      </Provider>
     </AntdProvider>
   )
 }
