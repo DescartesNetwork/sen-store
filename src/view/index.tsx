@@ -54,7 +54,7 @@ const View = () => {
             zIndex: 999,
           }}
         >
-          <Row>
+          <Row justify="center">
             <Col xs={24} xl={22} style={{ paddingRight: 12, paddingLeft: 12 }}>
               <Search />
             </Col>
