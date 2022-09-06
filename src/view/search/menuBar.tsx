@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react'
-import { useInfix, Infix } from '@sentre/senhub'
+import { useInfix, Infix, useWalletAddress, util } from '@sentre/senhub'
 import { useHistory } from 'react-router-dom'
 
 import { Segmented } from 'antd'
@@ -7,7 +7,7 @@ import Icon from '@ant-design/icons'
 import { SegmentedValue } from 'antd/lib/segmented'
 
 import { useGoToStore } from 'hooks/useGotoStore'
-import { AppCategories } from 'contant'
+import { AppCategories, YOUR_DAPP } from 'contant'
 
 import { ReactComponent as iconOverview } from 'static/images/icons/icon-overview.svg'
 import { ReactComponent as iconBuild } from 'static/images/icons/icon-build.svg'
@@ -56,25 +56,34 @@ const CATEGORIES = [
 
 const MenuBar = () => {
   const history = useHistory()
+  const walletAddress = useWalletAddress()
   const onGoToCateGoryApp = useGoToStore()
   const infix = useInfix()
 
+  const walletConnected = util.isAddress(walletAddress)
   const isMobile = infix < Infix.lg
 
   const filteredSegmented = useMemo(() => {
-    if (!isMobile) return CATEGORIES
-    const nextCategories = CATEGORIES.map(({ icon, value }) => {
-      return { icon, value }
+    // Disabled button when wallet not connected
+    if (!isMobile)
+      return CATEGORIES.map(({ icon, label, value }) => {
+        const disabled = !walletConnected && value === AppCategories.DApp
+        return { icon, label, value, disabled }
+      })
+    // Remove label
+    return CATEGORIES.map(({ icon, value }) => {
+      const disabled = !walletConnected && value === AppCategories.DApp
+      return { icon, value, disabled }
     })
-    return nextCategories
-  }, [isMobile])
+  }, [isMobile, walletConnected])
 
   const onClick = useCallback(
     (key: SegmentedValue) => {
       if (key === AppCategories.Overview)
         return history.push(`/app/${appStoreId}`)
       if (key === AppCategories.DApp)
-        return history.push(`/app/${appStoreId}/your-dapp`)
+        return history.push(`/app/${appStoreId}/${YOUR_DAPP}`)
+
       return onGoToCateGoryApp({ search: `?category=${key}` })
     },
     [history, onGoToCateGoryApp],
