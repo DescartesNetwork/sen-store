@@ -62,9 +62,7 @@ const CardTrending = ({
   category,
 }: CardTrendingProps) => {
   const { appIds } = useAppCategory({ category: category })
-  const onSeeAll = useGoToStore({
-    search: `?category=${category}`,
-  })
+  const onGoToCateGoryApp = useGoToStore()
   const colWithAlign = !middle ? 24 : undefined
 
   return (
@@ -83,7 +81,11 @@ const CardTrending = ({
             cursor: 'pointer',
             zIndex: 1,
           }}
-          onClick={onSeeAll}
+          onClick={() =>
+            onGoToCateGoryApp({
+              search: `?category=${category}`,
+            })
+          }
         >
           <Space direction="vertical">
             <Typography.Title level={4} style={{ textTransform: 'capitalize' }}>

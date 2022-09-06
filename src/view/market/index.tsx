@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useRegister } from '@sentre/senhub'
 
@@ -9,19 +9,16 @@ import Trending from './trending'
 import NewListedApp from './newListedApp'
 import ListingApp from './listingApp'
 import HotApps from './hotApps'
-import ExploreApps from './exploreApps'
-import Search from './search'
+import IonIcon from '@sentre/antd-ionicon'
+import ListAppByCategories from './listAppByCategories'
+import MentionsOnTwitter from 'view/appInfo/mentionsOnTwitter'
 
 import { CustomCategory } from './listAppByCategories/hooks'
-import MentionsOnTwitter from 'view/appInfo/mentionsOnTwitter'
-import ListAppByCategories from './listAppByCategories'
-import IonIcon from '@sentre/antd-ionicon'
 
 const Market = () => {
   const history = useHistory()
   const { search } = useLocation()
   const resgister = useRegister()
-  const categoryRef = useRef<HTMLDivElement>(null)
 
   const category = useMemo(
     () => new URLSearchParams(search).get('category'),
@@ -29,10 +26,6 @@ const Market = () => {
   )
 
   const onBack = useCallback(() => history.goBack(), [history])
-
-  const scrollToCategory = () => {
-    if (categoryRef.current) window.scrollTo(0, categoryRef.current.offsetTop)
-  }
 
   if (category)
     return (
@@ -59,9 +52,6 @@ const Market = () => {
       <Col span={24} className="sentre-col-container">
         <Row gutter={[16, 48]}>
           <Col span={24}>
-            <Search scrollToCategory={scrollToCategory} />
-          </Col>
-          <Col span={24}>
             <TopBanner />
           </Col>
           <Col span={24}>
@@ -81,9 +71,6 @@ const Market = () => {
           </Col>
           <Col span={24}>
             <Trending />
-          </Col>
-          <Col span={24} ref={categoryRef}>
-            <ExploreApps />
           </Col>
           <Col span={24}>
             <NewListedApp />
