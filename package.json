@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build --max-old-space-size=4096",
     "test": "craco test",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
