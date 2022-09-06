@@ -15,7 +15,7 @@ export type CardHotAppCardProps = {
 }
 
 const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
-  const onOpen = useGoToStore({ appId })
+  const onOpen = useGoToStore()
 
   return (
     <Row>
@@ -43,7 +43,7 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
                     bordered={false}
                     bodyStyle={{ padding: 0 }}
                     key={appId}
-                    onClick={onOpen}
+                    onClick={() => onOpen({ appId })}
                   />
                 </Col>
                 <Col span={24} style={{ top: -16, zIndex: 0 }}>

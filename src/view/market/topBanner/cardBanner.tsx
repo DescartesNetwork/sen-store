@@ -20,7 +20,7 @@ type CardBannerProps = {
 const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
   const theme = useTheme()
   const width = useWidth()
-  const onGoToApp = useGoToStore({ appId })
+  const onGoToApp = useGoToStore()
   const topBg = theme === 'light' ? topBgLight : topBgDark
   const titleSize = useMemo(() => {
     if (width > 1600) return { fontSize: 72 }
@@ -62,7 +62,7 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
             </Typography.Text>
             <Button
               className="btn-explore-now"
-              onClick={onGoToApp}
+              onClick={() => onGoToApp({ appId })}
               size="large"
               type="primary"
             >

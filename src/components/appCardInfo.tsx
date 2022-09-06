@@ -30,7 +30,7 @@ const AppCardInfo = ({
   const appIds = useAppIds()
   const onInstallApp = useInstallApp(appId)
   const onGoToApp = useGoToApp({ appId })
-  const onOpenAppDetail = useGoToStore({ appId })
+  const onOpenAppDetail = useGoToStore()
 
   const { name, verified, description, tags } = useMemo(
     () => register[appId] || ({} as ComponentManifest),
@@ -58,7 +58,7 @@ const AppCardInfo = ({
       bodyStyle={{
         padding,
       }}
-      onClick={onOpenAppDetail}
+      onClick={() => onOpenAppDetail({ appId })}
     >
       <Row align="top" gutter={[8, 8]}>
         <Col span={24}>

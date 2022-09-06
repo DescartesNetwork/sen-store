@@ -34,7 +34,7 @@ const CardNewListedApp = ({
   spacing,
 }: CardNewListedAppProps) => {
   const register = useRegister()
-  const onOpenAppDetail = useGoToStore({ appId })
+  const onOpenAppDetail = useGoToStore()
 
   const { name, verified, author, description } = useMemo(
     () => register[appId] || APP_DEFAULT,
@@ -53,7 +53,7 @@ const CardNewListedApp = ({
       <Row
         gutter={[24, 24]}
         wrap={vertical}
-        onClick={onOpenAppDetail}
+        onClick={() => onOpenAppDetail({ appId })}
         style={{ cursor: 'pointer' }}
       >
         <Col span={verticalSpan || 11} className="panel-img">

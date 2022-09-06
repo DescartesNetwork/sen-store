@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSetBackground } from '@sentre/senhub'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
-import { Col, Layout, Row } from 'antd'
+import { Affix, Col, Layout, Row } from 'antd'
 import Market from './market'
 import AppInfo from 'view/appInfo'
 import YourApps from './yourApps'
@@ -11,6 +11,7 @@ import configs from 'configs'
 
 import 'static/styles/dark.less'
 import 'static/styles/light.less'
+import Search from './search'
 
 const {
   manifest: { appId },
@@ -42,6 +43,23 @@ const View = () => {
             </Switch>
           </Col>
         </Row>
+      </Layout.Content>
+      <Layout.Content>
+        <Affix
+          style={{
+            position: 'fixed',
+            width: '100%',
+            bottom: 5,
+            left: 0,
+            zIndex: 999,
+          }}
+        >
+          <Row>
+            <Col xs={24} xl={22} style={{ paddingRight: 12, paddingLeft: 12 }}>
+              <Search />
+            </Col>
+          </Row>
+        </Affix>
       </Layout.Content>
     </Layout>
   )

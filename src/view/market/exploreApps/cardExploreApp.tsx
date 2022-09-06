@@ -19,7 +19,7 @@ const CardAppCateogry = ({ appId }: CardAppCateogryProps) => {
   const appIds = useAppIds()
   const onInstallApp = useInstallApp(appId)
   const onGoToApp = useGoToApp({ appId })
-  const onOpenAppDetail = useGoToStore({ appId })
+  const onOpenAppDetail = useGoToStore()
 
   const { name, verified, description } = useMemo(
     () => register[appId] || ({} as ComponentManifest),
@@ -31,7 +31,7 @@ const CardAppCateogry = ({ appId }: CardAppCateogryProps) => {
     <Row
       gutter={[16, 16]}
       align="middle"
-      onClick={onOpenAppDetail}
+      onClick={() => onOpenAppDetail({ appId })}
       style={{ cursor: 'pointer' }}
       className="hoverable-flash"
     >

@@ -47,15 +47,14 @@ export const useGoToStoreCallback = () => {
   return onGotoStoreCallback
 }
 
-export const useGoToStore = ({
-  appId,
-  blank = false,
-  search,
-}: GoToStoreProps = {}) => {
+export const useGoToStore = () => {
   const onGotoStoreCallback = useGoToStoreCallback()
-  const onGotoStore = useCallback(async () => {
-    return onGotoStoreCallback({ appId, blank, search })
-  }, [onGotoStoreCallback, appId, blank, search])
+  const onGotoStore = useCallback(
+    async ({ appId, blank = false, search }: GoToStoreProps = {}) => {
+      return onGotoStoreCallback({ appId, blank, search })
+    },
+    [onGotoStoreCallback],
+  )
 
   return onGotoStore
 }
