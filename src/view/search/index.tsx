@@ -12,7 +12,12 @@ const Search = () => {
       bodyStyle={{ padding: 16 }}
       bordered={false}
     >
-      <Row gutter={[12, 12]} align="middle" style={{ position: 'relative' }}>
+      <Row
+        gutter={[12, 12]}
+        align="middle"
+        style={{ position: 'relative' }}
+        wrap={false}
+      >
         <Col flex="auto">
           <MenuBar />
         </Col>
