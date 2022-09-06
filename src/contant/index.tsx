@@ -6,5 +6,7 @@ export enum AppCategories {
   Liquidity = 'liquidity',
   Sentre = 'sentre',
   Game = 'game',
-  DApp = 'daap',
+  DApp = 'Your DApps',
 }
+
+export const YOUR_DAPP = 'your-apps'
