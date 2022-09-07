@@ -9,3 +9,8 @@ export enum AppCategories {
 }
 
 export const YOUR_DAPP = 'your-apps'
+
+export enum QueryParams {
+  search = 'search',
+  category = 'category',
+}

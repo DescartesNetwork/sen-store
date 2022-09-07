@@ -1,15 +1,15 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useInfix, Infix, useWalletAddress, util } from '@sentre/senhub'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 import { Segmented } from 'antd'
-import IconSax from '@sentre/antd-iconsax'
 import { SegmentedValue } from 'antd/lib/segmented'
+import IconSax from '@sentre/antd-iconsax'
 import IonIcon from '@sentre/antd-ionicon'
 
-import configs from 'configs'
 import { useGoToStore } from 'hooks/useGotoStore'
-import { AppCategories, YOUR_DAPP } from 'contant'
+import { AppCategories, QueryParams, YOUR_DAPP } from 'contant'
+import configs from 'configs'
 
 const {
   manifest: { appId: appStoreId },
@@ -49,13 +49,23 @@ const CATEGORIES = [
 ]
 
 const MenuBar = () => {
+  const [activeSegmented, setActiveSegmented] = useState<SegmentedValue>(
+    AppCategories.Overview,
+  )
   const history = useHistory()
   const walletAddress = useWalletAddress()
   const onGoToStore = useGoToStore()
+  const location = useLocation()
+
   const infix = useInfix()
+  const query = useMemo(
+    () => new URLSearchParams(location.search),
+    [location.search],
+  )
 
   const walletConnected = util.isAddress(walletAddress)
   const isMobile = infix < Infix.lg
+  const urlCategory = query.get(QueryParams.category) || ''
 
   const filteredSegmented = useMemo(() => {
     // Disabled button when wallet not connected
@@ -64,7 +74,7 @@ const MenuBar = () => {
         const disabled = !walletConnected && value === AppCategories.Yours
         return { icon, label, value, disabled }
       })
-    // Remove label
+    // Remove label on mobile
     return CATEGORIES.map(({ icon, value }) => {
       const disabled = !walletConnected && value === AppCategories.Yours
       return { icon, value, disabled }
@@ -82,10 +92,16 @@ const MenuBar = () => {
     [history, onGoToStore],
   )
 
+  // Active segmented with category in the first time
+  useEffect(() => {
+    if (!!urlCategory.length) return setActiveSegmented(urlCategory)
+    return setActiveSegmented(AppCategories.Overview)
+  }, [urlCategory])
+
   return (
     <Segmented
-      target="root"
       size="large"
+      value={activeSegmented}
       onChange={onClick}
       options={filteredSegmented}
     />

@@ -4,10 +4,10 @@ import { useAppIds, useWalletAddress } from '@sentre/senhub'
 
 import { Button, Col, Row, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
-
-import { CustomCategory } from 'view/market/listAppByCategories/hooks'
 import ListAppByCategories from 'view/market/listAppByCategories'
 import ListYourApp from './listYourApp'
+
+import { CustomCategory } from 'view/market/listAppByCategories/hooks'
 import configs from 'configs'
 
 const {

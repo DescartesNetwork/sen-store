@@ -26,14 +26,11 @@ import SearchEngine from './searchEngine'
 import { LoadingOutlined } from '@ant-design/icons'
 
 import configs from 'configs'
+import { QueryParams } from 'contant'
 
 const {
   manifest: { appId: appStoreId },
 } = configs
-
-export enum QueryParams {
-  search = 'search',
-}
 
 let searching: NodeJS.Timeout
 
