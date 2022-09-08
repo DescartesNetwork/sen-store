@@ -23,7 +23,7 @@ const ListApp = ({ title, type = 'green', ...options }: ListAppProps) => {
       {suggestAppIds.map((appId, idx) => (
         <Col xs={24} md={12} xl={8} xxl={6} key={idx}>
           <FlexibleCard type="green" className="hoverable-transform">
-            <AppCardInfo appId={appId} />
+            <AppCardInfo appId={appId} radius={12} />
           </FlexibleCard>
         </Col>
       ))}

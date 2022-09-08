@@ -16,9 +16,10 @@ const Search = () => {
         gutter={[12, 12]}
         align="middle"
         style={{ position: 'relative' }}
+        justify="space-between"
         wrap={false}
       >
-        <Col flex="auto">
+        <Col>
           <MenuBar />
         </Col>
         <Col style={{ position: 'unset' }}>

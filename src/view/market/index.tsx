@@ -1,51 +1,45 @@
-import { useCallback, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useRegister } from '@sentre/senhub'
 
-import { Row, Col, Button } from 'antd'
+import { Row, Col } from 'antd'
 import TopBanner from './topBanner'
 import BottomBanner from './bottomBanner'
 import Trending from './trending'
 import NewListedApp from './newListedApp'
 import ListingApp from './listingApp'
 import HotApps from './hotApps'
-import IonIcon from '@sentre/antd-ionicon'
 import ListAppByCategories from './listAppByCategories'
 import MentionsOnTwitter from 'view/appInfo/mentionsOnTwitter'
 
 import { CustomCategory } from './listAppByCategories/hooks'
+import useWalletConnected from 'hooks/useWalletConnected'
 
 const Market = () => {
-  const history = useHistory()
   const { search } = useLocation()
   const resgister = useRegister()
+  const history = useHistory()
+  const walletConnected = useWalletConnected()
 
   const category = useMemo(
     () => new URLSearchParams(search).get('category'),
     [search],
   )
 
-  const onBack = useCallback(() => history.goBack(), [history])
+  // Redirect callback
+  useEffect(() => {
+    const {
+      location: { search },
+    } = history
+    const params = new URLSearchParams(search)
+    const paramRedirect = params.get('redirect')
+    if (!paramRedirect) return
+    let redirect = decodeURIComponent(paramRedirect)
+    if (walletConnected) history.push(redirect)
+  }, [history, walletConnected])
 
   if (category)
-    return (
-      <Row gutter={[24, 24]}>
-        <Col span={24}>
-          <Button
-            type="text"
-            size="small"
-            icon={<IonIcon name="arrow-back-outline" />}
-            onClick={onBack}
-            style={{ marginLeft: -7 }}
-          >
-            Back
-          </Button>
-        </Col>
-        <Col span={24}>
-          <ListAppByCategories swiper={false} category={category} />
-        </Col>
-      </Row>
-    )
+    return <ListAppByCategories swiper={false} category={category} />
 
   return (
     <Row gutter={[16, 48]} justify="center">

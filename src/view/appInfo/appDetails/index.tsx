@@ -64,9 +64,7 @@ const AppDetails = ({ appId }: { appId: string }) => {
                 <InstalledApp appId={appId} installed={installed} />
               </Col>
               <Col>
-                <Space>
-                  <AppShare appId={appId} />
-                </Space>
+                <AppShare appId={appId} />
               </Col>
             </Row>
           </Col>

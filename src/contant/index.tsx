@@ -2,10 +2,14 @@ export enum AppCategories {
   Overview = 'overview',
   All = 'all',
   Utility = 'utility',
+  Defi = 'defi',
+  Game = 'game',
+  Portfolio = 'portfolio',
+  DAO = 'dao',
   Liquidity = 'liquidity',
   Sentre = 'sentre',
-  Game = 'game',
   Yours = 'Your DApps',
+  More = 'more',
 }
 
 export const YOUR_DAPP = 'your-apps'

@@ -1,17 +1,20 @@
 import { useEffect } from 'react'
-import { useSetBackground } from '@sentre/senhub'
+import { useSetBackground, useAppRoute } from '@sentre/senhub'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
 import { Affix, Col, Layout, Row } from 'antd'
 import Market from './market'
 import AppInfo from 'view/appInfo'
 import YourApps from './yourApps'
+import Search from './search'
+import ListApp from './listApp'
 
+import { AppCategories, YOUR_DAPP } from 'contant'
 import configs from 'configs'
 
 import 'static/styles/dark.less'
 import 'static/styles/light.less'
-import Search from './search'
+import PrivateRoute from 'components/privateRoute'
 
 const {
   manifest: { appId },
@@ -19,6 +22,7 @@ const {
 
 const View = () => {
   const setBackground = useSetBackground()
+  const { root, extend } = useAppRoute(appId)
 
   useEffect(() => {
     setBackground({ light: '#f5f2fa', dark: '#16151b' })
@@ -30,15 +34,20 @@ const View = () => {
         <Row justify="center" style={{ marginBottom: 96 }}>
           <Col xs={24} xl={22}>
             <Switch>
-              <Route exact path={`/app/${appId}`} component={Market} />
+              <Route exact path={root} component={Market} />
               <Route
                 exact
-                path={`/app/${appId}/your-apps`}
+                path={extend(`/${AppCategories.All}`)}
+                component={ListApp}
+              />
+              <PrivateRoute
+                exact
+                path={extend(`/${YOUR_DAPP}`)}
                 component={YourApps}
               />
-              <Route exact path={`/app/${appId}/:appId`} component={AppInfo} />
+              <Route exact path={extend('/:appId')} component={AppInfo} />
               <Route path="*">
-                <Redirect to="/" />
+                <Redirect to={root} />
               </Route>
             </Switch>
           </Col>

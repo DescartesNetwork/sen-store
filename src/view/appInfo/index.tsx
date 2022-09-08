@@ -6,12 +6,11 @@ import IonIcon from '@sentre/antd-ionicon'
 import AppDetails from './appDetails'
 import ScreenShot from './screenshot'
 import MentionsOnTwitter from './mentionsOnTwitter'
-
-import configs from 'configs'
-import { CustomCategory } from '../market/listAppByCategories/hooks'
-
-import './index.less'
 import ListAppByCategories from 'view/market/listAppByCategories'
+
+import { CustomCategory } from '../market/listAppByCategories/hooks'
+import configs from 'configs'
+import './index.less'
 
 const {
   manifest: { appId: appStoreId },
