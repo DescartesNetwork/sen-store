@@ -61,9 +61,9 @@ const CardTwitter = ({ indexColor = 0, data }: CardTwitterProps) => {
       }}
       className="card-twitter hoverable-transform"
     >
-      <Row gutter={[16, 16]} align="middle">
-        <Col span={24} onClick={onUser}>
-          <Space size={12}>
+      <Row gutter={[24, 24]} onClick={onTweet}>
+        <Col span={24}>
+          <Space size={12} onClick={onUser}>
             <Avatar size={44} src={data.avatar} />
             <Space size={0} direction="vertical">
               <Typography.Text strong>{data.name}</Typography.Text>
@@ -71,7 +71,7 @@ const CardTwitter = ({ indexColor = 0, data }: CardTwitterProps) => {
             </Space>
           </Space>
         </Col>
-        <Col span={24} onClick={onTweet}>
+        <Col span={24}>
           <Typography.Paragraph ellipsis={{ rows: 5 }}>
             {data.text}
           </Typography.Paragraph>
