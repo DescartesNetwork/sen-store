@@ -12,7 +12,7 @@ export type TwitterMentions = {
 }
 
 const fetcher = async (url: string) =>
-  await fetch(url, { credentials: 'include' }).then((res) => res.json())
+  await fetch(url).then((res) => res.json())
 
 export const useTwitterMentions = (appId: string) => {
   const { name } = useRegisterSelector((register) => {
