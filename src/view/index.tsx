@@ -3,6 +3,7 @@ import { useSetBackground, useAppRoute } from '@sentre/senhub'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
 import { Affix, Col, Layout, Row } from 'antd'
+import PrivateRoute from 'components/privateRoute'
 import Market from './market'
 import AppInfo from 'view/appInfo'
 import YourApps from './yourApps'
@@ -14,7 +15,6 @@ import configs from 'configs'
 
 import 'static/styles/dark.less'
 import 'static/styles/light.less'
-import PrivateRoute from 'components/privateRoute'
 
 const {
   manifest: { appId },

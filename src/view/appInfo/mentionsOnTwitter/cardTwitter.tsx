@@ -1,8 +1,9 @@
-import { useMemo } from 'react'
+import { MouseEvent, useCallback, useMemo } from 'react'
 import { useTheme } from '@sentre/senhub'
 
 import { Avatar, Card, Col, Row, Space, Typography } from 'antd'
-import AppIcon from 'components/appIcon'
+
+import { TwitterMentions } from 'hooks/useTwitterMentions'
 
 const BG_COLOR_1 =
   'radial-gradient(circle 90px at 80% 60%, rgb(83 127 255 / 40%), transparent)'
@@ -11,16 +12,9 @@ const BG_COLOR_2 =
 const BG_COLOR_3 =
   'radial-gradient(circle 90px at 80% 60%, rgb(117 81 236 / 40%), transparent)'
 
-export type DataTweet = {
-  name: string
-  reweet: string
-  tag: string
-  appId: string
-  avatar: string
-}
 export type CardTwitterProps = {
   indexColor?: number
-  data: DataTweet
+  data: TwitterMentions
 }
 
 const CardTwitter = ({ indexColor = 0, data }: CardTwitterProps) => {
@@ -39,6 +33,20 @@ const CardTwitter = ({ indexColor = 0, data }: CardTwitterProps) => {
     }
   }, [indexColor])
 
+  const onUser = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      return window.open(`https://twitter.com/${data.username}`, '_blank')
+    },
+    [data.username],
+  )
+  const onTweet = useCallback(() => {
+    return window.open(
+      `https://twitter.com/${data.username}/status/${data.id}`,
+      '_blank',
+    )
+  }, [data.username, data.id])
+
   return (
     <Card
       bordered={false}
@@ -54,34 +62,20 @@ const CardTwitter = ({ indexColor = 0, data }: CardTwitterProps) => {
       className="card-twitter hoverable-transform"
     >
       <Row gutter={[16, 16]} align="middle">
-        <Col>
-          <Avatar size={44} src={data.avatar} />
-        </Col>
-        <Col flex="auto">
-          <Space size={4} direction="vertical">
-            <Typography.Text strong>{data.name}</Typography.Text>
-            <Typography.Text type="secondary">{data.tag}</Typography.Text>
+        <Col span={24} onClick={onUser}>
+          <Space size={12}>
+            <Avatar size={44} src={data.avatar} />
+            <Space size={0} direction="vertical">
+              <Typography.Text strong>{data.name}</Typography.Text>
+              <Typography.Text type="secondary">{`@${data.username}`}</Typography.Text>
+            </Space>
           </Space>
         </Col>
-        <Col span={24}>
+        <Col span={24} onClick={onTweet}>
           <Typography.Paragraph ellipsis={{ rows: 5 }}>
-            {data.reweet}
+            {data.text}
           </Typography.Paragraph>
         </Col>
-        {!!data.appId && (
-          <Col span={24}>
-            <Card
-              style={{
-                borderRadius: 8,
-                background: 'transparent',
-                boxShadow: 'unset',
-              }}
-              bodyStyle={{ padding: '12px 16px' }}
-            >
-              <AppIcon size={24} direction="horizontal" appId={data.appId} />
-            </Card>
-          </Col>
-        )}
       </Row>
     </Card>
   )

@@ -57,7 +57,7 @@ const AppViewer = () => {
             </Card>
           </Col>
           <Col span={24}>
-            <MentionsOnTwitter />
+            <MentionsOnTwitter appId={appId} />
           </Col>
           <Col span={24}>
             <ListAppByCategories

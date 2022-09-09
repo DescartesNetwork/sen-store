@@ -61,7 +61,7 @@ const Market = () => {
           </Col>
           {/* Mentions twitter */}
           <Col span={24}>
-            <MentionsOnTwitter />
+            <MentionsOnTwitter appId="sentre" />
           </Col>
           <Col span={24}>
             <Trending />
