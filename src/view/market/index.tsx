@@ -17,7 +17,7 @@ import useWalletConnected from 'hooks/useWalletConnected'
 
 const Market = () => {
   const { search } = useLocation()
-  const resgister = useRegister()
+  const register = useRegister()
   const history = useHistory()
   const walletConnected = useWalletConnected()
 
@@ -55,7 +55,7 @@ const Market = () => {
           <Col span={24}>
             <ListAppByCategories
               category={CustomCategory.suggest}
-              related={{ appIds: Object.keys(resgister).splice(0, 5) }}
+              related={{ appIds: Object.keys(register).splice(0, 5) }}
               title="Popular on Twitter"
             />
           </Col>

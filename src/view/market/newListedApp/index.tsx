@@ -5,7 +5,7 @@ import CardNewListedApp from './cardNewListedApp'
 
 import './index.less'
 
-const NEW_LISTED_APP_ID = ['solend', 'any_arts', 'hedge', 'zeta_markets']
+const NEW_LISTED_APP_ID = ['francium', 'meanfi', 'friktion', 'port_finance']
 
 const NewListedApp = () => {
   const width = useWidth()

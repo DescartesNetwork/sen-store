@@ -42,14 +42,14 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
       bodyStyle={{ padding: 0 }}
       bordered={false}
     >
-      <Row gutter={[24, 24]}>
+      <Row gutter={[24, 24]} align="middle">
         <Col
           xs={{ span: 24, order: 2 }}
           md={{ span: 24, order: 2 }}
           lg={{ span: 12, order: 1 }}
         >
           <Space
-            style={{ padding: '56px 32px' }}
+            style={{ padding: '0 32px' }}
             direction="vertical"
             size={cardTitleSize}
           >

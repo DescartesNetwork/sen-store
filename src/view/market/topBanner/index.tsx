@@ -4,9 +4,9 @@ import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper'
 import interdao from 'static/images/banner/interdao.png'
 import lightningTunnel from 'static/images/banner/lightning-tunnel.png'
 import anyArts from 'static/images/banner/any-arts.png'
+import CardBanner from './cardBanner'
 
 import './index.less'
-import CardBanner from './cardBanner'
 
 const PANELS = [
   {
@@ -23,7 +23,7 @@ const PANELS = [
   },
   {
     image: lightningTunnel,
-    title: 'One-time sign for bulk transation',
+    title: 'One-time sign for bulk transaction',
     description: 'Supper speed & Fee saving',
     appId: 'lightning_tunnel',
   },

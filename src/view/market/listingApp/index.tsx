@@ -3,9 +3,9 @@ import { Infix, useRegister, useWidth } from '@sentre/senhub'
 import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
 import InfiniteSlideIcon from './infiniteSlideIcon'
+import FlexibleCard from 'components/flexibleCard'
 
 import './index.less'
-import FlexibleCard from 'components/flexibleCard'
 
 const ListingApp = () => {
   const register = useRegister()

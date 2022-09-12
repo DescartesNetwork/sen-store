@@ -8,7 +8,7 @@ import {
 } from '@sentre/senhub'
 
 import { Button, Col, Row } from 'antd'
-import IonIcon from '@sentre/antd-ionicon'
+import IconSax from '@sentre/antd-iconsax'
 
 export type InstalledAppProps = {
   installed: boolean
@@ -30,7 +30,7 @@ const InstalledApp = ({ installed, appId }: InstalledAppProps) => {
         <Fragment>
           <Col span={isMobile ? 12 : undefined}>
             <Button
-              icon={<IonIcon name="trash-outline" />}
+              icon={<IconSax name="Trash" variant="Bold" />}
               onClick={onUninstall}
               block={isMobile}
               ghost
@@ -42,7 +42,7 @@ const InstalledApp = ({ installed, appId }: InstalledAppProps) => {
           <Col span={isMobile ? 12 : undefined}>
             <Button
               type="primary"
-              icon={<IonIcon name="open-outline" />}
+              icon={<IconSax name="Maximize1" variant="Bold" />}
               onClick={opOpen}
               block={isMobile}
             >
@@ -54,7 +54,7 @@ const InstalledApp = ({ installed, appId }: InstalledAppProps) => {
         <Col span={isMobile ? 24 : undefined}>
           <Button
             type="primary"
-            icon={<IonIcon name="download-outline" />}
+            icon={<IconSax name="DocumentDownload" variant="Bold" />}
             onClick={onInstall}
             block={isMobile}
           >

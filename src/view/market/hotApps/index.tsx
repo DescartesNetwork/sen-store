@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Infix, useRegister, useWidth } from '@sentre/senhub'
+import { Infix, useWidth } from '@sentre/senhub'
 import { SwiperOs } from 'components/swiperOS'
 import { SwiperSlide } from 'swiper/react'
 
@@ -7,17 +7,23 @@ import { Button, Col, Row, Space, Typography } from 'antd'
 import CardHotAppCard from './cardHotApp'
 import IonIcon from '@sentre/antd-ionicon'
 
-const SENTRE_TAG = 'sentre'
 const HEIGHT_RATIO = 0.75
 const MOBILE_WIDTH_RATIO = 0.85
 const SCREEN_RATIO = 22 / 24
 const ELEMENT_SPACING = 12
 const ITEM_SPACING = 24
 const ITEM_BODY_SPACING = 26
+const HOT_APPS = [
+  'balansol',
+  'sen_farming_v2',
+  'any_arts',
+  'lucky_wheel',
+  'lightning_tunnel',
+  'solend',
+]
 
 const HotApps = () => {
   const width = useWidth()
-  const register = useRegister()
 
   const slidePerViews = useMemo(() => {
     if (width > 1430) return 4
@@ -50,15 +56,6 @@ const HotApps = () => {
     )
   }, [screenWidth, slidePerViews, width])
 
-  const hotAppIds = useMemo(() => {
-    if (!register) return []
-    return Object.keys(register).sort((a) => {
-      const app = register[a]
-      if (app?.tags.includes(SENTRE_TAG)) return -1
-      return 1
-    })
-  }, [register])
-
   return (
     <Row gutter={[24, 12]}>
       <Col span={24}>
@@ -89,7 +86,7 @@ const HotApps = () => {
       {/* Apps in the category */}
       <Col span={24}>
         <SwiperOs slidesPerView={slidePerViews}>
-          {hotAppIds.map((appId) => (
+          {HOT_APPS.map((appId) => (
             <SwiperSlide key={appId} style={{ paddingTop: 12, ...slideMobile }}>
               <CardHotAppCard appId={appId} style={{ height: cardHeight }} />
             </SwiperSlide>

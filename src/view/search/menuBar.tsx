@@ -55,7 +55,7 @@ const CATEGORIES = [
     label: AppCategories.More,
   },
   {
-    icon: <IconSax name="DirectNotification" variant="Bold" />,
+    icon: <IconSax name="Task" variant="Bold" />,
     value: AppCategories.All,
     label: AppCategories.All,
   },
@@ -76,7 +76,7 @@ const CATEGORIES = [
   },
 
   {
-    icon: <IconSax name="CpuCharge" variant="Bold" />,
+    icon: <IconSax name="Book" variant="Bold" />,
     value: AppCategories.Portfolio,
     label: AppCategories.Portfolio,
   },

@@ -1,19 +1,29 @@
 import { useMemo } from 'react'
-import { Infix, useWidth } from '@sentre/senhub'
+import { Infix, useRegister, useWidth } from '@sentre/senhub'
 
-import { Row, Col, Typography, Spin } from 'antd'
+import { Row, Col, Typography, Spin, Button } from 'antd'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper'
 import CardTwitter from './cardTwitter'
+import IconSax from '@sentre/antd-iconsax'
+
+import { useTwitterMentions } from 'hooks/useTwitterMentions'
 
 import './index.less'
-import { useTwitterMentions } from 'hooks/useTwitterMentions'
 
 export type MentionsOnTwitterProps = { appId: string }
 
+const SENTRE_ID = 'sentre'
+
 const MentionsOnTwitter = ({ appId }: MentionsOnTwitterProps) => {
   const width = useWidth()
+  const register = useRegister()
   const { data, loading } = useTwitterMentions(appId)
+
+  const { name } = useMemo(
+    () => register[appId] || ({} as ComponentManifest),
+    [register, appId],
+  )
 
   const calculatePerCard = useMemo(() => {
     if (width < Infix.md) return 1
@@ -30,7 +40,7 @@ const MentionsOnTwitter = ({ appId }: MentionsOnTwitterProps) => {
         <SwiperSlide
           style={{
             cursor: 'pointer',
-            height: 260,
+            height: 222,
           }}
           key={mentions.id}
         >
@@ -40,12 +50,33 @@ const MentionsOnTwitter = ({ appId }: MentionsOnTwitterProps) => {
     })
   }
 
+  const onComment = () => {
+    const TWITTER_URL = `http://twitter.com/intent/tweet?text=Loved the experience of the ${name} on Sentre Protocol. The app runs smooth and I get incentives for using it via Sentre!`
+
+    return window.open(TWITTER_URL, '_blank')
+  }
+
   return (
     <Spin spinning={loading}>
       <Row gutter={[24, 12]} align="bottom">
         {/* Title */}
         <Col span={24}>
-          <Typography.Title level={2}>Mentions On Twitter</Typography.Title>
+          <Row align="middle">
+            <Col flex="auto">
+              <Typography.Title level={2}>Mentions On Twitter</Typography.Title>
+            </Col>
+            {appId !== SENTRE_ID && (
+              <Col>
+                <Button
+                  onClick={onComment}
+                  icon={<IconSax name="Message" variant="Bold" />}
+                  ghost
+                >
+                  Comment
+                </Button>
+              </Col>
+            )}
+          </Row>
         </Col>
         <Col span={24}>
           <Swiper
@@ -62,7 +93,8 @@ const MentionsOnTwitter = ({ appId }: MentionsOnTwitterProps) => {
             }}
             modules={[Navigation, Pagination, Autoplay]}
             style={{ paddingTop: 12 }}
-            autoplay={{ pauseOnMouseEnter: true }}
+            autoplay
+            loop
           >
             {listTwitterRender()}
           </Swiper>

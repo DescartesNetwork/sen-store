@@ -10,6 +10,10 @@ import Verification from 'components/verification'
 import { useGoToStore } from 'hooks/useGotoStore'
 
 import imgError from 'static/images/error-image.svg'
+import AppTags from 'view/appInfo/appDetails/appTags'
+
+const LIMIT_TAG = 2
+const START_SPLICE = 0
 
 const APP_DEFAULT: ComponentManifest = {
   name: '',
@@ -36,7 +40,7 @@ const CardNewListedApp = ({
   const register = useRegister()
   const onOpenAppDetail = useGoToStore()
 
-  const { name, verified, author, description } = useMemo(
+  const { name, verified, author, description, tags } = useMemo(
     () => register[appId] || APP_DEFAULT,
     [register, appId],
   )
@@ -54,9 +58,15 @@ const CardNewListedApp = ({
         gutter={[24, 24]}
         wrap={vertical}
         onClick={() => onOpenAppDetail({ appId })}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', height: '100%' }}
+        align="middle"
+        justify={vertical ? 'space-between' : 'start'}
       >
-        <Col span={verticalSpan || 11} className="panel-img">
+        <Col
+          span={verticalSpan || 11}
+          style={{ height: !vertical ? '100%' : '' }}
+          className="panel-img"
+        >
           <MultiStaticLoader
             defaultData={[imgError]}
             appId={appId}
@@ -74,6 +84,7 @@ const CardNewListedApp = ({
                   overflow: 'hidden',
                   boxShadow: 'none',
                   borderRadius: 12,
+                  height: '100%',
                   ...style,
                 }}
                 bodyStyle={{ padding: 0 }}
@@ -82,20 +93,32 @@ const CardNewListedApp = ({
           />
         </Col>
         <Col span={verticalSpan}>
-          <Space direction="vertical" size={16} style={{ paddingTop: 32 }}>
-            <Space size={16} align="start">
-              <AppIcon appId={appId} size={40} name={false} />
-              <Space direction="vertical" size={0}>
-                <Space>
-                  <Typography.Title level={5}>{name}</Typography.Title>
-                  <Verification verified={verified} />
+          <Space direction="vertical" size={16} style={{ width: '100%' }}>
+            <Row gutter={[8, 8]}>
+              <Col span={!vertical ? 24 : undefined} flex="auto">
+                <Space size={16} align="start">
+                  <AppIcon appId={appId} size={40} name={false} />
+                  <Space direction="vertical" size={0}>
+                    <Space>
+                      <Typography.Title level={5}>{name}</Typography.Title>
+                      <Verification verified={verified} />
+                    </Space>
+                    <Typography.Text type="secondary">
+                      {author.name}
+                    </Typography.Text>
+                  </Space>
                 </Space>
-                <Typography.Text type="secondary">
-                  {author.name}
-                </Typography.Text>
-              </Space>
-            </Space>
-            <Typography.Text>{description}</Typography.Text>
+              </Col>
+              <Col span={!vertical ? 24 : undefined}>
+                <AppTags
+                  tags={[...tags].splice(START_SPLICE, LIMIT_TAG)}
+                  wrap={false}
+                />
+              </Col>
+            </Row>
+            <Typography.Paragraph style={{ margin: 0 }} ellipsis={{ rows: 2 }}>
+              {description}
+            </Typography.Paragraph>
           </Space>
         </Col>
       </Row>
