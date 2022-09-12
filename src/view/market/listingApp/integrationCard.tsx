@@ -25,7 +25,16 @@ const IntegrationCard = () => {
           <Button type="primary" size="large">
             Submit project
           </Button>
-          <Button size="large" ghost onClick={() => {}}>
+          <Button
+            size="large"
+            ghost
+            onClick={() =>
+              window.open(
+                'https://academy.sentre.io/how-to-list-dapp-on-sentre/',
+                '_blank',
+              )
+            }
+          >
             Learn more
           </Button>
         </Space>
