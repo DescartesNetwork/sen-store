@@ -46,9 +46,7 @@ const View = () => {
                 component={YourApps}
               />
               <Route exact path={extend('/:appId')} component={AppInfo} />
-              <Route path="*">
-                <Redirect to={root} />
-              </Route>
+              <Redirect from="*" to={root} />
             </Switch>
           </Col>
         </Row>
