@@ -22,7 +22,16 @@ const IntegrationCard = () => {
           community.
         </Typography.Text>
         <Space size={12}>
-          <Button type="primary" size="large">
+          <Button
+            type="primary"
+            size="large"
+            onClick={() =>
+              window.open(
+                'https://hub.sentre.io/app/connector_tester?tab=dapp-submission&autoInstall=true',
+                '_blank',
+              )
+            }
+          >
             Submit project
           </Button>
           <Button
