@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { CSSProperties, useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Grid } from 'swiper'
 import { Infix, useWidth } from '@sentre/senhub'
@@ -15,12 +15,14 @@ type SwiperListAppProps = {
   navigation?: boolean
   rows?: number
   spacing?: number
+  padding?: CSSProperties['padding']
 } & CategoryOptions
 const SwiperListApp = ({
   title,
   navigation = false,
   rows = 2,
   spacing = 24,
+  padding = 12,
   ...options
 }: SwiperListAppProps) => {
   const width = useWidth()
@@ -85,7 +87,7 @@ const SwiperListApp = ({
           {suggestAppIds.map((appId, idx) => (
             <SwiperSlide key={idx}>
               <FlexibleCard type="green" className="hoverable-transform">
-                <AppCardInfo appId={appId} radius={12} padding={12} />
+                <AppCardInfo appId={appId} radius={12} padding={padding} />
               </FlexibleCard>
             </SwiperSlide>
           ))}

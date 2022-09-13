@@ -51,7 +51,7 @@ const MentionsOnTwitter = ({ appId }: MentionsOnTwitterProps) => {
   }
 
   const onComment = () => {
-    const TWITTER_URL = `http://twitter.com/intent/tweet?text=Loved the experience of the ${name} on Sentre Protocol. The app runs smooth and I get incentives for using it via Sentre!`
+    const TWITTER_URL = `http://twitter.com/intent/tweet?text=Loved the experience of the ${name} DApp on Sentre Protocol. The app runs smooth and I get incentives for using it via Sentre!`
 
     return window.open(TWITTER_URL, '_blank')
   }

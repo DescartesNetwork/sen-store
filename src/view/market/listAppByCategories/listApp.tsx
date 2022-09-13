@@ -1,14 +1,23 @@
 import { Col, Empty, Row, Typography } from 'antd'
 import AppCardInfo from 'components/appCardInfo'
 import FlexibleCard, { FlexibleCardType } from 'components/flexibleCard'
+import { CSSProperties } from 'react'
 
 import { CategoryOptions, useAppCategory } from './hooks'
 
 type ListAppProps = {
   title?: string
   type?: FlexibleCardType
+  spacing?: number
+  padding?: CSSProperties['padding']
 } & CategoryOptions
-const ListApp = ({ title, type = 'green', ...options }: ListAppProps) => {
+const ListApp = ({
+  title,
+  type = 'green',
+  spacing,
+  padding,
+  ...options
+}: ListAppProps) => {
   const { title: suggestTitle, appIds: suggestAppIds } = useAppCategory(options)
 
   if (!suggestAppIds.length) return <Empty />
@@ -22,8 +31,12 @@ const ListApp = ({ title, type = 'green', ...options }: ListAppProps) => {
       </Col>
       {suggestAppIds.map((appId, idx) => (
         <Col xs={24} md={12} xl={8} xxl={6} key={idx}>
-          <FlexibleCard type="green" className="hoverable-transform">
-            <AppCardInfo appId={appId} radius={12} />
+          <FlexibleCard
+            spacing={spacing}
+            type="green"
+            className="hoverable-transform"
+          >
+            <AppCardInfo appId={appId} radius={12} padding={padding} />
           </FlexibleCard>
         </Col>
       ))}

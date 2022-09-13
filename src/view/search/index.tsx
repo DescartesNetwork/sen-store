@@ -10,7 +10,6 @@ const Search = () => {
       className="card-menu-categoires"
       style={{ borderRadius: 12 }}
       bodyStyle={{ padding: 16 }}
-      bordered={false}
     >
       <Row
         gutter={[12, 12]}

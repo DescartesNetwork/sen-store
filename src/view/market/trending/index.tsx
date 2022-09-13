@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import { useTheme } from '@sentre/senhub'
 
 import { Card, Col, Image, Row, Space, Typography } from 'antd'
@@ -17,11 +17,10 @@ import Trending1_DARK from 'static/images/trending/trending-1-dark.png'
 import Trending2_DARK from 'static/images/trending/trending-2-dark.png'
 import Trending3_DARK from 'static/images/trending/trending-3-dark.png'
 import Trending4_DARK from 'static/images/trending/trending-4-dark.png'
-
-import Utility from 'static/images/trending/Utility.png'
-import Liquidity from 'static/images/trending/Liquidity.png'
-import Game from 'static/images/trending/Game.png'
-import DAO from 'static/images/trending/DAO.png'
+import { Utility } from 'static/images/trending/utility'
+import { DAO } from 'static/images/trending/dao'
+import { Game } from 'static/images/trending/game'
+import { Liquidity } from 'static/images/trending/liquidity'
 
 const CATEGORIES = ['utility', 'DAO', 'game', 'liquidity']
 const MULTI_BG_LIGHT = {
@@ -36,6 +35,7 @@ const MULTI_BG_DARK = {
   trending_3: Trending3_DARK,
   trending_4: Trending4_DARK,
 }
+const DEFAULT_CLN = 'hoverable-transform hoverable-svg'
 
 type CardTrendingProps = {
   align?: 'top' | 'bottom' | 'middle' | 'stretch'
@@ -49,8 +49,10 @@ type CardTrendingProps = {
   bg?: string
   middle?: boolean
   children?: ReactNode
-  bgRight?: string
+  bgRight?: ReactNode
   category: string
+  style?: CSSProperties
+  className?: string
 }
 const CardTrending = ({
   align = 'middle',
@@ -60,13 +62,20 @@ const CardTrending = ({
   children,
   bgRight,
   category,
+  style,
+  className,
 }: CardTrendingProps) => {
   const { appIds } = useAppCategory({ category: category })
   const onGoToStore = useGoToStore()
   const colWithAlign = !middle ? 24 : undefined
-
   return (
-    <Row gutter={[24, 24]} justify={justify} align={align}>
+    <Row
+      gutter={[24, 24]}
+      justify={justify}
+      align={align}
+      className={[DEFAULT_CLN, className].join(' ')}
+      style={{ height: '100%', ...style }}
+    >
       {bg && (
         <Col className="bg-trending" span={24}>
           <Image src={bg} preview={false} style={{ borderRadius: '16px' }} />
@@ -96,11 +105,7 @@ const CardTrending = ({
       </Col>
       {bgRight && (
         <Col className="bg-trending-right" span={24}>
-          <Image
-            src={bgRight}
-            preview={false}
-            style={{ borderRadius: '16px', width: '70%' }}
-          />
+          <div className="store-image">{bgRight}</div>
         </Col>
       )}
     </Row>
@@ -116,38 +121,40 @@ const Trending = () => {
       <Col span={24}>
         <Typography.Title level={2}>Trending topics</Typography.Title>
       </Col>
-      <Col span={12}>
+      <Col xs={24} md={12}>
         <CardTrending
-          align="middle"
+          align="top"
+          style={{ minHeight: 220 }}
           bg={BG_COLOR.trending_1}
-          bgRight={Utility}
+          bgRight={<Utility />}
           category={CATEGORIES[0]}
+          className="utility"
         />
       </Col>
-      <Col span={12}>
-        <Row gutter={[24, 24]}>
+      <Col xs={24} md={12}>
+        <Row gutter={[24, 24]} style={{ height: '100%' }}>
           <Col span={24}>
             <CardTrending
-              align="middle"
               bg={BG_COLOR.trending_2}
-              bgRight={DAO}
+              bgRight={<DAO />}
               category={CATEGORIES[1]}
+              className="dao"
             />
           </Col>
           <Col xs={24} md={12}>
             <CardTrending
-              align="middle"
               bg={BG_COLOR.trending_3}
-              bgRight={Game}
+              bgRight={<Game />}
               category={CATEGORIES[2]}
+              className="game"
             />
           </Col>
           <Col xs={24} md={12}>
             <CardTrending
-              align="middle"
               bg={BG_COLOR.trending_4}
-              bgRight={Liquidity}
+              bgRight={<Liquidity />}
               category={CATEGORIES[3]}
+              className="liquidity"
             />
           </Col>
         </Row>

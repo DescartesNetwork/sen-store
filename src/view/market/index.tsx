@@ -39,7 +39,14 @@ const Market = () => {
   }, [history, walletConnected])
 
   if (category)
-    return <ListAppByCategories swiper={false} category={category} />
+    return (
+      <ListAppByCategories
+        swiper={false}
+        category={category}
+        spacing={12}
+        padding={12}
+      />
+    )
 
   return (
     <Row gutter={[16, 48]} justify="center">

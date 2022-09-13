@@ -1,8 +1,13 @@
-import { useTheme } from '@sentre/senhub'
-import { Button, Card, Space, Typography } from 'antd'
+import { Infix, useInfix, useTheme } from '@sentre/senhub'
+import { Button, Card, Col, Row, Space, Typography } from 'antd'
 
 const IntegrationCard = () => {
   const theme = useTheme()
+  const infix = useInfix()
+
+  const isMobile = infix < Infix.md
+  const btnSpan = isMobile ? 12 : undefined
+
   return (
     <Card
       bordered={false}
@@ -12,32 +17,40 @@ const IntegrationCard = () => {
       }}
     >
       <Space direction="vertical">
-        <Typography.Text style={{ fontSize: 32, color: '#9270FF' }}>
+        <Typography.Title
+          level={3}
+          style={{ color: '#9270FF', fontWeight: 400 }}
+        >
           Integration
-        </Typography.Text>
+        </Typography.Title>
         <Typography.Title level={2}>Ready to list your DApp?</Typography.Title>
         <Typography.Text type="secondary">
           No need to start from scratch! This directory includes open source
           tools, tutorials, and libraries built or submitted by the Sentre
           community.
         </Typography.Text>
-        <Space size={12}>
-          <Button type="primary" size="large">
-            Submit project
-          </Button>
-          <Button
-            size="large"
-            ghost
-            onClick={() =>
-              window.open(
-                'https://academy.sentre.io/how-to-list-dapp-on-sentre/',
-                '_blank',
-              )
-            }
-          >
-            Learn more
-          </Button>
-        </Space>
+        <Row gutter={[12, 12]}>
+          <Col span={btnSpan}>
+            <Button type="primary" size="large" block>
+              Submit project
+            </Button>
+          </Col>
+          <Col span={btnSpan}>
+            <Button
+              size="large"
+              ghost
+              onClick={() =>
+                window.open(
+                  'https://academy.sentre.io/how-to-list-dapp-on-sentre/',
+                  '_blank',
+                )
+              }
+              block
+            >
+              Learn more
+            </Button>
+          </Col>
+        </Row>
       </Space>
     </Card>
   )

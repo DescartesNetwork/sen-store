@@ -25,13 +25,18 @@ const BottomBanner = () => {
     [width],
   )
 
+  // Tuan - 13/09 type qua dai de config
   const fetchLastedPost = useCallback(async () => {
-    const response = await fetch(
-      `${SENTRE_DOMAIN}/ghost/api/content/posts/?key=${CONTENT_KEY}&limit=2`,
-    )
-    const data = await response.json()
-    const posts = data.posts
-    return setPosts(posts)
+    try {
+      const response = await fetch(
+        `${SENTRE_DOMAIN}/ghost/api/content/posts/?key=${CONTENT_KEY}&limit=2`,
+      )
+      const data = await response.json()
+      const posts = data.posts
+      return setPosts(posts)
+    } catch (error) {
+      return setPosts([])
+    }
   }, [])
 
   useEffect(() => {

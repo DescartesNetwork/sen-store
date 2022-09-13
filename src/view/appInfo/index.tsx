@@ -32,33 +32,42 @@ const AppViewer = () => {
   return (
     <Row gutter={[24, 24]} justify="center">
       <Col span={24} className="sentre-col-container">
-        <Row gutter={[24, 24]}>
+        <Row gutter={[64, 64]}>
+          {/* App Details */}
           <Col span={24}>
-            <Button
-              type="text"
-              size="small"
-              icon={<IonIcon name="arrow-back-outline" />}
-              onClick={onBack}
-              style={{ marginLeft: -7 }}
-            >
-              Back
-            </Button>
+            <Row gutter={[24, 24]}>
+              <Col span={24}>
+                <Button
+                  type="text"
+                  size="small"
+                  icon={<IonIcon name="arrow-back-outline" />}
+                  onClick={onBack}
+                  style={{ marginLeft: -7 }}
+                >
+                  Back
+                </Button>
+              </Col>
+              <Col span={24}>
+                <Card bordered={false}>
+                  <Row gutter={[24, 24]}>
+                    <Col xs={24} lg={12}>
+                      <AppDetails appId={appId} />
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <ScreenShot appId={appId} />
+                    </Col>
+                  </Row>
+                </Card>
+              </Col>
+            </Row>
           </Col>
-          <Col span={24}>
-            <Card bordered={false}>
-              <Row gutter={[24, 24]}>
-                <Col xs={24} lg={12}>
-                  <AppDetails appId={appId} />
-                </Col>
-                <Col xs={24} lg={12}>
-                  <ScreenShot appId={appId} />
-                </Col>
-              </Row>
-            </Card>
-          </Col>
+
+          {/* Mention on twitter */}
           <Col span={24}>
             <MentionsOnTwitter appId={appId} />
           </Col>
+
+          {/* Related app */}
           <Col span={24}>
             <ListAppByCategories
               category={CustomCategory.suggest}

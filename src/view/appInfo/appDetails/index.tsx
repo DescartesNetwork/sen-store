@@ -49,10 +49,9 @@ const AppDetails = ({ appId }: { appId: string }) => {
               </Col>
               <Col flex="auto">
                 <Space direction="vertical" size={16}>
-                  <Space align="center">
-                    <Typography.Title level={2}>{name}</Typography.Title>
-                    <Verification verified={verified} />
-                  </Space>
+                  <Typography.Title level={2} className="title-align-icon">
+                    {name} <Verification verified={verified} />
+                  </Typography.Title>
                   <AppTags tags={tags} />
                 </Space>
               </Col>

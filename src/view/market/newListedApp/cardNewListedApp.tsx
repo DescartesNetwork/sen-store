@@ -46,6 +46,9 @@ const CardNewListedApp = ({
   )
 
   const verticalSpan = vertical ? 24 : undefined
+  const horizontalColPadding = !vertical
+    ? { paddingTop: 12, paddingBottom: 12 }
+    : {}
 
   return (
     <FlexibleCard
@@ -92,7 +95,7 @@ const CardNewListedApp = ({
             )}
           />
         </Col>
-        <Col span={verticalSpan}>
+        <Col span={verticalSpan} style={{ ...horizontalColPadding }}>
           <Space direction="vertical" size={16} style={{ width: '100%' }}>
             <Row gutter={[8, 8]}>
               <Col span={!vertical ? 24 : undefined} flex="auto">

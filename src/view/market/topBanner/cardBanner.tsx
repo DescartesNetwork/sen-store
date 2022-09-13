@@ -49,7 +49,7 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
           lg={{ span: 12, order: 1 }}
         >
           <Space
-            style={{ padding: '0 32px' }}
+            style={{ padding: '0 32px 16px' }}
             direction="vertical"
             size={cardTitleSize}
           >
