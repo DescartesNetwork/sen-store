@@ -30,7 +30,7 @@ const ListApp = ({
         </Typography.Title>
       </Col>
       {suggestAppIds.map((appId, idx) => (
-        <Col xs={24} md={12} xl={8} xxl={6} key={idx}>
+        <Col xs={24} md={12} lg={8} xl={6} key={idx}>
           <FlexibleCard
             spacing={spacing}
             type="green"

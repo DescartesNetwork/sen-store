@@ -62,7 +62,12 @@ const View = () => {
           }}
         >
           <Row justify="center">
-            <Col xs={24} xl={22} style={{ paddingRight: 12, paddingLeft: 12 }}>
+            <Col
+              xs={24}
+              xl={22}
+              className="sentre-col-container"
+              style={{ paddingRight: 12, paddingLeft: 12 }}
+            >
               <Search />
             </Col>
           </Row>
