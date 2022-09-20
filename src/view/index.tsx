@@ -32,7 +32,7 @@ const View = () => {
     <Layout>
       <Layout.Content>
         <Row justify="center" style={{ marginBottom: 96 }}>
-          <Col xs={24} xl={22}>
+          <Col xs={24} className="sentre-col-container">
             <Switch>
               <Route exact path={root} component={Market} />
               <Route
@@ -64,9 +64,7 @@ const View = () => {
           <Row justify="center">
             <Col
               xs={24}
-              xl={22}
-              className="sentre-col-container"
-              style={{ paddingRight: 12, paddingLeft: 12 }}
+              style={{ paddingRight: 12, paddingLeft: 12, maxWidth: 1464 }}
             >
               <Search />
             </Col>

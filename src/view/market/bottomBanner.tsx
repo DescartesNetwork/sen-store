@@ -3,7 +3,8 @@ import { Infix, useWidth } from '@sentre/senhub'
 
 import { Card, Col, Row } from 'antd'
 
-const PAGE_PADDING = 20
+const MAX_WIDTH = 1440
+const PAGE_PADDING = 24
 const ELEMENT_PADDING = 24
 const HEIGHT_RATIO = 1.777777
 const SENTRE_DOMAIN = 'https://academy.sentre.io'
@@ -51,7 +52,7 @@ const BottomBanner = () => {
             <Card
               style={{
                 height: Math.min(
-                  (1920 - PAGE_PADDING - ELEMENT_PADDING) / HEIGHT_RATIO / 2,
+                  (MAX_WIDTH - ELEMENT_PADDING) / HEIGHT_RATIO / 2,
                   bannerWidth / bannerHeightRatio,
                 ),
                 backgroundPosition: 'center',

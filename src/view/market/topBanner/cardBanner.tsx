@@ -23,12 +23,12 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
   const onGoToApp = useGoToStore()
   const topBg = theme === 'light' ? topBgLight : topBgDark
   const titleSize = useMemo(() => {
-    if (width > 1600) return { fontSize: 72 }
+    if (width > 1600) return { fontSize: 68 }
     if (width > 1320) return { fontSize: 54 }
     if (width > Infix.lg) return { fontSize: 42 }
     return {}
   }, [width])
-  const cardTitleSize = width < 1200 ? 16 : 32
+  const cardTitleSize = width < 1200 ? 16 : 24
 
   return (
     <Card
@@ -52,14 +52,17 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
             style={{ padding: '0 32px 16px' }}
             direction="vertical"
             size={cardTitleSize}
+            className="card-banner-details"
           >
             <AppIcon appId={appId} direction="horizontal" />
-            <Typography.Title level={1} style={{ ...titleSize }}>
-              {title}
-            </Typography.Title>
-            <Typography.Text style={{ fontSize: 20 }}>
-              {description}
-            </Typography.Text>
+            <Space direction="vertical" size={16}>
+              <Typography.Title level={1} style={{ ...titleSize }}>
+                {title}
+              </Typography.Title>
+              <Typography.Text style={{ fontSize: 20 }}>
+                {description}
+              </Typography.Text>
+            </Space>
             <Button
               className="btn-explore-now"
               onClick={() => onGoToApp({ appId })}
