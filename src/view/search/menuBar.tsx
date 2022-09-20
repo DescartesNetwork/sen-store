@@ -163,12 +163,22 @@ const MenuBar = () => {
     if (!!urlCategory.length) {
       return setActiveSegmented(urlCategory)
     }
+    return setActiveSegmented(AppCategories.Overview)
   }, [pathName, urlCategory])
+
+  useEffect(() => {
+    const ctx = wrapperRef.current
+    if (!ctx) return
+    window.addEventListener('click', (e) => {
+      if (!ctx.contains(e.target as Node)) return setVisible(false)
+    })
+    return () => window.removeEventListener('click', () => {})
+  }, [])
 
   // Active segmented with category in url
   useEffect(() => {
-    onDefaultActiveSegmented()
-  }, [onDefaultActiveSegmented])
+    if (!visible) return onDefaultActiveSegmented()
+  }, [onDefaultActiveSegmented, visible])
 
   return (
     <Fragment>
