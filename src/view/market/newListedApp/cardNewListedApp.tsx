@@ -86,7 +86,7 @@ const CardNewListedApp = ({
                   cursor: 'pointer',
                   overflow: 'hidden',
                   boxShadow: 'none',
-                  borderRadius: 12,
+                  borderRadius: 16,
                   height: '100%',
                   ...style,
                 }}

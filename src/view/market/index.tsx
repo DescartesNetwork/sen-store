@@ -49,40 +49,36 @@ const Market = () => {
     )
 
   return (
-    <Row gutter={[16, 48]} justify="center">
-      <Col span={24} className="sentre-col-container">
-        <Row gutter={[16, 48]}>
-          <Col span={24}>
-            <TopBanner />
-          </Col>
-          <Col span={24}>
-            <HotApps />
-          </Col>
-          {/* Popular on Twitter */}
-          <Col span={24}>
-            <ListAppByCategories
-              category={CustomCategory.suggest}
-              related={{ appIds: Object.keys(register).splice(0, 5) }}
-              title="Popular on Twitter"
-            />
-          </Col>
-          {/* Mentions twitter */}
-          <Col span={24}>
-            <MentionsOnTwitter appId="sentre" />
-          </Col>
-          <Col span={24}>
-            <Trending />
-          </Col>
-          <Col span={24}>
-            <NewListedApp />
-          </Col>
-          <Col span={24}>
-            <ListingApp />
-          </Col>
-          <Col span={24}>
-            <BottomBanner />
-          </Col>
-        </Row>
+    <Row gutter={[16, 48]}>
+      <Col span={24}>
+        <TopBanner />
+      </Col>
+      <Col span={24}>
+        <HotApps />
+      </Col>
+      {/* Popular on Twitter */}
+      <Col span={24}>
+        <ListAppByCategories
+          category={CustomCategory.suggest}
+          related={{ appIds: Object.keys(register).splice(0, 5) }}
+          title="Popular on Twitter"
+        />
+      </Col>
+      {/* Mentions twitter */}
+      <Col span={24}>
+        <MentionsOnTwitter appId="sentre" />
+      </Col>
+      <Col span={24}>
+        <Trending />
+      </Col>
+      <Col span={24}>
+        <NewListedApp />
+      </Col>
+      <Col span={24}>
+        <ListingApp />
+      </Col>
+      <Col span={24}>
+        <BottomBanner />
       </Col>
     </Row>
   )
