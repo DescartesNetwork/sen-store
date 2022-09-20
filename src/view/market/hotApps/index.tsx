@@ -7,9 +7,10 @@ import { Button, Col, Row, Space, Typography } from 'antd'
 import CardHotAppCard from './cardHotApp'
 import IonIcon from '@sentre/antd-ionicon'
 
+import { MAX_WIDTH } from 'contant'
+
 const HEIGHT_RATIO = 0.75
 const MOBILE_WIDTH_RATIO = 0.85
-const SCREEN_RATIO = 22 / 24
 const ELEMENT_SPACING = 12
 const ITEM_SPACING = 24
 const ITEM_BODY_SPACING = 26
@@ -26,7 +27,7 @@ const HotApps = () => {
   const width = useWidth()
 
   const slidePerViews = useMemo(() => {
-    if (width > 1430) return 4
+    if (width > MAX_WIDTH) return 4
     if (width > Infix.lg) return 3
     if (width > Infix.md) return 2
     return 'auto'
@@ -38,7 +39,7 @@ const HotApps = () => {
   }, [width])
 
   const screenWidth = useMemo(
-    () => (width < Infix.xl ? width : width * SCREEN_RATIO),
+    () => (width < MAX_WIDTH ? width - ELEMENT_SPACING * 2 : MAX_WIDTH),
     [width],
   )
 
@@ -47,10 +48,7 @@ const HotApps = () => {
       return (width * MOBILE_WIDTH_RATIO - ITEM_BODY_SPACING) * HEIGHT_RATIO
 
     return (
-      ((screenWidth -
-        ELEMENT_SPACING * 2 -
-        (slidePerViews - 1) * ITEM_SPACING) /
-        slidePerViews -
+      ((screenWidth - (slidePerViews - 1) * ITEM_SPACING) / slidePerViews -
         ITEM_BODY_SPACING) *
       HEIGHT_RATIO
     )

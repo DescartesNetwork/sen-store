@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Infix, useWidth } from '@sentre/senhub'
 
 import { Card, Col, Row } from 'antd'
+import { MAX_WIDTH } from 'contant'
 
-const MAX_WIDTH = 1440
 const PAGE_PADDING = 24
 const ELEMENT_PADDING = 24
 const HEIGHT_RATIO = 1.777777

@@ -18,3 +18,5 @@ export enum QueryParams {
   search = 'search',
   category = 'category',
 }
+
+export const MAX_WIDTH = 1440
