@@ -200,6 +200,11 @@ const MenuBar = () => {
               <Space direction="vertical">
                 {showMoreCats.map(({ value, disabled, icon }, idx) => (
                   <Button
+                    className={
+                      value === urlCategory || pathName.endsWith(value)
+                        ? 'active'
+                        : ''
+                    }
                     type="text"
                     style={{
                       background: 'transparent',

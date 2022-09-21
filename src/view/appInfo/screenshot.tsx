@@ -1,13 +1,18 @@
 import { useCallback } from 'react'
 import { useWidth } from '@sentre/senhub'
 
-import { Col, Image, Row } from 'antd'
+import { Button, Col, Image, Row } from 'antd'
 import { SwiperSlide } from 'swiper/react'
-import { SwiperOs } from 'components/swiperOS'
+import {
+  DEFAULT_NEXT_CLN,
+  DEFAULT_PREV_CLN,
+  SwiperOs,
+} from 'components/swiperOS'
 
 import { MultiStaticLoader } from 'components/staticLoader'
 
 import imgError from 'static/images/error-image.svg'
+import IonIcon from '@sentre/antd-ionicon'
 
 const PADDING_CARD = 24
 const PADDING_PAGE = 39 // padding 24 + width scroll bar 15
@@ -41,7 +46,10 @@ const ScreenShot = ({ appId }: { appId: string }) => {
           defaultData={[imgError]}
           render={(data) => {
             return (
-              <SwiperOs slidesPerView={calculatePerCard()}>
+              <SwiperOs
+                slidesPerView={calculatePerCard()}
+                navigationId="screen_shot"
+              >
                 {data.map((src, idx) => (
                   <SwiperSlide key={idx}>
                     <Image
@@ -53,6 +61,16 @@ const ScreenShot = ({ appId }: { appId: string }) => {
               </SwiperOs>
             )
           }}
+        />
+        <Button
+          shape="circle"
+          className={`screen_shot${DEFAULT_PREV_CLN}`}
+          icon={<IonIcon name="chevron-back-outline" />}
+        />
+        <Button
+          shape="circle"
+          className={`screen_shot${DEFAULT_NEXT_CLN}`}
+          icon={<IonIcon name="chevron-forward-outline" />}
         />
       </Col>
     </Row>

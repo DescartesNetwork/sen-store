@@ -14,6 +14,19 @@
       object-fit: cover;
     }
   }
+  [class*='screen_shotswiper'] {
+    position: absolute !important;
+    border: none !important;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    &.screen_shotswiper-next-element {
+      right: 24px;
+    }
+    &.screen_shotswiper-prev-element {
+      left: 24px;
+    }
+  }
 }
 .btn-share {
   min-width: 114px;

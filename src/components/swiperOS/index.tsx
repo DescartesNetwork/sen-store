@@ -1,9 +1,12 @@
 import { ReactNode } from 'react'
 import { Swiper } from 'swiper/react'
-import SwiperCore, { Lazy, Navigation, SwiperOptions } from 'swiper'
+import { Lazy, Navigation, SwiperOptions } from 'swiper'
 
 import 'swiper/css/bundle'
 import './index.less'
+
+export const DEFAULT_NEXT_CLN = 'swiper-next-element'
+export const DEFAULT_PREV_CLN = 'swiper-prev-element'
 
 export const SwiperOs = ({
   children,
@@ -11,17 +14,16 @@ export const SwiperOs = ({
   ...rest
 }: { children: ReactNode; navigationId?: string } & SwiperOptions) => {
   const navigaConfig = {
-    nextEl: `.${navigationId}swiper-next-element`,
-    prevEl: `.${navigationId}swiper-prev-element`,
+    nextEl: `.${navigationId}${DEFAULT_NEXT_CLN}`,
+    prevEl: `.${navigationId}${DEFAULT_PREV_CLN}`,
   }
-  SwiperCore.use([Lazy])
 
   return (
     <Swiper
       slidesPerView={'auto'}
       lazy
       spaceBetween={24}
-      modules={[Navigation]}
+      modules={[Navigation, Lazy]}
       navigation={navigaConfig}
       {...rest}
     >
