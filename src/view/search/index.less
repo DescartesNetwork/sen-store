@@ -49,8 +49,14 @@
       right: 14px;
     }
   }
-  .active {
-    color: #6333ff !important;
+  .store-btn {
+    color: #a6a7ad !important;
+    &:hover {
+      color: #212433 !important;
+    }
+    &.active {
+      color: #6333ff !important;
+    }
   }
 }
 
@@ -71,9 +77,11 @@
     &::after {
       border-top: 6px solid #252533;
     }
-
-    .active {
-      color: #f4f4f5 !important;
+    .store-btn {
+      &:hover,
+      &.active {
+        color: #f4f4f5 !important;
+      }
     }
   }
 }
