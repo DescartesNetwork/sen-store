@@ -20,3 +20,5 @@ export enum QueryParams {
 }
 
 export const MAX_WIDTH = 1440
+
+export const STORE_BODY_ID = 'store-body'

@@ -7,7 +7,7 @@
   max-height: 200px !important;
   z-index: 2 !important;
   overflow: auto !important;
-  bottom: calc(100% + 4px);
+  top: calc(100% + 4px);
   .app-item-select {
     transition: 0.3s;
     &:hover {
@@ -34,18 +34,19 @@
 }
 
 .show-more-card {
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     width: 0;
     height: 0;
     right: 28px;
+    top: -6px;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid #fff;
+    border-bottom: 6px solid #fff;
   }
   @media (max-width: 992px) {
-    &::after {
+    &::before {
       right: 14px;
     }
   }

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSetBackground, useAppRoute } from '@sentre/senhub'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
-import { Affix, Col, Layout, Row } from 'antd'
+import { Col, Layout, Row } from 'antd'
 import PrivateRoute from 'components/privateRoute'
 import Market from './market'
 import AppInfo from 'view/appInfo'
@@ -10,7 +10,8 @@ import YourApps from './yourApps'
 import Search from './search'
 import ListApp from './listApp'
 
-import { AppCategories, YOUR_DAPP } from 'contant'
+import { AppCategories, STORE_BODY_ID, YOUR_DAPP } from 'contant'
+import UIWatcher from './watcher/ui.watcher'
 import configs from 'configs'
 
 import 'static/styles/dark.less'
@@ -30,47 +31,43 @@ const View = () => {
 
   return (
     <Layout>
-      <Layout.Content>
-        <Row justify="center" style={{ marginBottom: 96 }}>
-          <Col xs={24} className="sentre-col-container">
-            <Switch>
-              <Route exact path={root} component={Market} />
-              <Route
-                exact
-                path={extend(`/${AppCategories.All}`)}
-                component={ListApp}
-              />
-              <PrivateRoute
-                exact
-                path={extend(`/${YOUR_DAPP}`)}
-                component={YourApps}
-              />
-              <Route exact path={extend('/:appId')} component={AppInfo} />
-              <Redirect from="*" to={root} />
-            </Switch>
-          </Col>
-        </Row>
-      </Layout.Content>
-      <Layout.Content>
-        <Affix
+      <Row
+        id={STORE_BODY_ID}
+        gutter={[24, 24]}
+        justify="center"
+        style={{ marginBottom: 96 }}
+      >
+        <Col
+          span={24}
           style={{
-            position: 'fixed',
-            width: '100%',
-            bottom: 5,
-            left: 0,
-            zIndex: 999,
+            position: 'sticky',
+            top: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+            zIndex: 99,
           }}
         >
-          <Row justify="center">
-            <Col
-              xs={24}
-              style={{ paddingRight: 12, paddingLeft: 12, maxWidth: 1464 }}
-            >
-              <Search />
-            </Col>
-          </Row>
-        </Affix>
-      </Layout.Content>
+          <Search />
+        </Col>
+        <Col xs={24} className="store-col-container">
+          <Switch>
+            <Route exact path={root} component={Market} />
+            <Route
+              exact
+              path={extend(`/${AppCategories.All}`)}
+              component={ListApp}
+            />
+            <PrivateRoute
+              exact
+              path={extend(`/${YOUR_DAPP}`)}
+              component={YourApps}
+            />
+            <Route exact path={extend('/:appId')} component={AppInfo} />
+            <Redirect from="*" to={root} />
+          </Switch>
+        </Col>
+        <UIWatcher />
+      </Row>
     </Layout>
   )
 }

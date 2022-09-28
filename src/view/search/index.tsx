@@ -8,8 +8,8 @@ const Search = () => {
   return (
     <Card
       className="card-menu-categoires"
-      style={{ borderRadius: 12 }}
-      bodyStyle={{ padding: 16 }}
+      style={{ borderRadius: 0 }}
+      bodyStyle={{ padding: 16, display: 'flex', justifyContent: 'center' }}
     >
       <Row
         gutter={[12, 12]}
@@ -17,12 +17,13 @@ const Search = () => {
         style={{ position: 'relative' }}
         justify="space-between"
         wrap={false}
+        className="store-col-container"
       >
-        <Col>
-          <MenuBar />
-        </Col>
         <Col style={{ position: 'unset' }}>
           <MenuSearch />
+        </Col>
+        <Col>
+          <MenuBar />
         </Col>
       </Row>
     </Card>

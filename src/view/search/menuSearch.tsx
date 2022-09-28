@@ -15,6 +15,7 @@ import {
   Col,
   Empty,
   Input,
+  InputRef,
   Row,
   Space,
   Spin,
@@ -25,8 +26,8 @@ import AppIcon from 'components/appIcon'
 import SearchEngine from './searchEngine'
 import { LoadingOutlined } from '@ant-design/icons'
 
-import configs from 'configs'
 import { QueryParams } from 'contant'
+import configs from 'configs'
 
 const {
   manifest: { appId: appStoreId },
@@ -80,7 +81,9 @@ const MenuSearch = ({
   const register = useRegister()
   const location = useLocation()
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const popupRef = useRef<HTMLDivElement>(null)
   const theme = useTheme()
+  const ipRef = useRef<InputRef>(null)
 
   const query = useMemo(
     () => new URLSearchParams(location.search),
@@ -109,6 +112,21 @@ const MenuSearch = ({
     if (appIds.length > 0) history.push(`/app/${appStoreId}/${appIds[0]}`)
   }, [appIds, history])
 
+  const onKeyPress = useCallback((e: KeyboardEvent) => {
+    const ipElm = ipRef.current
+    if (!ipElm) return
+
+    const key = e.code
+    const shiftKey = e.shiftKey
+    if (shiftKey && key === 'KeyS') ipElm.focus()
+  }, [])
+
+  function assertIsNode(e: EventTarget | null): asserts e is Node {
+    if (!e || !('nodeType' in e)) {
+      throw new Error(`Node expected`)
+    }
+  }
+
   // using url search key for the first time
   useEffect(() => {
     ;(() => {
@@ -120,12 +138,6 @@ const MenuSearch = ({
     onSearch()
   }, [onSearch])
 
-  function assertIsNode(e: EventTarget | null): asserts e is Node {
-    if (!e || !('nodeType' in e)) {
-      throw new Error(`Node expected`)
-    }
-  }
-
   useEffect(() => {
     const ctxWrapper = wrapperRef.current
     if (!ctxWrapper) return
@@ -136,9 +148,16 @@ const MenuSearch = ({
     return () => document.removeEventListener('click', () => {})
   }, [])
 
+  //  Shift + S to search
+  useEffect(() => {
+    document.addEventListener('keypress', onKeyPress)
+    return () => document.removeEventListener('keypress', onKeyPress)
+  })
+
   return (
     <div style={{ position: 'relative' }} ref={wrapperRef}>
       <Input
+        ref={ipRef}
         size="large"
         placeholder="Search dapp name, author"
         bordered={false}
@@ -169,6 +188,7 @@ const MenuSearch = ({
       />
       {searchKey.length > 0 && searchVisible && (
         <Card
+          ref={popupRef}
           className="list-apps-search"
           bordered={false}
           bodyStyle={{ padding: '8px 0' }}
@@ -209,25 +229,27 @@ const MobileSearch = () => {
 
   return (
     <Fragment>
-      <div
-        style={{
-          position: 'absolute',
-          right: 0,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          transition: 'all .3s linear',
-          ...visibleStyle,
-        }}
-      >
-        <MenuSearch closeabel onClose={() => setVisible(false)} />
-      </div>
       {!visible && (
         <Button
+          style={{ position: 'relative', zIndex: 101 }}
           type="text"
           icon={<IonIcon name="search-outline" />}
           onClick={() => setVisible(true)}
         />
       )}
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          transition: 'all .3s linear',
+          zIndex: 100,
+          ...visibleStyle,
+        }}
+      >
+        <MenuSearch closeabel onClose={() => setVisible(false)} />
+      </div>
     </Fragment>
   )
 }

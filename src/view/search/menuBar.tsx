@@ -187,7 +187,7 @@ const MenuBar = () => {
           <div
             style={{
               position: 'absolute',
-              bottom: 'calc(100% + 4px)',
+              top: 'calc(100% + 12px)',
               right: 0,
             }}
           >
