@@ -31,12 +31,7 @@ const View = () => {
 
   return (
     <Layout>
-      <Row
-        id={STORE_BODY_ID}
-        gutter={[24, 24]}
-        justify="center"
-        style={{ marginBottom: 96 }}
-      >
+      <Row id={STORE_BODY_ID} gutter={[24, 24]} justify="center">
         <Col
           span={24}
           style={{
