@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Infix, useInfix } from '@sentre/senhub'
+import { Infix } from '@sentre/senhub'
 import { SwiperOs } from 'components/swiperOS'
 import { SwiperSlide } from 'swiper/react'
 
@@ -27,19 +27,13 @@ const HOT_APPS = [
 
 const HotApps = () => {
   const width = useSelector((state: AppState) => state.ui.width)
-  const infix = useInfix()
 
   const slidePerViews = useMemo(() => {
     if (width > MAX_WIDTH) return 4
     if (width > Infix.lg) return 3
     if (width > Infix.md) return 2
-    return 'auto'
+    return 1
   }, [width])
-
-  const slideMobile = useMemo(() => {
-    if (infix < Infix.md) return { width: '85vw' }
-    return {}
-  }, [infix])
 
   const screenWidth = useMemo(
     () => (width < MAX_WIDTH ? width - ELEMENT_SPACING * 2 : MAX_WIDTH),
@@ -47,7 +41,7 @@ const HotApps = () => {
   )
 
   const cardHeight = useMemo(() => {
-    if (slidePerViews === 'auto')
+    if (slidePerViews === 1)
       return (width * MOBILE_WIDTH_RATIO - ITEM_BODY_SPACING) * HEIGHT_RATIO
 
     return (
@@ -88,7 +82,7 @@ const HotApps = () => {
       <Col span={24}>
         <SwiperOs slidesPerView={slidePerViews}>
           {HOT_APPS.map((appId) => (
-            <SwiperSlide key={appId} style={{ paddingTop: 12, ...slideMobile }}>
+            <SwiperSlide key={appId} style={{ paddingTop: 12 }}>
               <CardHotAppCard appId={appId} style={{ height: cardHeight }} />
             </SwiperSlide>
           ))}

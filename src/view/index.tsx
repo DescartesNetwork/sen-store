@@ -44,6 +44,7 @@ const View = () => {
             top: 0,
             paddingLeft: 0,
             paddingRight: 0,
+            marginTop: -12,
             zIndex: 99,
           }}
         >

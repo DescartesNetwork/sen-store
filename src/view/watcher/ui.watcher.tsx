@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import IonIcon from '@sentre/antd-ionicon'
 
+import { useWidth } from '@sentre/senhub'
 import { notification, message } from 'antd'
 import { resize } from 'model/ui.controller'
 
@@ -11,6 +12,7 @@ const UIWatcher = () => {
     notification.useNotification()
   const [mesageAPI, mesageContextHolder] = message.useMessage()
   const dispatch = useDispatch()
+  const width = useWidth()
 
   // Notification system
   window.notify = ({
@@ -33,9 +35,8 @@ const UIWatcher = () => {
 
   // Listen window events
   useEffect(() => {
-    window.addEventListener('resize', () => dispatch(resize()))
-    return () => window.removeEventListener('resize', () => dispatch(resize()))
-  }, [dispatch])
+    if (width) dispatch(resize())
+  }, [dispatch, width])
 
   return (
     <Fragment>
