@@ -1,7 +1,8 @@
+import { CSSProperties } from 'react'
+
 import { Col, Empty, Row, Typography } from 'antd'
 import AppCardInfo from 'components/appCardInfo'
 import FlexibleCard, { FlexibleCardType } from 'components/flexibleCard'
-import { CSSProperties } from 'react'
 
 import { CategoryOptions, useAppCategory } from './hooks'
 

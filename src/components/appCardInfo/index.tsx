@@ -6,12 +6,14 @@ import {
   useAppIds,
 } from '@sentre/senhub'
 
-import { Button, Card, Col, Row, Typography } from 'antd'
+import { Button, Card, Col, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
 import Verification from 'components/verification'
 import AppTags from 'view/appInfo/appDetails/appTags'
 
 import { useGoToStore } from 'hooks/useGotoStore'
+
+import './index.less'
 
 const LIMIT_TAG = 2
 const START_SPLICE = 0
@@ -67,12 +69,14 @@ const AppCardInfo = ({
               <AppIcon size={52} appId={appId} name={false} />
             </Col>
             <Col flex="auto">
-              {/* Don't use Space tag, because Typography ellipsis not working */}
               <Row gutter={[2, 2]}>
-                <Col>
-                  <Typography.Title ellipsis={{ tooltip: true }} level={5}>
-                    {name} <Verification verified={verified} />
-                  </Typography.Title>
+                <Col span={24}>
+                  <Space className="wrap-app-name">
+                    <Typography.Title ellipsis={{ tooltip: true }} level={5}>
+                      {name}
+                    </Typography.Title>
+                    <Verification verified={verified} />
+                  </Space>
                 </Col>
                 <Col span={24}>
                   <AppTags
