@@ -80,7 +80,7 @@ const AppCardInfo = ({
                 </Col>
                 <Col span={24}>
                   <AppTags
-                    tags={[...tags].splice(START_SPLICE, LIMIT_TAG)}
+                    tags={tags && [...tags].splice(START_SPLICE, LIMIT_TAG)}
                     wrap={false}
                   />
                 </Col>
