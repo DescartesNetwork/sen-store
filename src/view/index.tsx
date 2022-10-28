@@ -11,7 +11,6 @@ import Search from './search'
 import ListApp from './listApp'
 
 import { AppCategories, STORE_BODY_ID, YOUR_DAPP } from 'contant'
-import UIWatcher from './watcher/ui.watcher'
 import configs from 'configs'
 
 import 'static/styles/dark.less'
@@ -62,7 +61,6 @@ const View = () => {
             <Redirect from="*" to={root} />
           </Switch>
         </Col>
-        <UIWatcher />
       </Row>
     </Layout>
   )

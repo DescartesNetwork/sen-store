@@ -1,10 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Infix, useInfix } from '@sentre/senhub'
+import { Infix, useAppWidth, useInfix } from '@sentre/senhub'
 
 import { Card, Col, Row } from 'antd'
 import { MAX_WIDTH } from 'contant'
-import { useSelector } from 'react-redux'
-import { AppState } from 'model'
 
 const PAGE_PADDING = 24
 const ELEMENT_PADDING = 24
@@ -14,7 +12,7 @@ const CONTENT_KEY = '2f42a053d7da65e50e82be9166'
 
 const BottomBanner = () => {
   const [posts, setPosts] = useState([])
-  const width = useSelector((state: AppState) => state.ui.width)
+  const width = useAppWidth()
   const infix = useInfix()
 
   const bannerHeightRatio = useMemo(

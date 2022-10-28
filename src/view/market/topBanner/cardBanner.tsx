@@ -1,4 +1,4 @@
-import { Infix, useTheme, useWidth } from '@sentre/senhub'
+import { Infix, useAppWidth, useTheme } from '@sentre/senhub'
 
 import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
 
@@ -19,7 +19,7 @@ type CardBannerProps = {
 }
 const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
   const theme = useTheme()
-  const width = useWidth()
+  const width = useAppWidth()
   const onGoToApp = useGoToStore()
   const topBg = theme === 'light' ? topBgLight : topBgDark
   const titleSize = useMemo(() => {

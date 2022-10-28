@@ -1,7 +1,7 @@
 import { CSSProperties, useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Grid } from 'swiper'
-import { Infix, useWidth } from '@sentre/senhub'
+import { Infix, useAppWidth } from '@sentre/senhub'
 
 import IonIcon from '@sentre/antd-ionicon'
 import { Button, Col, Row, Space, Typography } from 'antd'
@@ -25,7 +25,7 @@ const SwiperListApp = ({
   padding = 12,
   ...options
 }: SwiperListAppProps) => {
-  const width = useWidth()
+  const width = useAppWidth()
   const { title: suggestTitle, appIds: suggestAppIds } = useAppCategory(options)
 
   const { title: displayTitle, lowerTitle } = useMemo(() => {

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Infix } from '@sentre/senhub'
+import { Infix, useAppWidth } from '@sentre/senhub'
 import { SwiperOs } from 'components/swiperOS'
 import { SwiperSlide } from 'swiper/react'
 
@@ -8,8 +8,6 @@ import CardHotAppCard from './cardHotApp'
 import IonIcon from '@sentre/antd-ionicon'
 
 import { MAX_WIDTH } from 'contant'
-import { useSelector } from 'react-redux'
-import { AppState } from 'model'
 
 const HEIGHT_RATIO = 0.75
 const MOBILE_WIDTH_RATIO = 0.85
@@ -26,7 +24,7 @@ const HOT_APPS = [
 ]
 
 const HotApps = () => {
-  const width = useSelector((state: AppState) => state.ui.width)
+  const width = useAppWidth()
 
   const slidePerViews = useMemo(() => {
     if (width > MAX_WIDTH) return 4

@@ -1,4 +1,4 @@
-import { Infix, useRegister, useWidth } from '@sentre/senhub'
+import { Infix, useAppWidth, useRegister } from '@sentre/senhub'
 
 import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
@@ -10,7 +10,7 @@ import './index.less'
 const ListingApp = () => {
   const register = useRegister()
   const appIds = Object.keys(register)
-  const width = useWidth()
+  const width = useAppWidth()
 
   const isMobile = width < Infix.md
   const slideStyle = isMobile

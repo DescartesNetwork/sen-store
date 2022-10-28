@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Infix, useRegister, useWidth } from '@sentre/senhub'
+import { Infix, useAppWidth, useRegister } from '@sentre/senhub'
 
 import { Row, Col, Typography, Spin, Button } from 'antd'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -16,7 +16,7 @@ export type MentionsOnTwitterProps = { appId: string }
 const SENTRE_ID = 'sentre'
 
 const MentionsOnTwitter = ({ appId }: MentionsOnTwitterProps) => {
-  const width = useWidth()
+  const width = useAppWidth()
   const register = useRegister()
   const { data, loading } = useTwitterMentions(appId)
 
