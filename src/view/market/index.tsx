@@ -49,14 +49,13 @@ const Market = () => {
     )
 
   return (
-    <Row gutter={[16, 48]}>
+    <Row gutter={[24, 48]}>
       <Col span={24}>
         <TopBanner />
       </Col>
       <Col span={24}>
         <HotApps />
       </Col>
-      {/* Popular on Twitter */}
       <Col span={24}>
         <ListAppByCategories
           category={CustomCategory.suggest}
@@ -64,7 +63,6 @@ const Market = () => {
           title="Popular on Twitter"
         />
       </Col>
-      {/* Mentions twitter */}
       <Col span={24}>
         <MentionsOnTwitter appId="sentre" />
       </Col>

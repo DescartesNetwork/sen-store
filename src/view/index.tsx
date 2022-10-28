@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSetBackground, useAppRoute } from '@sentre/senhub'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
-import { Col, Layout, Row } from 'antd'
+import { Affix, Col, Row } from 'antd'
 import PrivateRoute from 'components/privateRoute'
 import Market from './market'
 import AppInfo from 'view/appInfo'
@@ -29,40 +29,30 @@ const View = () => {
   }, [setBackground])
 
   return (
-    <Layout>
-      <Row id={STORE_BODY_ID} gutter={[24, 24]} justify="center">
-        <Col
-          span={24}
-          style={{
-            position: 'sticky',
-            top: 0,
-            paddingLeft: 0,
-            paddingRight: 0,
-            marginTop: -12,
-            zIndex: 99,
-          }}
-        >
+    <Row id={STORE_BODY_ID} gutter={[24, 24]} justify="center">
+      <Col span={24}>
+        <Affix style={{ margin: -12 }}>
           <Search />
-        </Col>
-        <Col xs={24} className="store-col-container">
-          <Switch>
-            <Route exact path={root} component={Market} />
-            <Route
-              exact
-              path={extend(`/${AppCategories.All}`)}
-              component={ListApp}
-            />
-            <PrivateRoute
-              exact
-              path={extend(`/${YOUR_DAPP}`)}
-              component={YourApps}
-            />
-            <Route exact path={extend('/:appId')} component={AppInfo} />
-            <Redirect from="*" to={root} />
-          </Switch>
-        </Col>
-      </Row>
-    </Layout>
+        </Affix>
+      </Col>
+      <Col span={24} className="store-col-container">
+        <Switch>
+          <Route exact path={root} component={Market} />
+          <Route
+            exact
+            path={extend(`/${AppCategories.All}`)}
+            component={ListApp}
+          />
+          <PrivateRoute
+            exact
+            path={extend(`/${YOUR_DAPP}`)}
+            component={YourApps}
+          />
+          <Route exact path={extend('/:appId')} component={AppInfo} />
+          <Redirect from="*" to={root} />
+        </Switch>
+      </Col>
+    </Row>
   )
 }
 

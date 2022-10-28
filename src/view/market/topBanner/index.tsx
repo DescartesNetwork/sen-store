@@ -1,13 +1,15 @@
+import { Col, Row } from 'antd'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper'
 import CardBanner from './cardBanner'
+
+import { useSwiperOverflowGaurd } from 'hooks/useOverflowGaurd'
 
 import interdao from 'static/images/banner/interdao.png'
 import lightningTunnel from 'static/images/banner/lightning-tunnel.png'
 import anyArts from 'static/images/banner/any-arts.png'
 import balansol from 'static/images/banner/balansol.png'
 import solend from 'static/images/banner/solend.png'
-
 import './index.less'
 
 const PANELS = [
@@ -44,42 +46,49 @@ const PANELS = [
   },
 ]
 
+SwiperCore.use([Autoplay])
+
 const TopBanner = () => {
-  SwiperCore.use([Autoplay])
+  const swiperWidth = useSwiperOverflowGaurd()
+
   return (
-    <Swiper
-      className="hero-banner"
-      slidesPerView={1}
-      navigation={false}
-      pagination={{
-        clickable: true,
-        type: 'bullets',
-        renderBullet: function (index, className) {
-          return `<span class="${className} indicator" key="${index}"></span>`
-        },
-      }}
-      modules={[Navigation, Pagination]}
-      autoplay
-      loop
-    >
-      {PANELS.map(({ appId, description, image, title }, index) => {
-        return (
-          <SwiperSlide
-            style={{
-              cursor: 'pointer',
-            }}
-            key={index}
-          >
-            <CardBanner
-              image={image}
-              appId={appId}
-              title={title}
-              description={description}
-            />
-          </SwiperSlide>
-        )
-      })}
-    </Swiper>
+    <Row gutter={[24, 24]}>
+      <Col span={24} style={{ width: swiperWidth }}>
+        <Swiper
+          className="hero-banner"
+          slidesPerView={1}
+          navigation={false}
+          pagination={{
+            clickable: true,
+            type: 'bullets',
+            renderBullet: function (index, className) {
+              return `<span class="${className} indicator" key="${index}"></span>`
+            },
+          }}
+          modules={[Navigation, Pagination]}
+          autoplay
+          loop
+        >
+          {PANELS.map(({ appId, description, image, title }, index) => {
+            return (
+              <SwiperSlide
+                style={{
+                  cursor: 'pointer',
+                }}
+                key={index}
+              >
+                <CardBanner
+                  image={image}
+                  appId={appId}
+                  title={title}
+                  description={description}
+                />
+              </SwiperSlide>
+            )
+          })}
+        </Swiper>
+      </Col>
+    </Row>
   )
 }
 

@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { Swiper } from 'swiper/react'
 import { Lazy, Navigation, SwiperOptions } from 'swiper'
 
-import 'swiper/css/bundle'
+import 'swiper/css'
 import './index.less'
 
 export const DEFAULT_NEXT_CLN = 'swiper-next-element'

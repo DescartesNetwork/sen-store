@@ -9,6 +9,7 @@ import AppCardInfo from 'components/appCardInfo'
 import FlexibleCard from 'components/flexibleCard'
 
 import { CategoryOptions, useAppCategory } from './hooks'
+import { useSwiperOverflowGaurd } from 'hooks/useOverflowGaurd'
 
 type SwiperListAppProps = {
   title?: string
@@ -26,6 +27,7 @@ const SwiperListApp = ({
   ...options
 }: SwiperListAppProps) => {
   const width = useAppWidth()
+  const swiperWidth = useSwiperOverflowGaurd()
   const { title: suggestTitle, appIds: suggestAppIds } = useAppCategory(options)
 
   const { title: displayTitle, lowerTitle } = useMemo(() => {
@@ -70,7 +72,7 @@ const SwiperListApp = ({
           )}
         </Row>
       </Col>
-      <Col span={24}>
+      <Col span={24} style={{ width: swiperWidth }}>
         <Swiper
           modules={[Grid, Navigation]}
           grid={{ rows: rows, fill: 'row' }}

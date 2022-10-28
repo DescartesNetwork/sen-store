@@ -1,13 +1,14 @@
 import { useMemo } from 'react'
 import { Infix, useAppWidth } from '@sentre/senhub'
-import { SwiperOs } from 'components/swiperOS'
-import { SwiperSlide } from 'swiper/react'
 
 import { Button, Col, Row, Space, Typography } from 'antd'
-import CardHotAppCard from './cardHotApp'
 import IonIcon from '@sentre/antd-ionicon'
+import { SwiperSlide } from 'swiper/react'
+import { SwiperOs } from 'components/swiperOS'
+import CardHotAppCard from './cardHotApp'
 
 import { MAX_WIDTH } from 'contant'
+import { useSwiperOverflowGaurd } from 'hooks/useOverflowGaurd'
 
 const HEIGHT_RATIO = 0.75
 const MOBILE_WIDTH_RATIO = 0.85
@@ -25,6 +26,7 @@ const HOT_APPS = [
 
 const HotApps = () => {
   const width = useAppWidth()
+  const swiperWidth = useSwiperOverflowGaurd()
 
   const slidePerViews = useMemo(() => {
     if (width > MAX_WIDTH) return 4
@@ -77,7 +79,7 @@ const HotApps = () => {
         </Row>
       </Col>
       {/* Apps in the category */}
-      <Col span={24}>
+      <Col span={24} style={{ width: swiperWidth }}>
         <SwiperOs slidesPerView={slidePerViews}>
           {HOT_APPS.map((appId) => (
             <SwiperSlide key={appId} style={{ paddingTop: 12 }}>

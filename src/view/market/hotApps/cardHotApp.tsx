@@ -18,7 +18,7 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
   const onOpen = useGoToStore()
 
   return (
-    <Row>
+    <Row gutter={[24, 24]}>
       <Col span={24}>
         <MultiStaticLoader
           defaultData={[imgError]}

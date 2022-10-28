@@ -18,7 +18,6 @@ const InfiniteSlideIcon = ({
   appIds,
   size = 84,
   reverse = false,
-  slidePerView = 5,
   spacing = 24,
   speed = 7000,
 }: InfiniteSlideIconProps) => {

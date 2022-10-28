@@ -43,7 +43,7 @@ const AppDetails = ({ appId }: { appId: string }) => {
       <Col span={24}>
         <Row gutter={[16, 16]}>
           <Col span={isMobile ? 24 : 14}>
-            <Row gutter={[32, 24]} wrap={false}>
+            <Row gutter={[24, 24]} wrap={false}>
               <Col>
                 <AppIcon appId={appId} size={96} name={false} />
               </Col>

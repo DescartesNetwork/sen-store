@@ -1,6 +1,7 @@
-import { useTheme } from '@sentre/senhub'
-import { Card } from 'antd'
 import { CSSProperties, ReactNode } from 'react'
+import { useTheme } from '@sentre/senhub'
+
+import { Card } from 'antd'
 
 const MULTI_BG_LIGHT = {
   purple:

@@ -30,7 +30,7 @@ const AppViewer = () => {
   }, [appId, history])
 
   return (
-    <Row gutter={[64, 64]}>
+    <Row gutter={[24, 64]}>
       {/* App Details */}
       <Col span={24}>
         <Row gutter={[24, 24]}>
