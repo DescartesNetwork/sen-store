@@ -9,7 +9,12 @@ const Search = () => {
     <Card
       className="card-menu-categoires"
       style={{ borderRadius: 0 }}
-      bodyStyle={{ padding: 16, display: 'flex', justifyContent: 'center' }}
+      bodyStyle={{
+        padding: 16,
+        display: 'flex',
+        justifyContent: 'center',
+        zIndex: 99,
+      }}
     >
       <Row
         gutter={[12, 12]}
