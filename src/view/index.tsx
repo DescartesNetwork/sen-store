@@ -52,7 +52,6 @@ const View = () => {
           <Redirect from="*" to={root} />
         </Switch>
       </Col>
-      <Col span={24} />
     </Row>
   )
 }
