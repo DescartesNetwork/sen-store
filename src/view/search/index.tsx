@@ -13,7 +13,6 @@ const Search = () => {
         padding: 16,
         display: 'flex',
         justifyContent: 'center',
-        zIndex: 99,
       }}
     >
       <Row

@@ -53,7 +53,7 @@ const TopBanner = () => {
 
   return (
     <Row gutter={[24, 24]}>
-      <Col span={24} style={{ width: swiperWidth }}>
+      <Col span={24} style={{ width: swiperWidth, zIndex: -1 }}>
         <Swiper
           className="hero-banner"
           slidesPerView={1}
