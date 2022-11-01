@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Infix, useAppWidth, useTheme } from '@sentre/senhub'
 
 import { Button, Card, Col, Image, Row, Space, Typography } from 'antd'
@@ -8,8 +9,8 @@ import { useGoToStore } from 'hooks/useGotoStore'
 
 import topBgLight from 'static/images/top-bg.png'
 import topBgDark from 'static/images/top-bg-dark.png'
+
 import './index.less'
-import { useMemo } from 'react'
 
 type CardBannerProps = {
   image: string
@@ -21,14 +22,16 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
   const theme = useTheme()
   const width = useAppWidth()
   const onGoToApp = useGoToStore()
+
+  const unDesktop = width < 1200
   const topBg = theme === 'light' ? topBgLight : topBgDark
   const titleSize = useMemo(() => {
     if (width > 1600) return { fontSize: 64 }
     if (width > 1320) return { fontSize: 54 }
     if (width > Infix.lg) return { fontSize: 42 }
+    if (width > Infix.md) return { fontSize: 24 }
     return {}
   }, [width])
-  const cardTitleSize = width < 1200 ? 16 : 24
 
   return (
     <Card
@@ -51,7 +54,7 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
           <Space
             style={{ padding: '0 32px 16px' }}
             direction="vertical"
-            size={cardTitleSize}
+            size={unDesktop ? 16 : 24}
             className="card-banner-details"
           >
             <AppIcon appId={appId} direction="horizontal" />
@@ -59,7 +62,7 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
               <Typography.Title level={1} style={{ ...titleSize }}>
                 {title}
               </Typography.Title>
-              <Typography.Text style={{ fontSize: 20 }}>
+              <Typography.Text style={{ fontSize: unDesktop ? 14 : 20 }}>
                 {description}
               </Typography.Text>
             </Space>

@@ -8,7 +8,6 @@ import CardTwitter from './cardTwitter'
 import IconSax from '@sentre/antd-iconsax'
 
 import { useTwitterMentions } from 'hooks/useTwitterMentions'
-import { useSwiperOverflowGaurd } from 'hooks/useOverflowGaurd'
 
 import './index.less'
 
@@ -18,7 +17,7 @@ const SENTRE_ID = 'sentre'
 
 const MentionsOnTwitter = ({ appId }: MentionsOnTwitterProps) => {
   const width = useAppWidth()
-  const swiperWidth = useSwiperOverflowGaurd()
+
   const register = useRegister()
   const { data, loading } = useTwitterMentions(appId)
 
@@ -80,7 +79,7 @@ const MentionsOnTwitter = ({ appId }: MentionsOnTwitterProps) => {
             )}
           </Row>
         </Col>
-        <Col span={24} style={{ width: swiperWidth }}>
+        <Col span={24}>
           <Swiper
             className="twitter-mention-swiper"
             slidesPerView={calculatePerCard}

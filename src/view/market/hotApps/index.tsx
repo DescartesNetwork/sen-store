@@ -3,12 +3,11 @@ import { Infix, useAppWidth } from '@sentre/senhub'
 
 import { Button, Col, Row, Space, Typography } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
-import { SwiperSlide } from 'swiper/react'
-import { SwiperOs } from 'components/swiperOS'
 import CardHotAppCard from './cardHotApp'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { MAX_WIDTH } from 'contant'
-import { useSwiperOverflowGaurd } from 'hooks/useOverflowGaurd'
+import { DEFAULT_NEXT_CLN, DEFAULT_PREV_CLN, MAX_WIDTH } from 'contant'
+import { Navigation, Pagination } from 'swiper'
 
 const HOT_APPS = [
   'balansol',
@@ -21,7 +20,6 @@ const HOT_APPS = [
 
 const HotApps = () => {
   const width = useAppWidth()
-  const swiperWidth = useSwiperOverflowGaurd()
 
   const slidePerViews = useMemo(() => {
     if (width > MAX_WIDTH) return 4
@@ -43,14 +41,14 @@ const HotApps = () => {
               <Button
                 shape="circle"
                 style={{ border: 'none' }}
-                className="swiper-prev-element"
+                className={`hot_app_${DEFAULT_PREV_CLN}`}
                 icon={<IonIcon name="chevron-back-outline" />}
               />
               {/* Button next slide */}
               <Button
                 shape="circle"
                 style={{ border: 'none' }}
-                className="swiper-next-element"
+                className={`hot_app_${DEFAULT_NEXT_CLN}`}
                 icon={<IonIcon name="chevron-forward-outline" />}
               />
             </Space>
@@ -58,14 +56,23 @@ const HotApps = () => {
         </Row>
       </Col>
       {/* Apps in the category */}
-      <Col span={24} style={{ width: swiperWidth }}>
-        <SwiperOs slidesPerView={slidePerViews}>
+      <Col span={24}>
+        <Swiper
+          modules={[Pagination, Navigation]}
+          slidesPerView={slidePerViews}
+          spaceBetween={24}
+          navigation={{
+            nextEl: `.hot_app_${DEFAULT_NEXT_CLN}`,
+            prevEl: `.hot_app_${DEFAULT_PREV_CLN}`,
+          }}
+          lazy
+        >
           {HOT_APPS.map((appId) => (
             <SwiperSlide key={appId} style={{ paddingTop: 12 }}>
               <CardHotAppCard appId={appId} />
             </SwiperSlide>
           ))}
-        </SwiperOs>
+        </Swiper>
       </Col>
     </Row>
   )
