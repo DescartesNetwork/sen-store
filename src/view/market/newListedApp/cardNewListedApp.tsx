@@ -61,8 +61,7 @@ const CardNewListedApp = ({
         gutter={[24, 24]}
         wrap={vertical}
         onClick={() => onOpenAppDetail({ appId })}
-        style={{ cursor: 'pointer', height: '100%' }}
-        justify={vertical ? 'space-between' : 'start'}
+        style={{ cursor: 'pointer' }}
       >
         <Col span={verticalSpan || 12}>
           <MultiStaticLoader
@@ -92,7 +91,7 @@ const CardNewListedApp = ({
           />
         </Col>
         <Col span={verticalSpan} style={{ ...horizontalColPadding }}>
-          <Space direction="vertical" size={16} style={{ width: '100%' }}>
+          <Space direction="vertical" size={16}>
             <Row gutter={[8, 8]}>
               <Col span={!vertical ? 24 : undefined} flex="auto">
                 <Space size={16} align="start">
