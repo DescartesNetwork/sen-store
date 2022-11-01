@@ -31,7 +31,7 @@ const View = () => {
 
   return (
     <Row id={STORE_BODY_ID} gutter={[24, 24]} justify="center">
-      <Col span={24}>
+      <Col span={24} style={{ zIndex: 2 }}>
         <Affix style={{ margin: -12 }}>
           <Search />
         </Affix>
