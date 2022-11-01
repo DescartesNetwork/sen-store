@@ -10,11 +10,6 @@ import CardHotAppCard from './cardHotApp'
 import { MAX_WIDTH } from 'contant'
 import { useSwiperOverflowGaurd } from 'hooks/useOverflowGaurd'
 
-const HEIGHT_RATIO = 0.75
-const MOBILE_WIDTH_RATIO = 0.85
-const ELEMENT_SPACING = 12
-const ITEM_SPACING = 24
-const ITEM_BODY_SPACING = 26
 const HOT_APPS = [
   'balansol',
   'sen_farming_v2',
@@ -34,22 +29,6 @@ const HotApps = () => {
     if (width > Infix.md) return 2
     return 1
   }, [width])
-
-  const screenWidth = useMemo(
-    () => (width < MAX_WIDTH ? width - ELEMENT_SPACING * 2 : MAX_WIDTH),
-    [width],
-  )
-
-  const cardHeight = useMemo(() => {
-    if (slidePerViews === 1)
-      return (width * MOBILE_WIDTH_RATIO - ITEM_BODY_SPACING) * HEIGHT_RATIO
-
-    return (
-      ((screenWidth - (slidePerViews - 1) * ITEM_SPACING) / slidePerViews -
-        ITEM_BODY_SPACING) *
-      HEIGHT_RATIO
-    )
-  }, [screenWidth, slidePerViews, width])
 
   return (
     <Row gutter={[24, 12]}>
@@ -83,7 +62,7 @@ const HotApps = () => {
         <SwiperOs slidesPerView={slidePerViews}>
           {HOT_APPS.map((appId) => (
             <SwiperSlide key={appId} style={{ paddingTop: 12 }}>
-              <CardHotAppCard appId={appId} style={{ height: cardHeight }} />
+              <CardHotAppCard appId={appId} />
             </SwiperSlide>
           ))}
         </SwiperOs>

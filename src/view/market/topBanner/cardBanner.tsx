@@ -23,7 +23,7 @@ const CardBanner = ({ image, appId, description, title }: CardBannerProps) => {
   const onGoToApp = useGoToStore()
   const topBg = theme === 'light' ? topBgLight : topBgDark
   const titleSize = useMemo(() => {
-    if (width > 1600) return { fontSize: 68 }
+    if (width > 1600) return { fontSize: 64 }
     if (width > 1320) return { fontSize: 54 }
     if (width > Infix.lg) return { fontSize: 42 }
     return {}

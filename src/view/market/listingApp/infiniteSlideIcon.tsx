@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Autoplay } from 'swiper'
 import { Infix, useAppWidth } from '@sentre/senhub'
@@ -24,15 +23,10 @@ const InfiniteSlideIcon = ({
   SwiperCore.use([Autoplay])
   const width = useAppWidth()
 
-  const calculatePerCard = useMemo(() => {
-    if (width < Infix.lg) return 3
-    return 5
-  }, [width])
-
   return (
     <div>
       <Swiper
-        slidesPerView={calculatePerCard}
+        slidesPerView={width < Infix.lg ? 3 : 5}
         spaceBetween={spacing}
         autoplay={{
           delay: 0,

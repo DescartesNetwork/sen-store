@@ -1,7 +1,7 @@
 import { CSSProperties, useMemo } from 'react'
 import { useRegister } from '@sentre/senhub'
 
-import { Card, Col, Row, Space, Typography } from 'antd'
+import { Card, Col, Image, Row, Space, Typography } from 'antd'
 import AppIcon from 'components/appIcon'
 import FlexibleCard from 'components/flexibleCard'
 import { MultiStaticLoader } from 'components/staticLoader'
@@ -62,36 +62,32 @@ const CardNewListedApp = ({
         wrap={vertical}
         onClick={() => onOpenAppDetail({ appId })}
         style={{ cursor: 'pointer', height: '100%' }}
-        align="middle"
         justify={vertical ? 'space-between' : 'start'}
       >
-        <Col
-          span={verticalSpan || 11}
-          style={{ height: !vertical ? '100%' : '' }}
-          className="panel-img"
-        >
+        <Col span={verticalSpan || 12}>
           <MultiStaticLoader
             defaultData={[imgError]}
             appId={appId}
             type="panels"
             render={(data) => (
               <Card
-                className="listed-card-img"
                 bordered={false}
                 style={{
-                  backgroundImage: `url(${data[0] || imgError})`,
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: 'cover',
+                  background: 'transparent',
                   cursor: 'pointer',
                   overflow: 'hidden',
                   boxShadow: 'none',
                   borderRadius: 16,
-                  height: '100%',
                   ...style,
                 }}
                 bodyStyle={{ padding: 0 }}
-              />
+              >
+                <Image
+                  src={data[0] || imgError}
+                  preview={false}
+                  style={{ aspectRatio: '4/3', objectFit: 'cover' }}
+                />
+              </Card>
             )}
           />
         </Col>

@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react'
 
-import { Card, Col, Row } from 'antd'
+import { Card, Col, Image, Row } from 'antd'
 import { MultiStaticLoader } from 'components/staticLoader'
 import FlexibleCard from 'components/flexibleCard'
 import AppCardInfo from 'components/appCardInfo'
@@ -30,10 +30,6 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
                 <Col span={24} style={{ zIndex: 1 }}>
                   <Card
                     style={{
-                      backgroundImage: `url(${data[0] || imgError})`,
-                      backgroundPosition: 'center',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundSize: 'cover',
                       cursor: 'pointer',
                       overflow: 'hidden',
                       boxShadow: 'none',
@@ -44,7 +40,13 @@ const CardHotAppCard = ({ appId, style = {} }: CardHotAppCardProps) => {
                     bodyStyle={{ padding: 0 }}
                     key={appId}
                     onClick={() => onOpen({ appId })}
-                  />
+                  >
+                    <Image
+                      src={data[0] || imgError}
+                      preview={false}
+                      style={{ aspectRatio: '4/3', objectFit: 'cover' }}
+                    />
+                  </Card>
                 </Col>
                 <Col span={24} style={{ top: -16, zIndex: 0 }}>
                   <AppCardInfo appId={appId} />

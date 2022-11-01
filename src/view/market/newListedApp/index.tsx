@@ -1,30 +1,26 @@
-import { useAppWidth } from '@sentre/senhub'
+import { useAppWidth, Infix } from '@sentre/senhub'
 
 import { Col, Row, Typography } from 'antd'
 import CardNewListedApp from './cardNewListedApp'
-
-import './index.less'
 
 const NEW_LISTED_APP_ID = ['francium', 'meanfi', 'friktion', 'port_finance']
 
 const NewListedApp = () => {
   const width = useAppWidth()
 
-  const cardSpacing = width < 768 ? 16 : 32
-
   return (
     <Row gutter={[24, 24]}>
       <Col span={24}>
         <Typography.Title level={2}>New listed</Typography.Title>
       </Col>
-      <Col xs={24} md={12}>
+      <Col xs={24} lg={12}>
         <CardNewListedApp
           appId={NEW_LISTED_APP_ID[0]}
           vertical
-          spacing={cardSpacing}
+          spacing={width < Infix.lg ? 16 : 32}
         />
       </Col>
-      <Col xs={24} md={12}>
+      <Col xs={24} lg={12}>
         <Row
           gutter={[24, 24]}
           justify="space-between"
@@ -32,7 +28,11 @@ const NewListedApp = () => {
         >
           {[...NEW_LISTED_APP_ID].splice(1).map((appId, idx) => (
             <Col span={24} key={idx}>
-              <CardNewListedApp appId={appId} spacing={0} />
+              <CardNewListedApp
+                appId={appId}
+                spacing={width < Infix.sm ? 16 : 0}
+                vertical={width < Infix.sm}
+              />
             </Col>
           ))}
         </Row>
