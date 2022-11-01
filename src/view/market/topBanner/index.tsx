@@ -3,8 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper'
 import CardBanner from './cardBanner'
 
-import { useSwiperOverflowGaurd } from 'hooks/useOverflowGaurd'
-
 import interdao from 'static/images/banner/interdao.png'
 import lightningTunnel from 'static/images/banner/lightning-tunnel.png'
 import anyArts from 'static/images/banner/any-arts.png'
@@ -49,11 +47,9 @@ const PANELS = [
 SwiperCore.use([Autoplay])
 
 const TopBanner = () => {
-  const swiperWidth = useSwiperOverflowGaurd()
-
   return (
     <Row gutter={[24, 24]}>
-      <Col span={24} style={{ width: swiperWidth }}>
+      <Col span={24}>
         <Swiper
           className="hero-banner"
           slidesPerView={1}

@@ -22,3 +22,6 @@ export enum QueryParams {
 export const MAX_WIDTH = 1440
 
 export const STORE_BODY_ID = 'store-body'
+
+export const DEFAULT_NEXT_CLN = 'swiper-next-element'
+export const DEFAULT_PREV_CLN = 'swiper-prev-element'

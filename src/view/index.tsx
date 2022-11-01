@@ -15,6 +15,7 @@ import configs from 'configs'
 
 import 'static/styles/dark.less'
 import 'static/styles/light.less'
+import 'swiper/css'
 
 const {
   manifest: { appId },

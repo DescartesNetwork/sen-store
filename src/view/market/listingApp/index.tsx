@@ -5,19 +5,17 @@ import IntegrationCard from './integrationCard'
 import InfiniteSlideIcon from './infiniteSlideIcon'
 import FlexibleCard from 'components/flexibleCard'
 
-import { useSwiperOverflowGaurd } from 'hooks/useOverflowGaurd'
-
 import './index.less'
 
 const ListingApp = () => {
   const appIds = useAppIds()
   const width = useAppWidth()
-  const swiperWidth = useSwiperOverflowGaurd()
 
   const isMobile = width < Infix.md
+
   const slideStyle = isMobile
-    ? { paddingLeft: 12, paddingRight: 12, width: swiperWidth / 2 - 12 }
-    : { paddingLeft: 0, paddingRight: 0, marginLeft: -12, width: swiperWidth }
+    ? { paddingLeft: 12, paddingRight: 12, width: width / 2 - 12 }
+    : { paddingLeft: 0, paddingRight: 0, marginLeft: -12, width }
   const paddingCard = isMobile ? { padding: '0 0 24px 0' } : { padding: 0 }
 
   return (
