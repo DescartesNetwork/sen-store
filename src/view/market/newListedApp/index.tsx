@@ -21,11 +21,7 @@ const NewListedApp = () => {
         />
       </Col>
       <Col xs={24} lg={12}>
-        <Row
-          gutter={[24, 24]}
-          justify="space-between"
-          style={{ height: '100%' }}
-        >
+        <Row gutter={[24, 24]} justify="space-between">
           {[...NEW_LISTED_APP_ID].splice(1).map((appId, idx) => (
             <Col span={24} key={idx}>
               <CardNewListedApp
