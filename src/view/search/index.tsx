@@ -16,7 +16,7 @@ const Search = () => {
       }}
     >
       <Row
-        gutter={[12, 12]}
+        gutter={[0, 12]}
         align="middle"
         style={{ position: 'relative' }}
         justify="space-between"

@@ -48,7 +48,7 @@ SwiperCore.use([Autoplay])
 
 const TopBanner = () => {
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[0, 24]}>
       <Col span={24}>
         <Swiper
           className="hero-banner"

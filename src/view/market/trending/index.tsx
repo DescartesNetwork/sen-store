@@ -117,7 +117,7 @@ const Trending = () => {
   const BG_COLOR = theme === 'light' ? MULTI_BG_LIGHT : MULTI_BG_DARK
 
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[0, 24]}>
       <Col span={24}>
         <Typography.Title level={2}>Trending topics</Typography.Title>
       </Col>

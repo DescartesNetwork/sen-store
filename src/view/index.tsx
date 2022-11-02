@@ -16,6 +16,7 @@ import configs from 'configs'
 import 'static/styles/dark.less'
 import 'static/styles/light.less'
 import 'swiper/css'
+import 'swiper/css/grid' // Necessary to grid view swiper
 
 const {
   manifest: { appId },
