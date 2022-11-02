@@ -53,6 +53,7 @@ const CardNewListedApp = ({
   return (
     <FlexibleCard
       className="new-listed-card hoverable-transform"
+      style={{ cursor: 'pointer' }}
       transparent
       type="pink"
       spacing={spacing}
@@ -61,7 +62,6 @@ const CardNewListedApp = ({
         gutter={[24, 24]}
         wrap={vertical}
         onClick={() => onOpenAppDetail({ appId })}
-        style={{ cursor: 'pointer', height: '100%' }}
         justify={vertical ? 'space-between' : 'start'}
       >
         <Col span={verticalSpan || 12}>
@@ -74,7 +74,6 @@ const CardNewListedApp = ({
                 bordered={false}
                 style={{
                   background: 'transparent',
-                  cursor: 'pointer',
                   overflow: 'hidden',
                   boxShadow: 'none',
                   borderRadius: 16,
