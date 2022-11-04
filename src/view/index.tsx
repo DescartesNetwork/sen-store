@@ -10,7 +10,7 @@ import YourApps from './yourApps'
 import Search from './search'
 import ListApp from './listApp'
 
-import { AppCategories, STORE_BODY_ID, YOUR_DAPP } from 'contant'
+import { AppCategories, MAX_WIDTH, STORE_BODY_ID, YOUR_DAPP } from 'contant'
 import configs from 'configs'
 
 import 'static/styles/dark.less'
@@ -37,7 +37,7 @@ const View = () => {
           <Search />
         </Affix>
       </Col>
-      <Col span={24} className="store-col-container">
+      <Col span={24} style={{ maxWidth: MAX_WIDTH, width: 1 }}>
         <Switch>
           <Route exact path={root} component={Market} />
           <Route

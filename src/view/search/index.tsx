@@ -2,6 +2,7 @@ import { Col, Row, Card } from 'antd'
 import MenuBar from './menuBar'
 import MenuSearch from './menuSearch'
 
+import { MAX_WIDTH } from 'contant'
 import './index.less'
 
 const Search = () => {
@@ -18,10 +19,9 @@ const Search = () => {
       <Row
         gutter={[12, 12]}
         align="middle"
-        style={{ position: 'relative' }}
+        style={{ position: 'relative', maxWidth: MAX_WIDTH, width: '100%' }}
         justify="space-between"
         wrap={false}
-        className="store-col-container"
       >
         <Col style={{ position: 'unset' }}>
           <MenuSearch />
