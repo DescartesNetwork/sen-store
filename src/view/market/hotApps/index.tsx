@@ -29,7 +29,7 @@ const HotApps = () => {
   }, [width])
 
   return (
-    <Row gutter={[0, 12]}>
+    <Row gutter={[24, 12]}>
       <Col span={24}>
         <Row justify="space-between">
           <Col>
