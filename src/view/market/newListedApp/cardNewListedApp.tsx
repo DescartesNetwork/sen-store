@@ -45,10 +45,13 @@ const CardNewListedApp = ({
     [register, appId],
   )
 
-  const verticalSpan = vertical ? 24 : undefined
-  const horizontalColPadding = !vertical
-    ? { paddingTop: 12, paddingBottom: 12 }
-    : {}
+  const imgWidth = useMemo(() => (vertical ? '100%' : 185), [vertical])
+  const verticalSpan = useMemo(() => (vertical ? 24 : undefined), [vertical])
+  const horizontalColPadding = useMemo(
+    () => (!vertical ? { paddingTop: 12, paddingBottom: 12 } : {}),
+    [vertical],
+  )
+  const ellipsisRow = useMemo(() => (vertical ? 3 : 1), [vertical])
 
   return (
     <FlexibleCard
@@ -64,7 +67,7 @@ const CardNewListedApp = ({
         onClick={() => onOpenAppDetail({ appId })}
         style={{ cursor: 'pointer' }}
       >
-        <Col span={verticalSpan || 12}>
+        <Col span={verticalSpan}>
           <MultiStaticLoader
             defaultData={[imgError]}
             appId={appId}
@@ -84,16 +87,23 @@ const CardNewListedApp = ({
                 <Image
                   src={data[0] || imgError}
                   preview={false}
-                  style={{ aspectRatio: '4/3', objectFit: 'cover' }}
+                  style={{
+                    aspectRatio: '4/3',
+                    objectFit: 'cover',
+                    width: imgWidth,
+                  }}
                 />
               </Card>
             )}
           />
         </Col>
-        <Col span={verticalSpan} style={{ ...horizontalColPadding }}>
-          <Space direction="vertical" size={16}>
-            <Row gutter={[8, 8]}>
-              <Col span={!vertical ? 24 : undefined} flex="auto">
+        <Col
+          span={verticalSpan}
+          style={{ ...horizontalColPadding, overflow: 'hidden' }}
+        >
+          <Space direction="vertical" style={{ width: '100%' }} size={16}>
+            <Row gutter={[8, 8]} justify="space-between">
+              <Col span={!vertical ? 24 : undefined}>
                 <Space size={16} align="start">
                   <AppIcon appId={appId} size={40} name={false} />
                   <Space direction="vertical" size={0}>
@@ -114,7 +124,10 @@ const CardNewListedApp = ({
                 />
               </Col>
             </Row>
-            <Typography.Paragraph style={{ margin: 0 }} ellipsis={{ rows: 2 }}>
+            <Typography.Paragraph
+              style={{ margin: 0 }}
+              ellipsis={{ rows: ellipsisRow }}
+            >
               {description}
             </Typography.Paragraph>
           </Space>
