@@ -14,15 +14,13 @@ const NewListedApp = () => {
 
   const newListed = useMemo(() => {
     if (!listApp) return []
-    const apps = Object.keys(listApp).sort((a, b) => {
-      const dataA = listApp[a]
-      const dataB = listApp[b]
-      if ([a, b].includes('notification_admin')) return -1
-      return (
-        new Date(dataB.createdAt).getTime() -
-        new Date(dataA.createdAt).getTime()
-      )
-    })
+    const apps = Object.keys(listApp)
+      .filter((appId) => appId !== 'notification_admin')
+      .sort((a, b) => {
+        const createdAt_a = new Date(listApp[a].createdAt).getTime()
+        const createdAt_b = new Date(listApp[b].createdAt).getTime()
+        return createdAt_b - createdAt_a
+      })
     return apps.splice(0, LIMIT_APP)
   }, [listApp])
 
