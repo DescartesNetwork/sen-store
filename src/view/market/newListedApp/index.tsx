@@ -25,30 +25,20 @@ const NewListedApp = () => {
   }, [listApp])
 
   return (
-    <Row gutter={[24, 24]} align="top">
+    <Row gutter={[24, 24]}>
       <Col span={24}>
         <Typography.Title level={2}>New listed</Typography.Title>
       </Col>
-      <Col xs={24} lg={12}>
-        <CardNewListedApp
-          appId={newListed[0]}
-          vertical
-          spacing={width < Infix.lg ? 16 : 32}
-        />
-      </Col>
-      <Col xs={24} lg={12}>
-        <Row gutter={[24, 24]} justify="space-between">
-          {[...newListed].splice(1).map((appId, idx) => (
-            <Col span={24} key={idx}>
-              <CardNewListedApp
-                appId={appId}
-                spacing={width < Infix.sm ? 16 : 0}
-                vertical={width < Infix.sm}
-              />
-            </Col>
-          ))}
-        </Row>
-      </Col>
+
+      {newListed.map((appId, idx) => (
+        <Col xs={24} lg={12} key={idx}>
+          <CardNewListedApp
+            appId={appId}
+            vertical
+            spacing={width < Infix.lg ? 16 : 32}
+          />
+        </Col>
+      ))}
     </Row>
   )
 }
