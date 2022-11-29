@@ -1,4 +1,4 @@
-import { Infix, useAppIds, useAppWidth } from '@sentre/senhub'
+import { Infix, useAppWidth, useRegister } from '@sentre/senhub'
 
 import { Col, Row, Space } from 'antd'
 import IntegrationCard from './integrationCard'
@@ -8,8 +8,8 @@ import FlexibleCard from 'components/flexibleCard'
 import './index.less'
 
 const ListingApp = () => {
-  const appIds = useAppIds()
   const width = useAppWidth()
+  const register = useRegister()
 
   const isMobile = width < Infix.md
 
@@ -32,8 +32,8 @@ const ListingApp = () => {
         </Col>
         <Col xs={24} md={12} style={{ ...slideStyle }}>
           <Space direction="vertical" style={{ width: '100%' }} size={32}>
-            <InfiniteSlideIcon appIds={appIds} />
-            <InfiniteSlideIcon appIds={appIds} reverse />
+            <InfiniteSlideIcon appIds={Object.keys(register)} />
+            <InfiniteSlideIcon appIds={Object.keys(register)} reverse />
           </Space>
         </Col>
       </Row>
