@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Infix, useAppWidth, useInfix } from '@sentre/senhub'
+import axios from 'axios'
 
 import { Card, Col, Row } from 'antd'
 import { MAX_WIDTH } from 'contant'
@@ -8,7 +9,7 @@ const PAGE_PADDING = 24
 const ELEMENT_PADDING = 24
 const HEIGHT_RATIO = 1.777777
 const SENTRE_DOMAIN = 'https://academy.sentre.io'
-const CONTENT_KEY = '2f42a053d7da65e50e82be9166'
+const CONTENT_KEY = '49fd240f17ab7cc0388aed0fea'
 
 const BottomBanner = () => {
   const [posts, setPosts] = useState([])
@@ -30,12 +31,10 @@ const BottomBanner = () => {
   // Tuan - 13/09 type qua dai de config
   const fetchLastedPost = useCallback(async () => {
     try {
-      const response = await fetch(
+      const { data } = await axios.get(
         `${SENTRE_DOMAIN}/ghost/api/content/posts/?key=${CONTENT_KEY}&limit=2`,
       )
-      const data = await response.json()
-      const posts = data.posts
-      return setPosts(posts)
+      return setPosts(data.posts)
     } catch (error) {
       return setPosts([])
     }
