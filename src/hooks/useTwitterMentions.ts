@@ -25,7 +25,7 @@ export const useTwitterMentions = (appId: string) => {
   )
   const { data: raw, error } = useSWR(url, fetcher)
   if (!raw && !error) return { data: [], loading: true }
-  if (error) return { data: [], loading: false }
+  if (error || !raw.meta) return { data: [], loading: false }
   if (raw.meta.result_count === 0) return { data: [], loading: false }
 
   const {
